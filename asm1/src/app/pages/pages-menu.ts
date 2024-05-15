@@ -1,13 +1,18 @@
 import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-  
+
   {
     title: 'Trang chủ',
     icon: 'home-outline',
     link: '/pages/dashboard',
   },
-   {
+  {
+    title: 'Thông tin đăng nhập',
+    icon: 'settings-outline',
+    link: '/pages/users',
+  },
+  {
     title: 'Thông tin nhân viên',
     icon: 'person-outline',
     link: '/pages/userinfo',

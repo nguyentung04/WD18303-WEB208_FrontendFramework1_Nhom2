@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
+import { usersComponent } from './users/users.component';
 import { SkillComponent } from './skill/skill.component';
 import { experienceComponent } from './experience/experience.component';
 import { languageComponent } from './inlanguage/language.component';
@@ -20,6 +21,11 @@ const routes: Routes = [{
       path: 'dashboard',
       component: DashboardComponent,
       data: {breadcrumb: 'Trang chủ'},
+    },
+    {
+      path: 'users',
+      component: usersComponent,
+      data: {breadcrumb: 'Thông tin đăng nhập'},
     },
     {
       path: 'userinfo',
