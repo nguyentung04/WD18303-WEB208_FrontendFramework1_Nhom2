@@ -4,6 +4,9 @@ import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
 import { SkillComponent } from './skill/skill.component';
+import { experienceComponent } from './experience/experience.component';
+import { languageComponent } from './inlanguage/language.component';
+
 import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
@@ -48,6 +51,16 @@ const routes: Routes = [{
       path: 'activity',
       component: activityComponent,
       data: {breadcrumb: 'activity'},
+    },
+    {
+      path: 'inlanguage',
+      component: languageComponent,
+      data: {breadcrumb: 'Quản lý ngôn ngữ'},
+    },
+    {
+      path: 'experience',
+      component: experienceComponent,
+      data: {breadcrumb: 'Quản lý kinh nghiệm'},
     }
   ],
 }];

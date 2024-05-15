@@ -37,4 +37,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'activity-outline',
     link: '/pages/activity',
   },
+  {
+    title: ' Quản lý ngoại ngữ',
+    icon: 'globe-outline',
+    link: '/pages/inlanguage',
+  },
+  {
+    title: 'Quản lý kinh nghiệm',
+    icon: 'briefcase-outline',
+    link: '/pages/experience',
+  }
 ];
