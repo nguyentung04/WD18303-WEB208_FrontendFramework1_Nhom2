@@ -18,6 +18,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/userinfo',
   },
   {
+    title: 'Thông tin học vấn',
+    icon: 'award-outline',
+    link: '/pages/education',
+  },
+  {
     title: 'Kỹ năng làm việc',
     icon: 'star-outline',
     link: '/pages/skill',

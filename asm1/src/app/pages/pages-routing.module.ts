@@ -8,6 +8,7 @@ import { SkillComponent } from './skill/skill.component';
 import { experienceComponent } from './experience/experience.component';
 import { languageComponent } from './inlanguage/language.component';
 
+import { educationComponent } from './education/education.component';
 import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
@@ -31,6 +32,11 @@ const routes: Routes = [{
       path: 'userinfo',
       component: userComponent,
       data: {breadcrumb: 'Thông tin nhân viên'},
+    },
+    {
+      path: 'education',
+      component: educationComponent,
+      data: {breadcrumb: 'Thông tin học vấn'},
     },
     {
       path: 'skill',

@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { userModule } from './userinfo/user.module';
 import { usersModule } from './users/users.module';
+import { educationModule } from './education/education.module';
 import { skillModule } from './skill/skill.module';
 import { certificateModule } from './certificate/certificate.module';
 import { recruitmentModule } from './recruitment/recruitment.module';
@@ -17,6 +18,7 @@ import { experienceModule } from './experience/experience.module';
 
 
 
+
 @NgModule({
   imports: [
     PagesRoutingModule,
@@ -24,6 +26,7 @@ import { experienceModule } from './experience/experience.module';
     DashboardModule,
     usersModule,
     NbMenuModule,
+    educationModule,
     PaginatorModule,
     userModule,
     skillModule,
@@ -36,7 +39,7 @@ import { experienceModule } from './experience/experience.module';
   ],
   declarations: [
     PagesComponent,
-    
+   
   ],
   providers: []
 })
