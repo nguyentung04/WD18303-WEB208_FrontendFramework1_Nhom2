@@ -3,9 +3,19 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
-    title: 'Dashboard',
+    title: 'Trang chủ',
     icon: 'home-outline',
     link: '/pages/dashboard',
+  },
+   {
+    title: 'Thông tin nhân viên',
+    icon: 'person-outline',
+    link: '/pages/userinfo',
+  },
+  {
+    title: 'Kỹ năng làm việc',
+    icon: 'star-outline',
+    link: '/pages/skill',
   },
   {
     title: 'Quản lý ứng tuyển',

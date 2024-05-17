@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import { userComponent } from './userinfo/user.component';
+import { SkillComponent } from './skill/skill.component';
 
 import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
@@ -14,17 +16,27 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      data: {breadcrumb: 'Dashboard'},
+      data: {breadcrumb: 'Trang chủ'},
+    },
+    {
+      path: 'userinfo',
+      component: userComponent,
+      data: {breadcrumb: 'Thông tin nhân viên'},
+    },
+    {
+      path: 'skill',
+      component: SkillComponent,
+      data: {breadcrumb: 'Kỹ năng làm việc'},
     },
     {
       path: 'recruitment',
       component: recruitmentComponent,
-      data: {breadcrumb: 'Recruitment'},
+      data: {breadcrumb: ' Quản lý tuyển dụng'},
     },
     {
       path: 'certificate',
       component: certificateComponent,
-      data: {breadcrumb: 'Certificate'},
+      data: {breadcrumb: 'Quản lý chứng chỉ'},
     },
   ],
 }];
