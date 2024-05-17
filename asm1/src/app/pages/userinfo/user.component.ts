@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
@@ -37,7 +38,7 @@ export class userComponent implements OnInit {
         type: 'html',
         filter: false,
         valuePrepareFunction: (value: any) => {
-          return `<img src="${value}" class="rounded-circle w-25"> `;
+          return `<img src="${value}" class="rounded-circle w-50 h-50"> `;
         }
       },
       fullname: {

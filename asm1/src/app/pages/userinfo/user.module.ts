@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { userComponent } from './user.component';
 import {BreadcrumbModule} from "xng-breadcrumb";
@@ -16,3 +17,4 @@ import { NbCardModule } from '@nebular/theme';
   ],
 })
 export class userModule { }
+
