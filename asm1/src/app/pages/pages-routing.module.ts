@@ -10,6 +10,8 @@ import { educationComponent } from './education/education.component';
 import { usersComponent } from './users/users.component';
 import { languageComponent } from './inlanguage/language.component';
 import { experienceComponent } from './experience/experience.component';
+import { recruitmentComponent } from './recruitment/recruitment.component';
+import { certificateComponent } from './certificate/certificate.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,27 +44,23 @@ const routes: Routes = [{
     },
     {
       path: 'recruitment',
-      component: SkillComponent,
+      component: recruitmentComponent,
       data: {breadcrumb: ' Quản lý tuyển dụng'},
     },
     {
       path: 'certificate',
-      component: SkillComponent,
+      component: certificateComponent,
       data: {breadcrumb: 'Quản lý chứng chỉ'},
-    },
-    
-    {
-      data: {breadcrumb: 'User'},
     },
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
-      data: {breadcrumb: 'informationtechnologyexperience'},
+      data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
     },
     {
       path: 'activity',
       component: activityComponent,
-      data: {breadcrumb: 'activity'},
+      data: {breadcrumb: 'Quản lý hoạt động'},
     },
     {
       path: 'inlanguage',
