@@ -57,12 +57,12 @@ const routes: Routes = [{
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
-      data: {breadcrumb: 'informationtechnologyexperience'},
+      data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
     },
     {
       path: 'activity',
       component: activityComponent,
-      data: {breadcrumb: 'activity'},
+      data: {breadcrumb: 'Quản lý hoạt động'},
     },
     {
       path: 'inlanguage',
