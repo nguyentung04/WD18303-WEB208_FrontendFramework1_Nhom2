@@ -44,10 +44,6 @@ export class usersComponent implements OnInit {
         title: 'Phân quyền',
         type: 'string',
       },
-      password: {
-        title: 'Mật khẩu',
-        type: 'string',
-      },
       dateCreated: {
         title: 'Ngày tạo',
         type: 'string',
