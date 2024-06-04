@@ -38,16 +38,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/certificate',
   },
   {
-    title: 'Dashboard',
-    icon: 'home-outline',
-    link: '/pages/dashboard',
-  },
-  {
-    title: 'User',
-    icon: 'home-outline',
-    link: '/pages/userinfo',
-  },
-  {
     title: 'Quản lý kinh nghiệm tin học',
     icon: 'book-outline',
     link: '/pages/informationtechnologyexperience',
