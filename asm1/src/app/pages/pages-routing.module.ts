@@ -1,7 +1,8 @@
-import {RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
-import {PagesComponent} from './pages.component';
-import {DashboardComponent} from "./dashboard/dashboard.component";
+import { CreateComponent } from './userinfo/create/create.component';
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { PagesComponent } from './pages.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
 import { usersComponent } from './users/users.component';
 import { SkillComponent } from './skill/skill.component';
@@ -23,39 +24,90 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      data: {breadcrumb: 'Trang chủ'},
+      data: { breadcrumb: 'Trang chủ' },
     },
     {
       path: 'users',
       component: usersComponent,
-      data: {breadcrumb: 'Thông tin đăng nhập'},
+      data: { breadcrumb: 'Thông tin đăng nhập' },
     },
     {
       path: 'userinfo',
       component: userComponent,
-      data: {breadcrumb: 'Thông tin nhân viên'},
+      data: { breadcrumb: 'Thông tin nhân viên' },
+      children: [
+        {
+          path: 'create',
+          component: CreateComponent,
+          data: { breadcrumb: 'Thêm nhân viên' },
+        },
+        {
+          path: 'edit',
+          component: CreateComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+        },
+        {
+          path: 'delete',
+          component: CreateComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'education',
       component: educationComponent,
-      data: {breadcrumb: 'Thông tin học vấn'},
+      data: { breadcrumb: 'Thông tin học vấn' },
     },
     {
       path: 'skill',
       component: SkillComponent,
-      data: {breadcrumb: 'Kỹ năng làm việc'},
+      data: { breadcrumb: 'Kỹ năng làm việc' },
     },
     {
       path: 'recruitment',
       component: recruitmentComponent,
-      data: {breadcrumb: ' Quản lý tuyển dụng'},
+      data: { breadcrumb: ' Quản lý tuyển dụng' },
+      children: [
+        {
+          path: 'create',
+          component: CreateComponent,
+          data: { breadcrumb: 'Thêm nhân viên' },
+        },
+        {
+          path: 'edit',
+          component: CreateComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+        },
+        {
+          path: 'delete',
+          component: CreateComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'certificate',
       component: certificateComponent,
-      data: {breadcrumb: 'Quản lý chứng chỉ'},
+      data: { breadcrumb: 'Quản lý chứng chỉ' },
+      children: [
+        {
+          path: 'create',
+          component: CreateComponent,
+          data: { breadcrumb: 'Thêm nhân viên' },
+        },
+        {
+          path: 'edit',
+          component: CreateComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+        },
+        {
+          path: 'delete',
+          component: CreateComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
-    
+
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
@@ -69,7 +121,7 @@ const routes: Routes = [{
     {
       path: 'inlanguage',
       component: languageComponent,
-      data: {breadcrumb: 'Quản lý ngôn ngữ'},
+      data: { breadcrumb: 'Quản lý ngôn ngữ' },
     },
     {
       path: 'experience',

@@ -1,9 +1,7 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { SmartTableData } from 'app/@core/data/userinfo';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -11,74 +9,30 @@ import { RouterLink } from '@angular/router';
   templateUrl: './user.component.html',
 })
 export class userComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
 
-  users = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      img: {
-        title: 'Hình ảnh',
-        type: 'html',
-        filter: false,
-        valuePrepareFunction: (value: any) => {
-          return `<img src="${value}" class="rounded-circle w-25"> `;
-        }
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      birthday: {
-        title: 'Ngày sinh',
-        type: 'string',
-      },
-      address: {
-        title: 'Địa chỉ',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      phone: {
-        title: 'Số điện thoại',
-        type: 'number',
-      },
-
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  ngOnInit() {
+    // Kiểm tra khi có route con được kích hoạt
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/userinfo/');
+      }
+    });
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+
+  constructor(private router: Router) {
+
+  }
+
+  add() {
+    this.router.navigate(['/pages/userinfo/create'])
+  }
+  edit() {
+    this.router.navigate(['/pages/userinfo/edit'])
+  }
+  delete() {
+    this.router.navigate(['/pages/userinfo/delete'])
   }
 
 }

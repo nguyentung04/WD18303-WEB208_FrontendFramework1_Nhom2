@@ -4,6 +4,9 @@ import {BreadcrumbModule} from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
+import { DeleteComponent } from './delete/delete.component';
+import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   declarations: [
-    certificateComponent
+    certificateComponent,
+    DeleteComponent,
+    CreateComponent,
+    EditComponent
   ],
 })
 export class certificateModule { }
