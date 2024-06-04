@@ -3,16 +3,15 @@ import {NgModule} from '@angular/core';
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
-import { usersComponent } from './users/users.component';
-import { SkillComponent } from './skill/skill.component';
-import { experienceComponent } from './experience/experience.component';
-import { languageComponent } from './inlanguage/language.component';
-
-import { educationComponent } from './education/education.component';
-import { certificateComponent } from './certificate/certificate.component';
-import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { activityComponent } from './activity/activity.component';
+import { SkillComponent } from './skill/skill.component';
+import { educationComponent } from './education/education.component';
+import { usersComponent } from './users/users.component';
+import { languageComponent } from './inlanguage/language.component';
+import { experienceComponent } from './experience/experience.component';
+import { recruitmentComponent } from './recruitment/recruitment.component';
+import { certificateComponent } from './certificate/certificate.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,7 +20,7 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      data: {breadcrumb: 'Trang chủ'},
+      data: {breadcrumb: 'Dashboard'},
     },
     {
       path: 'users',
@@ -53,7 +52,6 @@ const routes: Routes = [{
       component: certificateComponent,
       data: {breadcrumb: 'Quản lý chứng chỉ'},
     },
-    
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
