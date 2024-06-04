@@ -3,6 +3,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 
 
 import { SmartTableData } from 'app/@core/data/userinfo';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -17,6 +18,7 @@ export class userComponent implements OnInit {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',

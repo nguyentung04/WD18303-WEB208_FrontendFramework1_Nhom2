@@ -14,6 +14,8 @@ import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { activityComponent } from './activity/activity.component';
 
+
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -73,7 +75,9 @@ const routes: Routes = [{
       path: 'experience',
       component: experienceComponent,
       data: {breadcrumb: 'Quản lý kinh nghiệm'},
-    }
+    },
+   
+ 
   ],
 }];
 
