@@ -1,8 +1,17 @@
-import {Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
-
-import { certificateData } from 'app/@core/data/certificate-table';
+// import { certificateData } from 'app/@core/data/certificate-table';
+import { Router } from '@angular/router';
+interface certificate {
+  id: any,
+  nameCertificate: string;
+  issued: string;
+  nameReceiver: string;
+  dateRange: string;
+  expiry: string;
+  image: string;
+}
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,77 +19,21 @@ import { certificateData } from 'app/@core/data/certificate-table';
   templateUrl: './certificate.component.html',
 })
 export class certificateComponent implements OnInit {
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+ certificate: certificate[] = [
+    {
+      id:1,
+      nameCertificate: 'Thạc sĩ',
+      issued: 'FPT PolyTechnic',
+      nameReceiver: 'Nguyen Van C',
+      dateRange: '20/3/2022',
+      expiry: '3 năm',
+      image: 'assets/images/anh1.webp',
     },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      nameCertificate: {
-        title: 'Tên chứng chỉ',
-        type: 'string',
-      },
-      issued: {
-        title: 'Tổ chức cấp',
-        type: 'string',
-      },
-      nameReceiver: {
-        title: 'Tên người nhận',
-        type: 'string',
-      },
-      dateRange: {
-        title: 'Ngày cấp',
-        type: 'date',
-      },
-      expiry: {
-        title: 'Hạn sử dụng',
-        type: 'text',
-      },
-      image: {
-        title: 'Hình ảnh',
-        type: 'custom',
-        renderComponent: ImageRenderComponent,
-      },
-    },
-  };
+   
+   
+  ];
 
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: certificateData) {
-    const data = this.service.getData();
-    this.source.load(data);
-  }
-
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
-  }
-
-}
-
-@Component({
-  template: '<img [src]="rowData.image" style="max-width: 100px; max-height: 100px;">',
-})
-export class ImageRenderComponent {
-  value: string;
-  rowData: any;
+  constructor() {}
 }

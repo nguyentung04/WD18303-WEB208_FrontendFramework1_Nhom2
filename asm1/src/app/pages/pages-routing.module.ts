@@ -13,6 +13,8 @@ import { experienceComponent } from './experience/experience.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { certificateComponent } from './certificate/certificate.component';
 
+
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -71,7 +73,9 @@ const routes: Routes = [{
       path: 'experience',
       component: experienceComponent,
       data: {breadcrumb: 'Quản lý kinh nghiệm'},
-    }
+    },
+   
+ 
   ],
 }];
 
