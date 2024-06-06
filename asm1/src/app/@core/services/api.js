@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); 
-const { getAll, insert,update,Delete } = require('./database');
+const cors = require('cors');
+const multer = require('multer');
+const { getAll, insert, update, Delete, getByID } = require('./database');
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,18 @@ app.use(cors({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../../../assets/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage });
+
 
 const tables = ['userinfo', 'skill', 'orders', 'customers', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
 
@@ -28,12 +41,36 @@ tables.forEach(table => {
     });
   });
 
+  app.get(`/api/${table}/:id`, (req, res) => {
+    const { id } = req.params;
+    getByID(table, {id}, (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    });
+  });
+
   app.post(`/api/${table}`, (req, res) => {
     insert(table, req.body, (err, result) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ message: `Thêm vào ${table} thành công`,id: result.insertId });
+      res.json({ message: `Thêm vào ${table} thành công`, id: result.insertId });
+    });
+  });
+  //
+  app.post(`/api/${table}/upload`, upload.single('img'), (req, res) => {
+    if (!req.file) {
+      return res.status(200).json({ error: 'không thể up hình' });
+    }
+
+    const file = req.file;
+    insert(table, { ...req.body, imagePath: file.filename }, (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json({ message: `up ảnh thành công`, id: result.insertId });
     });
   });
 
@@ -43,7 +80,7 @@ tables.forEach(table => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ message: `Cập nhật ${table} thành công`});
+      res.json({ message: `Cập nhật ${table} thành công` });
     });
   });
 
@@ -53,12 +90,12 @@ tables.forEach(table => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ message: `Xóa ${table} thành công`});
+      res.json({ message: `Xóa ${table} thành công` });
     });
   });
 });
 
- 
+
 
 
 

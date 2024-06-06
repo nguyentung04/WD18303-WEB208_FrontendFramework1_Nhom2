@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
 import { userComponent } from './user.component';
 import { BreadcrumbModule } from "xng-breadcrumb";
@@ -19,7 +20,9 @@ import { DeleteComponent } from './delete/delete.component';
     Ng2SmartTableModule,
     NbCardModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     userComponent,

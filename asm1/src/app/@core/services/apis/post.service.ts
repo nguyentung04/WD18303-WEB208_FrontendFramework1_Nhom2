@@ -18,6 +18,9 @@ export class PostService {
     return this.http.get(`${this.apiUrl}/${table}`);
   }
 
+  uploadImg(formData: FormData, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}/upload`, formData);
+  }
   postUser(data: IuserInfo, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       img: data.img,
@@ -29,12 +32,12 @@ export class PostService {
     });
   }
 
-  getById(id: number,table:string): Observable<any> {
+  getById(id: number, table: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${table}/${id}`);
   }
 
-  putUser(data: IuserInfo, id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`,{
+  putUser(data: IuserInfo, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
       img: data.img,
       fullname: data.fullname,
       birthday: data.birthday,
@@ -44,7 +47,7 @@ export class PostService {
     });
   }
 
- deleteUser(table: string,id:number): Observable<any> {
+  deleteUser(table: string, id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${table}/${id}`);
   }
 }

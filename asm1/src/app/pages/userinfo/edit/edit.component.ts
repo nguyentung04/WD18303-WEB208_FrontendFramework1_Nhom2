@@ -1,4 +1,10 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+import { PostService } from 'app/@core/services/apis/post.service';
+import { UserStateService } from '../load';
 
 @Component({
   selector: 'app-edit',
@@ -6,5 +12,80 @@ import { Component } from '@angular/core';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
+  constructor(private router: Router, private user: PostService, private UserState: UserStateService, private formedit: ActivatedRoute) { }
 
+  table: string = 'userinfo';
+
+  list: IuserInfo[] = [];
+
+  validForm: FormGroup;
+
+  filename = '';
+  id = this.formedit.snapshot.params.id;
+
+  ngOnInit(): void {
+
+    this.getByID(this.id);
+
+
+    this.validForm = new FormGroup({
+      img: new FormControl('', Validators.required),
+      fullname: new FormControl('', Validators.required),
+      birthday: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', Validators.required),
+    });
+  }
+
+  onFileSelected(event) {
+
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.filename = file.name;
+
+      const formData = new FormData();
+
+      formData.append("img", file);
+      const upload = this.user.uploadImg(formData, this.table)
+      upload.subscribe(res => {
+        console.log('up ảnh thành công', res);
+      });
+    }
+  }
+
+  onSubmit() {
+    if (this.validForm.invalid || !this.filename) {
+      return
+    };
+
+    const UpdateUser: IuserInfo = {
+      id: '',
+      img: this.filename,
+      fullname: this.validForm.value.fullname,
+      birthday: this.validForm.value.birthday,
+      address: this.validForm.value.address,
+      email: this.validForm.value.email,
+      phone: this.validForm.value.phone,
+    };
+
+    this.user.putUser(UpdateUser, this.id, this.table).subscribe(res => {
+      UpdateUser.id = res.id;
+      this.UserState.Users('update', [UpdateUser], this.table);
+      this.router.navigate(['/pages/userinfo']);
+    });
+  }
+
+  getByID(id: string) {
+    const ID = parseInt(id);
+    this.user.getById(ID, this.table).subscribe(data => {
+      console.log(data);
+      this.list = data[0];
+    })
+  }
+
+  back() {
+    this.router.navigate(['/pages/userinfo']);
+  }
 }

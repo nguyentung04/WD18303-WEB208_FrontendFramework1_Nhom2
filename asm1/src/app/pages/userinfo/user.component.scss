@@ -1,4 +1,3 @@
-
 @import '../../@theme/styles/themes';
 @import 'bootstrap/scss/mixins/breakpoints';
 @import '@nebular/theme/styles/global/breakpoints';
@@ -14,11 +13,16 @@
       display: none;
     }
 
-    
+
   }
 }
-nb-card-header{
+
+nb-card-header {
   display: flex;
   justify-content: space-between;
 }
 
+.imgCustom {
+  width: 70px;
+  height: 70px;
+}
