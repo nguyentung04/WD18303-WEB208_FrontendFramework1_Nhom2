@@ -1,16 +1,16 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
- 
+
   private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
@@ -32,6 +32,7 @@ export class PostService {
       phone: data.phone
     });
   }
+ 
 
   getById(id: number, table: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${table}/${id}`);
@@ -76,7 +77,7 @@ export class PostService {
     return this.http.post(`${this.apiUrl}/${table}`, {
       nameRecruitment: data.nameRecruitment,
       role: data.role,
-      submissionTime: data.submissionTime,
+
       status: data.status,
       rate: data.rate,
       nameExaminer: data.nameExaminer,
@@ -90,7 +91,7 @@ export class PostService {
     return this.http.put(`${this.apiUrl}/${id}`,{
       nameRecruitment: data.nameRecruitment,
       role: data.role,
-      submissionTime: data.submissionTime,
+      // submissionTime: data.submissionTime,
       status: data.status,
       rate: data.rate,
       nameExaminer: data.nameExaminer,

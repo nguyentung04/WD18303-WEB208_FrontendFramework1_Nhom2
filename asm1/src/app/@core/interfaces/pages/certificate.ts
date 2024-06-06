@@ -1,9 +1,9 @@
 export interface certificate {
     id: string,
-    nameCertificate:string,
-    issued: string,
-    nameReceiver: string,
-    dateRange: string,
-    expiry: string,
-    image: string
+    nameCertificate:any,
+    issued: any,
+    nameReceiver: any,
+    dateRange: any,
+    expiry: any,
+    image: any
 }

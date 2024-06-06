@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-const tables = ['certificate','recruitment'];
+const tables = ['certificate','recruitment','userinfo'];
 
 
 tables.forEach(table => {
@@ -41,7 +41,7 @@ tables.forEach(table => {
 
   app.get(`/api/${table}/:id`, (req, res) => {
     const id = req.params.id;
-    getById(table, id, (err, results) => {
+    getByID(table, id, (err, results) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
@@ -75,20 +75,6 @@ tables.forEach(table => {
       res.json({ message: `up ảnh thành công`, id: result.insertId });
     });
   });
-
-  // app.post(`/api/${table}/upload`, upload.single('img'), (req, res) => {
-  //   if (!req.file) {
-  //     return res.status(200).json({ error: 'không thể up hình' });
-  //   }
-
-  //   const file = req.file;
-  //   insert(table, { ...req.body, imagePath: file.filename }, (err, result) => {
-  //     if (err) {
-  //       return res.status(500).json({ error: err.message });
-  //     }
-  //     res.json({ message: `up ảnh thành công`, id: result.insertId });
-  //   });
-  // });
 
   app.put(`/api/${table}/:id`, (req, res) => {
     const { id } = req.params;

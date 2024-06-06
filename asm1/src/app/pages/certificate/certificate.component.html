@@ -20,17 +20,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let certificate of certificate">
-            <td>{{ certificate.id }}</td>
-            <td>{{ certificate.nameCertificate }}</td>
-            <td>{{ certificate.issued }}</td>
-            <td>{{ certificate.nameReceiver }}</td>
-            <td>{{ certificate.dateRange }}</td>
-            <td>{{ certificate.expiry }}</td>
-            <td><img [src]="certificate.imageUrl" alt="Certificate Image" width="50"></td>
+          <tr *ngFor="let cer of certificateList">
+            <td>{{ cer.id }}</td>
+            <td>{{ cer.nameCertificate }}</td>
+            <td>{{ cer.issued }}</td>
+            <td>{{ cer.nameReceiver }}</td>
+            <td>{{ cer.dateRange }}</td>
+            <td>{{ cer.expiry }}</td>
+            <!-- <td><img [src]="certificate.imageUrl" alt="Certificate Image" width="50"></td> -->
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit(certificate.id)">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete(certificate.id)">Xóa</button>
+              <button type="button" class="btn btn-outline-success" (click)="edit(cer.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteCer(cer.id)">Xóa</button>
             </td>
           </tr>
         </tbody>
