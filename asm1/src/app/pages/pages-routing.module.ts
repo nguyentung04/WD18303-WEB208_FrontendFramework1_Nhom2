@@ -1,4 +1,5 @@
 import { CreateComponent } from './userinfo/create/create.component';
+
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
@@ -14,6 +15,12 @@ import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { activityComponent } from './activity/activity.component';
+import { RecruitmentCreateComponent } from './recruitment/recruitment-create/recruitment-create.component';
+import { RecruitmentEditComponent } from './recruitment/recruitment-edit/recruitment-edit.component';
+import { RecruitmentDeleteComponent } from './recruitment/recruitment-delete/recruitment-delete.component';
+import { CertificateCreatteComponent } from './certificate/certificate-creatte/certificate-creatte.component';
+import { CertificateEditComponent } from './certificate/certificate-edit/certificate-edit.component';
+import { CertificateDeleteComponent } from './certificate/certificate-delete/certificate-delete.component';
 
 
 
@@ -70,17 +77,17 @@ const routes: Routes = [{
       children: [
         {
           path: 'create',
-          component: CreateComponent,
-          data: { breadcrumb: 'Thêm nhân viên' },
+          component: RecruitmentCreateComponent,
+          data: { breadcrumb: 'Thêm tuyển dụng' },
         },
         {
           path: 'edit',
-          component: CreateComponent,
+          component: RecruitmentEditComponent,
           data: { breadcrumb: 'Cập nhật thông tin' },
         },
         {
           path: 'delete',
-          component: CreateComponent,
+          component: RecruitmentDeleteComponent,
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]
@@ -92,17 +99,17 @@ const routes: Routes = [{
       children: [
         {
           path: 'create',
-          component: CreateComponent,
-          data: { breadcrumb: 'Thêm nhân viên' },
+          component: CertificateCreatteComponent,
+          data: { breadcrumb: 'Thêm chứng chỉ' },
         },
         {
           path: 'edit',
-          component: CreateComponent,
+          component: CertificateEditComponent,
           data: { breadcrumb: 'Cập nhật thông tin' },
         },
         {
           path: 'delete',
-          component: CreateComponent,
+          component: CertificateDeleteComponent,
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]

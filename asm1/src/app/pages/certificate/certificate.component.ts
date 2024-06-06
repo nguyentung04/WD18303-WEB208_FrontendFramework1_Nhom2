@@ -1,7 +1,9 @@
 import { Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
+import { PostService }  from '../../@core/services/apis/post.service'
+import { certificate } from 'app/@core/interfaces/pages/certificate';
+
 @Component({
   selector: 'ngx-dashboard',
   styleUrls: ['./certificate.component.scss'],
@@ -9,28 +11,40 @@ import { NavigationEnd } from '@angular/router';
 })
 export class certificateComponent implements OnInit {
   showRouterOutlet: boolean = false;
+  login: certificate[] = [] ;
+  table: string = 'certificate'
+
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
-    // Kiểm tra khi có route con được kích hoạt
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/recruitment/');
-      }
+    this.getLogin();
+  }
+
+  getLogin() {
+
+    this.postService.getAllUser(this.table).subscribe(login => {
+      this.login = login;
     });
   }
 
-
-  constructor(private router: Router) {
-
+  addCer(user: any) {
+    const tableName = 'certificate';
+    this.postService.postCer(user, tableName).subscribe(() => {
+      this.getLogin();
+    });
   }
 
-  add() {
-    this.router.navigate(['/pages/recruitment/create'])
+  editCer(id: number, user: any) { 
+    const tableName = 'certificate';
+    this.postService.putCer(user, id).subscribe(() => {
+      this.getLogin();
+    });
   }
-  edit() {
-    this.router.navigate(['/pages/recruitment/edit'])
-  }
-  delete() {
-    this.router.navigate(['/pages/recruitment/delete'])
+
+  deleteCer(id: number) { 
+    const tableName = 'certificate';
+    this.postService.deleteUser(tableName, id).subscribe(() => {
+      this.getLogin();
+    });
   }
 }

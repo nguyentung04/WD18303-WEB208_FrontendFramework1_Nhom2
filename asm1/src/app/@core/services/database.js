@@ -22,6 +22,15 @@ const getAll = (table, callback) => {
   });
 };
 
+const getById = (table, id, callback) => {
+  const sql = `SELECT * FROM ?? WHERE id = ?`;
+  db.query(sql, [table, id], (err, results) => {
+    callback(err, results);
+  });
+};
+
+
+
 const insert = (table, data, callback) => {
   const sql = `INSERT INTO ?? SET ?`;
   db.query(sql, [table, data], (err, results) => {
@@ -44,10 +53,13 @@ const Delete = (table, id, callback) => {
 };
 
 
+
+
 module.exports = {
   getAll,
   insert,
   update,
   Delete,
+  getById,
   db
 };

@@ -4,9 +4,12 @@ import {BreadcrumbModule} from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
-import { DeleteComponent } from './delete/delete.component';
-import { CreateComponent } from './create/create.component';
-import { EditComponent } from './edit/edit.component';
+import { CertificateCreatteComponent } from './certificate-creatte/certificate-creatte.component';
+import { CertificateEditComponent } from './certificate-edit/certificate-edit.component';
+import { CertificateDeleteComponent } from './certificate-delete/certificate-delete.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -14,13 +17,16 @@ import { EditComponent } from './edit/edit.component';
     BreadcrumbModule,
     Ng2SmartTableModule,
     NbCardModule,
-    CommonModule
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
   ],
   declarations: [
     certificateComponent,
-    DeleteComponent,
-    CreateComponent,
-    EditComponent
+    CertificateCreatteComponent,
+    CertificateEditComponent,
+    CertificateDeleteComponent,
+   
   ],
 })
 export class certificateModule { }

@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); 
-const { getAll, insert,update,Delete } = require('./database');
+const multer = require('multer');
+const { getAll,getById, insert,update,Delete } = require('./database');
 
 const app = express();
 const port = 3000;
@@ -14,8 +15,16 @@ app.use(cors({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'src/assets/images');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + '-' + file.originalname);
+//   }
+// });
 
-const tables = ['userinfo', 'skill', 'orders', 'customers', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
+const tables = ['certificate','recruitment'];
 
 
 tables.forEach(table => {
@@ -28,6 +37,20 @@ tables.forEach(table => {
     });
   });
 
+  app.get(`/api/${table}/:id`, (req, res) => {
+    const id = req.params.id;
+    getById(table, id, (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: 'Record not found' });
+      }
+      res.json(results[0]);
+    });
+  });
+  
+
   app.post(`/api/${table}`, (req, res) => {
     insert(table, req.body, (err, result) => {
       if (err) {
@@ -36,6 +59,20 @@ tables.forEach(table => {
       res.json({ message: `Thêm vào ${table} thành công`,id: result.insertId });
     });
   });
+
+  // app.post(`/api/${table}/upload`, upload.single('img'), (req, res) => {
+  //   if (!req.file) {
+  //     return res.status(200).json({ error: 'không thể up hình' });
+  //   }
+
+  //   const file = req.file;
+  //   insert(table, { ...req.body, imagePath: file.filename }, (err, result) => {
+  //     if (err) {
+  //       return res.status(500).json({ error: err.message });
+  //     }
+  //     res.json({ message: `up ảnh thành công`, id: result.insertId });
+  //   });
+  // });
 
   app.put(`/api/${table}/:id`, (req, res) => {
     const { id } = req.params;

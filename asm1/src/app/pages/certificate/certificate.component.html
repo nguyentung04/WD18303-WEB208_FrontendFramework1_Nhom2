@@ -1,40 +1,41 @@
+<!-- certificate.component.html -->
 <div *ngIf="!showRouterOutlet">
-    <nb-card>
-      <nb-card-header>
-        Bảng thông tin nhân viên
-        <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
-      </nb-card-header>
-      <nb-card-body>
-        <!-- Hiển thị dữ liệu cố định của userComponent -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Hình ảnh</th>
-              <th scope="col">Họ tên</th>
-              <th scope="col">Ngày sinh</th>
-              <th scope="col">Địa chỉ</th>
-              <th scope="col">Email</th>
-              <th scope="col">Số điện thoại</th>
-              <th scope="col">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>
-                <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-                <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <router-outlet *ngIf="showRouterOutlet"></router-outlet>
-  
+  <nb-card>
+    <nb-card-header>
+      Bảng thông tin nhân viên
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
+    </nb-card-header>
+    <nb-card-body>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên chứng chỉ</th>
+            <th scope="col">Tổ chức cấp</th>
+            <th scope="col">Tên người nhận</th>
+            <th scope="col">Ngày cấp</th>
+            <th scope="col">Hạn sử dụng</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let certificate of certificate">
+            <td>{{ certificate.id }}</td>
+            <td>{{ certificate.nameCertificate }}</td>
+            <td>{{ certificate.issued }}</td>
+            <td>{{ certificate.nameReceiver }}</td>
+            <td>{{ certificate.dateRange }}</td>
+            <td>{{ certificate.expiry }}</td>
+            <td><img [src]="certificate.imageUrl" alt="Certificate Image" width="50"></td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="edit(certificate.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="delete(certificate.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>
