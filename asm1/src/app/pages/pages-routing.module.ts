@@ -14,6 +14,12 @@ import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { activityComponent } from './activity/activity.component';
+import { CreateInformationtechnologyexperienceComponent } from './informationtechnologyexperience/create/create.component';
+import { EditInformationtechnologyexperienceComponent } from './informationtechnologyexperience/edit/edit.component';
+import { DeleteInformationtechnologyexperienceComponent } from './informationtechnologyexperience/delete/delete.component';
+import { CreateActivityComponent } from './activity/create/create.component';
+import { EditActivityComponent } from './activity/edit/edit.component';
+import { DeleteActivityComponent } from './activity/delete/delete.component';
 
 const routes: Routes = [{
   path: '',
@@ -75,12 +81,47 @@ const routes: Routes = [{
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
-      data: { breadcrumb: 'informationtechnologyexperience' },
+      data: { breadcrumb: 'Quản lý kinh nghiệm tin học' },
+       children: [
+        {
+          path: 'create',
+          component: CreateInformationtechnologyexperienceComponent,
+          data: { breadcrumb: 'Thêm thông tin kinh nghiệm tin học nhân viên' },
+        },
+        {
+          path: 'edit',
+          component: EditInformationtechnologyexperienceComponent,
+
+          data: { breadcrumb: 'Cập nhật thông tin kinh nghiệm tin học nhân viên' },
+        },
+        {
+          path: 'delete',
+          component: DeleteInformationtechnologyexperienceComponent,
+          data: { breadcrumb: 'Xóa thông tin kinh nghiệm tin học nhân viên' },
+        },
+      ]
     },
     {
       path: 'activity',
       component: activityComponent,
-      data: { breadcrumb: 'activity' },
+      data: { breadcrumb: 'Hoạt động' },
+       children: [
+        {
+          path: 'create',
+          component: CreateActivityComponent,
+          data: { breadcrumb: 'Thêm Hoạt động' },
+        },
+        {
+          path: 'edit',
+          component: EditActivityComponent,
+          data: { breadcrumb: 'Cập nhật Hoạt động' },
+        },
+        {
+          path: 'delete',
+          component: DeleteActivityComponent,
+          data: { breadcrumb: 'Xóa Hoạt động' },
+        },
+      ]
     },
     {
       path: 'inlanguage',

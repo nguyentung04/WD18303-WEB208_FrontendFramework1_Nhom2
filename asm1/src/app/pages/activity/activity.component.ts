@@ -1,9 +1,7 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { informationtechnologyexperienceTableData } from 'app/@core/data/informationtechnologyexperience-table';
-import { activityTableData } from 'app/@core/data/activity';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -11,61 +9,30 @@ import { activityTableData } from 'app/@core/data/activity';
   templateUrl: './activity.component.html',
 })
 export class activityComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
 
-  activity = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      role: {
-        title: 'Vai trò',
-        type: 'string',
-      },
-      start_and_end_times: {
-        title: 'Thời gain bắt đầu và kết thúc',
-        type: 'date',
-      },
-      describe: {
-        title: 'Mô tả',
-        type: 'string',
-      },
-
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: activityTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  ngOnInit() {
+    // Kiểm tra khi có route con được kích hoạt
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/activity/');
+      }
+    });
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+
+  constructor(private router: Router) {
+
+  }
+
+  add() {
+    this.router.navigate(['/pages/activity/create'])
+  }
+  edit() {
+    this.router.navigate(['/pages/activity/edit'])
+  }
+  delete() {
+    this.router.navigate(['/pages/activity/delete'])
   }
 
 }

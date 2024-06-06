@@ -1,8 +1,7 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { informationtechnologyexperienceTableData } from 'app/@core/data/informationtechnologyexperience-table';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,57 +9,30 @@ import { informationtechnologyexperienceTableData } from 'app/@core/data/informa
   templateUrl: './informationtechnologyexperience.component.html',
 })
 export class informationtechnologyexperienceComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
 
-  informationtechnologyexperience = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      software: {
-        title: 'Phần mềm',
-        type: 'string',
-      },
-      level: {
-        title: 'Trình độ',
-        type: 'string',
+  ngOnInit() {
+    // Kiểm tra khi có route con được kích hoạt
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/informationtechnologyexperience/');
       }
-
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: informationtechnologyexperienceTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+    });
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+
+  constructor(private router: Router) {
+
+  }
+
+  add() {
+    this.router.navigate(['/pages/informationtechnologyexperience/create'])
+  }
+  edit() {
+    this.router.navigate(['/pages/informationtechnologyexperience/edit'])
+  }
+  delete() {
+    this.router.navigate(['/pages/informationtechnologyexperience/delete'])
   }
 
 }

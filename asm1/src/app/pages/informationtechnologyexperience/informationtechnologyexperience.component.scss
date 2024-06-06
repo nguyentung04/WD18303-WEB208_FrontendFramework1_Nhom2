@@ -1,3 +1,4 @@
+
 @import '../../@theme/styles/themes';
 @import 'bootstrap/scss/mixins/breakpoints';
 @import '@nebular/theme/styles/global/breakpoints';
@@ -12,5 +13,12 @@
     ngx-traffic {
       display: none;
     }
+
+    
   }
 }
+nb-card-header{
+  display: flex;
+  justify-content: space-between;
+}
+
