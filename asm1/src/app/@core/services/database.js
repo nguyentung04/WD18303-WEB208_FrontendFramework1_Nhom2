@@ -21,6 +21,12 @@ const getAll = (table, callback) => {
     callback(err, results);
   });
 };
+const getByID = (table, id, callback) => {
+  const sql = `SELECT * FROM ?? WHERE ?`;
+  db.query(sql, [table, id], (err, results) => {
+    callback(err, results);
+  });
+};
 
 const getById = (table, id, callback) => {
   const sql = `SELECT * FROM ?? WHERE id = ?`;
@@ -61,5 +67,6 @@ module.exports = {
   update,
   Delete,
   getById,
+  getByID,
   db
 };

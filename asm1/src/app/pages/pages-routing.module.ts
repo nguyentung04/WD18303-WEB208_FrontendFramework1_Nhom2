@@ -1,3 +1,5 @@
+import { DeleteComponent } from './userinfo/delete/delete.component';
+import { EditComponent } from './userinfo/edit/edit.component';
 import { CreateComponent } from './userinfo/create/create.component';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -49,13 +51,13 @@ const routes: Routes = [{
           data: { breadcrumb: 'Thêm nhân viên' },
         },
         {
-          path: 'edit',
-          component: CreateComponent,
+          path: 'edit/:id',
+          component: EditComponent,
           data: { breadcrumb: 'Cập nhật thông tin' },
         },
         {
           path: 'delete',
-          component: CreateComponent,
+          component: DeleteComponent,
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]
