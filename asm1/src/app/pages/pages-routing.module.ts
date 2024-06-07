@@ -1,6 +1,11 @@
+//userinfo
 import { DeleteComponent } from './userinfo/delete/delete.component';
 import { EditComponent } from './userinfo/edit/edit.component';
 import { CreateComponent } from './userinfo/create/create.component';
+//skill
+import { CreateSkillComponent } from './skill/create-skill/create-skill.component';
+import { EditSkillComponent } from './skill/edit-skill/edit-skill.component';
+
 
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -43,7 +48,7 @@ const routes: Routes = [{
     {
       path: 'userinfo',
       component: userComponent,
-      data: { breadcrumb: 'Thông tin nhân viên' },
+      data: { breadcrumb: 'Thông tin ứng viên' },
       children: [
         {
           path: 'create',
@@ -71,6 +76,19 @@ const routes: Routes = [{
       path: 'skill',
       component: SkillComponent,
       data: { breadcrumb: 'Kỹ năng làm việc' },
+      children: [
+        {
+          path: 'create',
+          component: CreateSkillComponent,
+          data: { breadcrumb: 'Thêm kỹ năng' }
+        },
+        {
+          path: 'edit/:id',
+          component: EditSkillComponent,
+          data: { breadcrumb: 'Sửa kỹ năng' }
+        },
+
+      ]
     },
     {
       path: 'recruitment',

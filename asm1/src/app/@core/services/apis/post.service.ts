@@ -1,3 +1,4 @@
+import { Iskill } from 'app/@core/interfaces/pages/skill';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -101,4 +102,20 @@ export class PostService {
  deleteUser(table: string,id:number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${table}/${id}`);
   }
+
+  //skill
+  postSkill(data: Iskill, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      user_id: data.user_id,
+      skill: data.skill,
+    });
+  }
+
+  putSkill(data: Iskill, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      user_id: data.user_id,
+      skill: data.skill
+    });
+  }
+
 }

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const { getAll, insert, update, Delete, getByID } = require('./database');
+const { getAll, insert, update, Delete, getByID,getAllSkillsByUserId } = require('./database');
 
 const app = express();
 const port = 3000;
@@ -26,7 +26,11 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage:storage });
-const tables = ['certificate','recruitment','userinfo'];
+
+
+
+
+const tables = ['userinfo','skill', 'certificate', 'certificate', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
 
 
 tables.forEach(table => {
@@ -52,6 +56,8 @@ tables.forEach(table => {
     });
   });
   
+
+
 
   app.post(`/api/${table}`, (req, res) => {
     insert(table, req.body, (err, result) => {
@@ -85,6 +91,17 @@ tables.forEach(table => {
       res.json({ message: `Cập nhật ${table} thành công` });
     });
   });
+
+  app.get('/api/skill', (req, res) => {
+    getAllSkillsByUserId((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    });
+  });
+  
+
 
   app.delete(`/api/${table}/:id`, (req, res) => {
     const { id } = req.params;
