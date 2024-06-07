@@ -15,6 +15,9 @@ import { informationtechnologyexperienceModule } from './informationtechnologyex
 import { activityModule } from './activity/activity.module';
 import { languageModule } from './inlanguage/language.module';
 import { experienceModule } from './experience/experience.module';
+import { CommonModule } from '@angular/common';
+
+
 
 
 
@@ -35,7 +38,9 @@ import { experienceModule } from './experience/experience.module';
     informationtechnologyexperienceModule,
     activityModule,
     languageModule,
-    experienceModule
+    experienceModule,
+    CommonModule
+    
   ],
   declarations: [
     PagesComponent,

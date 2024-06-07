@@ -17,14 +17,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr *ngFor="let info of listInformationtechnologyexperience; index as i">
+            <td>{{ i+1 }}</td>
+            <td>{{ info.full_name }}</td>
+            <td>{{ info.software }}</td>
+            <td>{{ info.level }}</td>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
+              <button class="btn btn-outline-success" (click)="edit(activity.id)">Sửa</button>
+              <button class="btn btn-outline-danger m-2" (click)="delete(activity.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

@@ -1,7 +1,7 @@
-import { Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { activity } from 'app/@core/interfaces/pages/activity';
+import { PostService } from 'app/@core/services/apis/post.service';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,29 +10,36 @@ import { NavigationEnd } from '@angular/router';
 })
 export class activityComponent implements OnInit {
   showRouterOutlet: boolean = false;
+  listActivity: activity[] = [];
 
-  ngOnInit() {
+  constructor(private router: Router, private activityService: PostService) {}
+
+  ngOnInit(): void {
     // Kiểm tra khi có route con được kích hoạt
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showRouterOutlet = this.router.url.includes('/activity/');
       }
     });
-  }
 
-
-  constructor(private router: Router) {
-
+    // Gọi hàm lấy dữ liệu từ service
+    this.activityService.getAllActivity('activity').subscribe(
+      (data) => {
+        this.listActivity = data;
+      },
+      (error) => {
+        console.error('Error fetching activity data', error);
+      }
+    );
   }
 
   add() {
-    this.router.navigate(['/pages/activity/create'])
+    this.router.navigate(['/pages/activity/create']);
   }
-  edit() {
-    this.router.navigate(['/pages/activity/edit'])
+  edit(id: number) {
+    this.router.navigate(['/pages/activity/edit',id]);
   }
-  delete() {
-    this.router.navigate(['/pages/activity/delete'])
+  delete(id: number) {
+    this.router.navigate(['/pages/activity/delete']);
   }
-
 }

@@ -5,27 +5,30 @@
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <!-- Hiển thị dữ liệu cố định của userComponent -->
+
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Họ tên</th>
             <th scope="col">Vai trò</th>
-            <th scope="col">Thời gian bắt đầu và kết thúc</th>
+            <th scope="col">Thời gian bắt đầu </th>
+            <th scope="col">Thời gian kết thúc</th>
             <th scope="col">Mô tả</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+          <tr *ngFor="let activity of listActivity; index as i">
+            <td>{{ i+1 }}</td>
+            <td>{{ activity.full_name }}</td>
+            <td>{{ activity.role }}</td>
+            <td>{{ activity.start_time }}</td>
+            <td>{{ activity.end_time }}</td>
+            <td>{{ activity.content_description }}</td>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
+              <button class="btn btn-outline-success" (click)="edit(activity.id)">Sửa</button>
+              <button class="btn btn-outline-danger m-2" (click)="delete(activity.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

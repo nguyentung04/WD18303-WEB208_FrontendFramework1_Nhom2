@@ -2,6 +2,8 @@ import { Router } from '@angular/router';
 
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
+import { PostService } from 'app/@core/services/apis/post.service';
+import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,29 +12,39 @@ import { NavigationEnd } from '@angular/router';
 })
 export class informationtechnologyexperienceComponent implements OnInit {
   showRouterOutlet: boolean = false;
-
+  listInformationtechnologyexperience: Informationtechnologyexperience[] = [];
   ngOnInit() {
     // Kiểm tra khi có route con được kích hoạt
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/informationtechnologyexperience/');
+        this.showRouterOutlet = this.router.url.includes(
+          '/informationtechnologyexperience/'
+        );
       }
     });
+
+    this.informationtechnologyexperience.getAllActivity('informationtechnologyexperience').subscribe(
+      (data) => {
+        this.listInformationtechnologyexperience = data;
+      },
+      (error) => {
+        console.error('Error fetching informationtechnologyexperience data', error);
+      }
+    );
   }
 
-
-  constructor(private router: Router) {
-
-  }
+  constructor(
+    private router: Router,
+    private informationtechnologyexperience: PostService
+  ) {}
 
   add() {
-    this.router.navigate(['/pages/informationtechnologyexperience/create'])
+    this.router.navigate(['/pages/informationtechnologyexperience/create']);
   }
   edit() {
-    this.router.navigate(['/pages/informationtechnologyexperience/edit'])
+    this.router.navigate(['/pages/informationtechnologyexperience/edit']);
   }
   delete() {
-    this.router.navigate(['/pages/informationtechnologyexperience/delete'])
+    this.router.navigate(['/pages/informationtechnologyexperience/delete']);
   }
-
 }
