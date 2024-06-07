@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -32,3 +33,4 @@ import { DeleteComponent } from './delete/delete.component';
   ],
 })
 export class userModule { }
+

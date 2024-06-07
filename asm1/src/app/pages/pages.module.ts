@@ -17,8 +17,6 @@ import { languageModule } from './inlanguage/language.module';
 import { experienceModule } from './experience/experience.module';
 
 
-
-
 @NgModule({
   imports: [
     PagesRoutingModule,
