@@ -13,8 +13,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PaginatorModule } from "../@theme/components/paginator/paginator.module";
 import { informationtechnologyexperienceModule } from './informationtechnologyexperience/informationtechnologyexperience.module';
 import { activityModule } from './activity/activity.module';
-import { languageModule } from './inlanguage/language.module';
 import { experienceModule } from './experience/experience.module';
+import { languageModule } from './inlanguage/language.module';
 
 
 @NgModule({

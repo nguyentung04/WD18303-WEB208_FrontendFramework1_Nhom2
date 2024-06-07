@@ -27,7 +27,7 @@ import { DeleteComponent } from './delete/delete.component';
   declarations: [
     userComponent,
     CreateComponent,
-    EditComponent,
+   EditComponent,
     DeleteComponent,
 
   ],

@@ -1,5 +1,3 @@
-import { Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 

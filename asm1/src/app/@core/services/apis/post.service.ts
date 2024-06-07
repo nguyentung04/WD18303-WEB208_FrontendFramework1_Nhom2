@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
+import { Ilanguage } from 'app/@core/interfaces/pages/language';
+import { IExperience } from 'app/@core/interfaces/pages/experience';
 
 
 @Injectable({
@@ -103,4 +105,43 @@ export class PostService {
  deleteUser(table: string,id:number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${table}/${id}`);
   }
+
+  postLanguage(data: Ilanguage, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      name: data.name,
+      language: data.language,
+      level: data.level 
+    });
+  }
+  putLanguage(data: Ilanguage, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      name: data.name,
+      language: data.language,
+      level: data.level 
+    });
+  }
+
+  postExperience(data: IExperience, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      name: data.name,
+      company: data.company,
+      vacancies: data.vacancies,
+      startdate: data.startdate,
+      enddate: data.enddate,
+      describe: data.describe
+    });
+  }
+  putExperience(data: IExperience, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      name: data.name,
+      company: data.company,
+      vacancies: data.vacancies,
+      startdate: data.startdate,
+      enddate: data.enddate,
+      describe: data.describe
+    });
+  }
+
+
+
 }

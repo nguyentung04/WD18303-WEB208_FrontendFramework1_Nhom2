@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })
-export class DeleteComponent {
+export class DeleteLanguageComponent {
 
 }

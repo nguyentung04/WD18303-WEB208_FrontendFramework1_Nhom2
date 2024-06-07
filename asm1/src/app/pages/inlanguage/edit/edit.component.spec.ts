@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EditLanguageComponent } from './edit.component';
+import { EditComponent } from 'app/pages/userinfo/edit/edit.component';
 
-import { EditComponent } from './edit.component';
+
 
 describe('EditComponent', () => {
-  let component: EditComponent;
-  let fixture: ComponentFixture<EditComponent>;
+  let component: EditLanguageComponent;
+  let fixture: ComponentFixture<EditLanguageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditComponent ]
+      declarations: [ EditLanguageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditComponent);
+    fixture = TestBed.createComponent(EditLanguageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
