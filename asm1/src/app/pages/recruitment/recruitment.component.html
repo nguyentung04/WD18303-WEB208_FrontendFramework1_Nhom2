@@ -1,0 +1,44 @@
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
+    <nb-card-header>
+      Bảng thông tin nhân viên
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
+    </nb-card-header>
+    <nb-card-body>
+      <!-- Hiển thị dữ liệu cố định của userComponent -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên ứng tuyển</th>
+            <th scope="col">Vị trí</th>
+            <th scope="col">Thời gian nộp</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Đánh giá</th>
+            <th scope="col">Phụ trách ứng tuyển</th>
+            <th scope="col">Kết quả</th>
+            <th scope="col">Hành động</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let re of recruitmentList">
+            <td>{{ re.id }}</td>
+            <td>{{ re.nameRecruitment }}</td>
+            <td>{{ re.role }}</td>
+            <td>{{ re.submissionTime }}</td>
+            <td>{{ re.status }}</td>
+            <td>{{ re.rate }}</td>
+            <td>{{ re.nameExaminer }}</td>
+            <td>{{ re.result }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="edit(re.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>

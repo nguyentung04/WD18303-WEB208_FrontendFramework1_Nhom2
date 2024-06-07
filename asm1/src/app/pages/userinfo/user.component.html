@@ -1,0 +1,40 @@
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
+    <nb-card-header>
+      Bảng thông tin nhân viên
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
+    </nb-card-header>
+    <nb-card-body>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Email</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of userinfoList">
+            <th scope="row">{{list.id}}</th>
+            <th><img src="../../../assets/images/{{list.img}}" alt="" class="imgCustom rounded-circle"></th>
+            <td>{{list.fullname}}</td>
+            <td>{{list.birthday}}</td>
+            <td>{{list.address}}</td>
+            <td>{{list.email}}</td>
+            <td>{{list.phone}}</td>
+            <td>
+              <button type="submit" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
+              <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteUser(list.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>
