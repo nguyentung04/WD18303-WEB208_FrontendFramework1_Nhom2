@@ -30,7 +30,8 @@ const upload = multer({ storage:storage });
 
 
 
-const tables = ['userinfo','skill', 'certificate', 'certificate', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
+const tables = ['userinfo','skill', 'certificate', 'certificate', 'categories', 'activity', 'informationtechnologyexperience', 'shippers', 'regions', 'territories'];
+
 
 
 tables.forEach(table => {
@@ -55,7 +56,6 @@ tables.forEach(table => {
       res.json(results[0]);
     });
   });
-  
 
 
 
@@ -67,7 +67,7 @@ tables.forEach(table => {
       res.json({ message: `Thêm vào ${table} thành công`, id: result.insertId });
     });
   });
-  //
+
   app.post(`/api/${table}/upload`, upload.single('img'), (req, res) => {
     if (!req.file) {
       return res.status(200).json({ error: 'không thể up hình' });
@@ -113,10 +113,6 @@ tables.forEach(table => {
     });
   });
 });
-
-
-
-
 
 app.listen(port, () => {
   console.log(`Server đang chạy tại http://localhost:${port}`);
