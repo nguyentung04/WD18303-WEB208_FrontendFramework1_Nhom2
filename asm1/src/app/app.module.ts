@@ -15,7 +15,6 @@ import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +36,6 @@ import {ThemeModule} from "./@theme/theme.module";
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

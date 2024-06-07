@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
-import { PostService } from 'app/@core/services/apis/post.service';
-import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
+import { LocalDataSource } from 'ng2-smart-table';
+
+
+import { informationtechnologyexperienceTableData } from 'app/@core/data/informationtechnologyexperience-table';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -11,40 +10,57 @@ import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/info
   templateUrl: './informationtechnologyexperience.component.html',
 })
 export class informationtechnologyexperienceComponent implements OnInit {
-  showRouterOutlet: boolean = false;
-  listInformationtechnologyexperience: Informationtechnologyexperience[] = [];
-  ngOnInit() {
-    // Kiểm tra khi có route con được kích hoạt
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes(
-          '/informationtechnologyexperience/'
-        );
-      }
-    });
+  ngOnInit(): void { }
 
-    this.informationtechnologyexperience.getAllActivity('informationtechnologyexperience').subscribe(
-      (data) => {
-        this.listInformationtechnologyexperience = data;
+  informationtechnologyexperience = {
+    add: {
+      addButtonContent: '<i class="nb-plus"></i>',
+      createButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+    },
+    edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
+    },
+    columns: {
+      id: {
+        title: 'ID',
+        type: 'number',
       },
-      (error) => {
-        console.error('Error fetching informationtechnologyexperience data', error);
+      fullname: {
+        title: 'Họ tên',
+        type: 'string',
+      },
+      software: {
+        title: 'Phần mềm',
+        type: 'string',
+      },
+      level: {
+        title: 'Trình độ',
+        type: 'string',
       }
-    );
+
+    },
+  };
+
+  source: LocalDataSource = new LocalDataSource();
+
+  constructor(private service: informationtechnologyexperienceTableData) {
+    const data = this.service.getData();
+    this.source.load(data);
   }
 
-  constructor(
-    private router: Router,
-    private informationtechnologyexperience: PostService
-  ) {}
+  onDeleteConfirm(event): void {
+    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
+      event.confirm.resolve();
+    } else {
+      event.confirm.reject();
+    }
+  }
 
-  add() {
-    this.router.navigate(['/pages/informationtechnologyexperience/create']);
-  }
-  edit() {
-    this.router.navigate(['/pages/informationtechnologyexperience/edit']);
-  }
-  delete() {
-    this.router.navigate(['/pages/informationtechnologyexperience/delete']);
-  }
 }

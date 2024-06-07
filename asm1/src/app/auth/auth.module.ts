@@ -4,14 +4,11 @@ import {LoginModule} from "./login/login.module";
 import {AuthComponent} from "./auth.component";
 import {ThemeModule} from "../@theme/theme.module";
 
-
 @NgModule({
   imports: [
     AuthRoutingModule,
     LoginModule,
-    ThemeModule,
-    
-
+    ThemeModule
   ],
   declarations: [
     AuthComponent

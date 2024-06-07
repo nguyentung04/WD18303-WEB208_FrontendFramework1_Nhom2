@@ -1,81 +1,58 @@
-import {Component,OnInit} from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { recruitmentData } from 'app/@core/data/recruitment-table';
-
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
+import { PostService }  from '../../@core/services/apis/post.service'
+import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 @Component({
   selector: 'ngx-dashboard',
   styleUrls: ['./recruitment.component.scss'],
   templateUrl: './recruitment.component.html',
 })
 export class recruitmentComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
+  recruitmentList: recruitment[] = [] ;
+  table: string = 'recruitment'
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      nameRecruitment: {
-        title: 'Tên ứng tuyển',
-        type: 'string',
-      },
-      role: {
-        title: ' Vị trí',
-        type: 'string',
-      },
-      submissionTime: {
-        title: 'Thời gian nộp',
-        type: 'text',
-      },
-      status: {
-        title: 'Trạng thái',
-        type: 'string',
-      },
-      rate: {
-        title: 'Đánh giá',
-        type: 'text',
-      },
-      nameExaminer: {
-        title: 'Phụ trách ứng tuyển',
-        type: 'text',
-      },
-      result: {
-        title: 'Kết quả',
-        type: 'text',
-      },
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: recruitmentData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private router: Router, private recruitment: PostService) {
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/recruitment/');
+      }
+    });
+    this.getAll();
+
+
+  }
+
+  getAll() {
+    this.recruitment.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.recruitmentList = data;
+    })
+  }
+
+
+
+  deleteRe(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.recruitment.deleteUser(this.table, Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
     }
   }
 
+
+  add() {
+    this.router.navigate(['/pages/recruitment/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/recruitment/edit/${id}`])
+  }
 }

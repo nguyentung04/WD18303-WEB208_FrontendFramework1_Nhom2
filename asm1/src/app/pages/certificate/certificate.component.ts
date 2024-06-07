@@ -1,17 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-// import { certificateData } from 'app/@core/data/certificate-table';
 import { Router } from '@angular/router';
-interface certificate {
-  id: any,
-  nameCertificate: string;
-  issued: string;
-  nameReceiver: string;
-  dateRange: string;
-  expiry: string;
-  image: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
+import { PostService }  from '../../@core/services/apis/post.service'
+import { certificate } from 'app/@core/interfaces/pages/certificate';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -19,21 +10,53 @@ interface certificate {
   templateUrl: './certificate.component.html',
 })
 export class certificateComponent implements OnInit {
-  ngOnInit(): void {}
+  showRouterOutlet: boolean = false;
+  certificateList: certificate[] = [] ;
+  table: string = 'certificate'
 
- certificate: certificate[] = [
-    {
-      id:1,
-      nameCertificate: 'Thạc sĩ',
-      issued: 'FPT PolyTechnic',
-      nameReceiver: 'Nguyen Van C',
-      dateRange: '20/3/2022',
-      expiry: '3 năm',
-      image: 'assets/images/anh1.webp',
-    },
-   
-   
-  ];
+  constructor(private router: Router, private certificate: PostService) {
+  }
 
-  constructor() {}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/certificate/');
+      }
+    });
+    this.getAll();
+
+
+  }
+
+  getAll() {
+    this.certificate.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.certificateList = data;
+    })
+  }
+
+
+
+  deleteCer(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.certificate.deleteUser(this.table, Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
+    }
+  }
+
+
+  add() {
+    this.router.navigate(['/pages/certificate/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/certificate/edit/${id}`])
+  }
+
+ 
+
 }

@@ -1,39 +1,41 @@
-<nb-card>
+<!-- certificate.component.html -->
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
     <nb-card-header>
-        Quản lý chứng chỉ
+      Bảng thông tin nhân viên
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let cert of certificate">
-                <tr>
-
-                    <td> {{ cert.id }}</td>
-                    <td> {{ cert.nameCertificate }}</td>
-                    <td> {{ cert.issued }}</td>
-                    <td> {{ cert.nameReceiver }}</td>
-                    <td> {{ cert.dateRange }}</td>
-                    <td> {{ cert.expiry }}</td>
-                    <td> <img height="90px" src="{{ cert.image }}" alt=""></td>
-                    <td><button class="btn btn-danger ">xoa</button>
-                        <button class="btn btn-primary ml-1">them</button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tên chứng chỉ</th>
+            <th scope="col">Tổ chức cấp</th>
+            <th scope="col">Tên người nhận</th>
+            <th scope="col">Ngày cấp</th>
+            <th scope="col">Hạn sử dụng</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cer of certificateList">
+            <td>{{ cer.id }}</td>
+            <td>{{ cer.nameCertificate }}</td>
+            <td>{{ cer.issued }}</td>
+            <td>{{ cer.nameReceiver }}</td>
+            <td>{{ cer.dateRange }}</td>
+            <td>{{ cer.expiry }}</td>
+            <!-- <td><img [src]="certificate.imageUrl" alt="Certificate Image" width="50"></td> -->
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="edit(cer.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteCer(cer.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </nb-card-body>
-</nb-card>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>
