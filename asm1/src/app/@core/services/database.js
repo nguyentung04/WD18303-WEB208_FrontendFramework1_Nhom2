@@ -48,6 +48,20 @@ const Delete = (table, id, callback) => {
     callback(err, results);
   });
 };
+const getAllSkillsByUserId = (callback) => {
+  const sql = `
+    SELECT 
+        user_id,
+        GROUP_CONCAT(skill SEPARATOR ',') AS kynang
+    FROM
+        skill
+    GROUP BY user_id
+  `;
+
+  db.query(sql, (err, results) => {
+    callback(err, results);
+  });
+}
 
 
 module.exports = {
@@ -56,5 +70,6 @@ module.exports = {
   update,
   Delete,
   getByID,
+  getAllSkillsByUserId,
   db
 };
