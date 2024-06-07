@@ -83,14 +83,14 @@ const routes: Routes = [{
           data: { breadcrumb: 'Thêm tuyển dụng' },
         },
         {
-          path: 'edit',
+          path: 'edit/:id',
           component: RecruitmentEditComponent,
-          data: { breadcrumb: 'Cập nhật thông tin' },
+          data: { breadcrumb: 'Cập nhật tuyển dụng' },
         },
         {
           path: 'delete',
           component: RecruitmentDeleteComponent,
-          data: { breadcrumb: 'Xóa nhân viên' },
+          data: { breadcrumb: 'Xóa tuyển dụng' },
         },
       ]
     },
@@ -105,9 +105,9 @@ const routes: Routes = [{
           data: { breadcrumb: 'Thêm chứng chỉ' },
         },
         {
-          path: 'edit',
+          path: 'edit/:id',
           component: CertificateEditComponent,
-          data: { breadcrumb: 'Cập nhật thông tin' },
+          data: { breadcrumb: 'Cập nhật chứng chỉ' },
         },
         {
           path: 'delete',

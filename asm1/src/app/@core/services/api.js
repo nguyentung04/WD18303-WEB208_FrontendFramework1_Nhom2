@@ -18,14 +18,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'src/assets/images');
+    cb(null, '../../../assets/images');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage:storage });
 const tables = ['certificate','recruitment','userinfo'];
 
 
@@ -66,7 +66,7 @@ tables.forEach(table => {
     if (!req.file) {
       return res.status(200).json({ error: 'không thể up hình' });
     }
-
+  
     const file = req.file;
     insert(table, { ...req.body, imagePath: file.filename }, (err, result) => {
       if (err) {

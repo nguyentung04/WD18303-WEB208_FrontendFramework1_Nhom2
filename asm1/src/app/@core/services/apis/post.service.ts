@@ -55,9 +55,8 @@ export class PostService {
       nameCertificate: data.nameCertificate,
       issued: data.issued,
       nameReceiver: data.nameReceiver,
-      dateRange: data.dateRange,
       expiry: data.expiry,
-      image: data.image
+     
     });
   }
 
@@ -66,9 +65,8 @@ export class PostService {
       nameCertificate: data.nameCertificate,
       issued: data.issued,
       nameReceiver: data.nameReceiver,
-      dateRange: data.dateRange,
       expiry: data.expiry,
-      image: data.image
+    
     });
   }
 
@@ -91,7 +89,6 @@ export class PostService {
     return this.http.put(`${this.apiUrl}/${id}`,{
       nameRecruitment: data.nameRecruitment,
       role: data.role,
-      // submissionTime: data.submissionTime,
       status: data.status,
       rate: data.rate,
       nameExaminer: data.nameExaminer,

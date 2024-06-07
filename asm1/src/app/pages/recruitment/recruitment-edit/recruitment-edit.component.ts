@@ -11,7 +11,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
   styleUrls: ['./recruitment-edit.component.scss']
 })
 export class RecruitmentEditComponent {
-  constructor(private router: Router, private user: PostService,  private formedit: ActivatedRoute) { }
+  constructor(private router: Router, private recruitment: PostService,  private formedit: ActivatedRoute) { }
 
   table: string = 'recruitment';
 
@@ -27,7 +27,7 @@ export class RecruitmentEditComponent {
 
 
     this.validForm = new FormGroup({
-      nameRecruitment: new FormControl('', Validators.required), // Consider renaming to "name"
+      nameRecruitment: new FormControl('', Validators.required), 
       role: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       rate: new FormControl('', Validators.required),
@@ -51,7 +51,7 @@ export class RecruitmentEditComponent {
       result: this.validForm.value.result,
     };
 
-    this.user.putRe(UpdateRecruitment, this.id).subscribe(res => {
+    this.recruitment.putRe(UpdateRecruitment, this.id).subscribe(res => {
       UpdateRecruitment.id = res.id;
    
       this.router.navigate(['/pages/recruitment']);
@@ -60,7 +60,7 @@ export class RecruitmentEditComponent {
 
   getByID(id: string) {
     const ID = parseInt(id);
-    this.user.getById(ID, this.table).subscribe(data => {
+    this.recruitment.getById(ID, this.table).subscribe(data => {
       console.log(data);
       this.recruitmentList = data[0];
     })

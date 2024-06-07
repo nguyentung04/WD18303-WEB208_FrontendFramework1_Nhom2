@@ -1,67 +1,53 @@
-
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
-                        <h3>Thêm chứng chỉ</h3>
-                        <form class="form-valide">
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username">Tên chứng chỉ <span
-                                        class="text-danger">*</span>
-                                </label>
+                        <h3>Cập nhật chứng chỉ</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="nameCertificate">Tên chứng chỉ <span class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" id="username" placeholder="" name="name"
-                                        required>
+                                    <input type="text" class="form-control" id="nameCertificate" formControlName="nameCertificate">
+                                    <div *ngIf="validForm.get('nameCertificate').invalid && (validForm.get('nameCertificate').dirty || validForm.get('nameCertificate').touched)" class="text-danger">
+                                        <span *ngIf="validForm.get('nameCertificate').errors.required">Vui lòng nhập dữ liệu!</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username">Tổ chức cấp <span
-                                        class="text-danger">*</span>
-                                </label>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="issued">Tổ chức cấp <span class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" id="username" placeholder="" name="name"
-                                        required>
+                                    <input type="text" class="form-control" id="issued" formControlName="issued">
+                                    <div *ngIf="validForm.get('issued').invalid && (validForm.get('issued').dirty || validForm.get('issued').touched)" class="text-danger">
+                                        <span *ngIf="validForm.get('issued').errors.required">Vui lòng nhập dữ liệu!</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username">Tên người nhận<span
-                                        class="text-danger">*</span>
-                                </label>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="nameReceiver">Tên người nhận <span class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" id="username" placeholder="" name="name"
-                                        required>
+                                    <input type="text" class="form-control" id="nameReceiver" formControlName="nameReceiver">
+                                    <div *ngIf="validForm.get('nameReceiver').invalid && (validForm.get('nameReceiver').dirty || validForm.get('nameReceiver').touched)" class="text-danger">
+                                        <span *ngIf="validForm.get('nameReceiver').errors.required">Vui lòng nhập dữ liệu!</span>
+                                    </div>
                                 </div>
                             </div>
-                           
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username">Hạn sử dụng <span
-                                        class="text-danger">*</span>
-                                </label>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="expiry">Hạn sử dụng <span class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" id="username" placeholder="" name="name"
-                                        required>
+                                    <input type="text" class="form-control" id="expiry" formControlName="expiry">
+                                    <div *ngIf="validForm.get('expiry').invalid && (validForm.get('expiry').dirty || validForm.get('expiry').touched)" class="text-danger">
+                                        <span *ngIf="validForm.get('expiry').errors.required">Vui lòng nhập dữ liệu!</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username">Hình ảnh <span
-                                        class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="file" class="form-control" id="username" placeholder="" name="name"
-                                        required>
+                            <div class="form-group row">
+                                <div class="col-lg-6 p-2 offset-lg-4">
+                                    <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                                    <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
                                 </div>
                             </div>
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="username"><span class="text-danger"></span>
-                                </label>
-                                <div class="col-lg-6 p-2">
-                                    <button type="submit" class="btn btn-primary" >Xác Nhận</button>
-                                    <button type="submit" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
-                                </div>
-                            </div>
-
                         </form>
                     </div>
                 </div>

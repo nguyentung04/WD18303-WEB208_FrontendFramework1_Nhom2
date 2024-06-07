@@ -45,19 +45,7 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="dateIssued">Ngày cấp <span
-                                        class="text-danger">*</span></label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="date" class="form-control" id="dateIssued"
-                                        formControlName="dateIssued">
-                                    <div *ngIf="validForm.get('dateIssued')?.invalid && validForm.get('dateIssued')?.touched"
-                                        class="text-danger">
-                                        Ngày cấp là bắt buộc
-                                    </div>
-                                </div>
-                            </div> -->
-
+                           
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="expiry">Hạn sử dụng <span
                                         class="text-danger">*</span></label>
@@ -70,19 +58,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="img">Hình ảnh <span
-                                        class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="file" class="form-control" formControlName="image"
-                                        (change)="onFileSelected($event)" name="image">
-                                    <div *ngIf="validForm.get('image').invalid && (validForm.get('image').dirty || validForm.get('image').touched)"
-                                        class="text-danger">
-                                        <span *ngIf="validForm.get('image').errors.required">Vui lòng nhập dữ liệu!</span>
-                                    </div>
-                                </div>
-                            </div>
+                          
 
                             <div class="form-group row">
                                 <div class="col-lg-6 p-2 offset-lg-4">

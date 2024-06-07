@@ -12,7 +12,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
   styleUrls: ['./certificate-edit.component.scss']
 })
 export class CertificateEditComponent {
-  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute) { }
+  constructor(private router: Router, private certificate: PostService, private formedit: ActivatedRoute) { }
 
   table: string = 'certificate';
 
@@ -32,31 +32,14 @@ export class CertificateEditComponent {
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
       nameReceiver: new FormControl('', Validators.required),
-      dateRange: new FormControl('', Validators.required),
       expiry: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required),
+     
     });
   }
 
-  onFileSelected(event) {
-
-    const file: File = event.target.files[0];
-
-    if (file) {
-      this.filename = file.name;
-
-      const formData = new FormData();
-
-      formData.append("img", file);
-      const upload = this.user.uploadImg(formData, this.table)
-      upload.subscribe(res => {
-        console.log('up ảnh thành công', res);
-      });
-    }
-  }
 
   onSubmit() {
-    if (this.validForm.invalid || !this.filename) {
+    if (this.validForm.invalid) {
       return
     };
 
@@ -65,27 +48,33 @@ export class CertificateEditComponent {
       nameCertificate: this.validForm.value.nameCertificate,
       issued: this.validForm.value.issued,
       nameReceiver: this.validForm.value.nameReceiver,
-      dateRange: this.validForm.value.dateRange,
       expiry: this.validForm.value.expiry,
-      image: this.filename,
+    
     };
 
-    this.user.putCer(UpdateCer, this.id).subscribe(res => {
+    this.certificate.putCer(UpdateCer, this.id).subscribe(res => {
       UpdateCer.id = res.id;
       // this.UserState.Users('update', [UpdateUser], this.table);
-      this.router.navigate(['/pages/userinfo']);
+      this.router.navigate(['/pages/certificate']);
     });
   }
 
   getByID(id: string) {
     const ID = parseInt(id);
-    this.user.getById(ID, this.table).subscribe(data => {
+    this.certificate.getById(ID, this.table).subscribe(data => {
       console.log(data);
-      this.certificateList = data[0];
+      const certificateData = data[0]; // Assuming the certificate data is returned as an array with one element
+      this.validForm.patchValue({
+        nameCertificate: certificateData.nameCertificate,
+        issued: certificateData.issued,
+        nameReceiver: certificateData.nameReceiver,
+        expiry: certificateData.expiry
+      });
     })
   }
+  
 
   back() {
-    this.router.navigate(['/pages/userinfo']);
+    this.router.navigate(['/pages/certificate']);
   }
 }

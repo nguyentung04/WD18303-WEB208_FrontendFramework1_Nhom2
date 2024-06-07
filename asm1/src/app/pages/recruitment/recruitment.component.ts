@@ -20,6 +20,7 @@ export class recruitmentComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showRouterOutlet = this.router.url.includes('/recruitment/');
+        
       }
     });
     this.getAll();
@@ -52,7 +53,7 @@ export class recruitmentComponent implements OnInit {
   add() {
     this.router.navigate(['/pages/recruitment/create'])
   }
-  edit(id: string) {
+  editRe(id: string) {
     this.router.navigate([`/pages/recruitment/edit/${id}`])
   }
 }
