@@ -15,14 +15,20 @@ import { languageComponent } from './inlanguage/language.component';
 import { educationComponent } from './education/education.component';
 import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
-import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
-import { activityComponent } from './activity/activity.component';
+import { InformationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
+import { ActivityComponent } from './activity/activity.component';
 import { RecruitmentCreateComponent } from './recruitment/recruitment-create/recruitment-create.component';
 import { RecruitmentEditComponent } from './recruitment/recruitment-edit/recruitment-edit.component';
 import { RecruitmentDeleteComponent } from './recruitment/recruitment-delete/recruitment-delete.component';
 import { CertificateCreatteComponent } from './certificate/certificate-creatte/certificate-creatte.component';
 import { CertificateEditComponent } from './certificate/certificate-edit/certificate-edit.component';
 import { CertificateDeleteComponent } from './certificate/certificate-delete/certificate-delete.component';
+import { ActivityCreateComponent } from './activity/activity-create/activity-create.component';
+import { ActivityEditComponent } from './activity/activity-edit/activity-edit.component';
+import { ActivityDeleteComponent } from './activity/activity-delete/activity-delete.component';
+import { InformationtechnologyexperienceCreateComponent } from './informationtechnologyexperience/informationtechnologyexperience-create/informationtechnologyexperience-create.component';
+import { InformationtechnologyexperienceEditComponent } from './informationtechnologyexperience/informationtechnologyexperience-edit/informationtechnologyexperience-edit.component';
+import { InformationtechnologyexperienceDeleteComponent } from './informationtechnologyexperience/informationtechnologyexperience-delete/informationtechnologyexperience-delete.component';
 
 
 
@@ -119,13 +125,47 @@ const routes: Routes = [{
 
     {
       path: 'informationtechnologyexperience',
-      component: informationtechnologyexperienceComponent,
+      component: InformationtechnologyexperienceComponent,
       data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
+      children: [
+        {
+          path: 'create',
+          component: InformationtechnologyexperienceCreateComponent,
+          data: { breadcrumb: 'Thêm nhân viên' },
+        },
+        {
+          path: 'edit/:id',
+          component: InformationtechnologyexperienceEditComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+        },
+        {
+          path: 'delete',
+          component: InformationtechnologyexperienceDeleteComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'activity',
-      component: activityComponent,
+      component: ActivityComponent,
       data: {breadcrumb: 'Quản lý hoạt động'},
+      children: [
+        {
+          path: 'create',
+          component: ActivityCreateComponent,
+          data: { breadcrumb: 'Thêm nhân viên' },
+        },
+        {
+          path: 'edit/:id',
+          component: ActivityEditComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+        },
+        {
+          path: 'delete',
+          component: ActivityDeleteComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'inlanguage',

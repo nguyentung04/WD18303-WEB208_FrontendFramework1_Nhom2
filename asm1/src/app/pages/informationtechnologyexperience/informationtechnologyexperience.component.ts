@@ -1,66 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { informationtechnologyexperienceTableData } from 'app/@core/data/informationtechnologyexperience-table';
+import { NavigationEnd, Router } from '@angular/router';
+import { PostService } from './../../@core/services/apis/post.service';
+import { informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 
 @Component({
-  selector: 'ngx-dashboard',
-  styleUrls: ['./informationtechnologyexperience.component.scss'],
-  templateUrl: './informationtechnologyexperience.component.html',
+  selector: 'ngx-activity',
+  styleUrls: ['./Informationtechnologyexperience.component.scss'],
+  templateUrl: './Informationtechnologyexperience.component.html',
 })
-export class informationtechnologyexperienceComponent implements OnInit {
-  ngOnInit(): void { }
+export class InformationtechnologyexperienceComponent implements OnInit {
+  showRouterOutlet: boolean = false;
+  listInformationtechnologyexperience: informationtechnologyexperience[] = [];
+  table: string = 'informationtechnologyexperience';
 
-  informationtechnologyexperience = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      software: {
-        title: 'Phần mềm',
-        type: 'string',
-      },
-      level: {
-        title: 'Trình độ',
-        type: 'string',
+  constructor(private router: Router, private informationtechnologyexperienceService: PostService) { }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/informationtechnologyexperience/');
       }
-
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: informationtechnologyexperienceTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+    });
+    this.getAll();
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  getAll() {
+    this.informationtechnologyexperienceService.getAllInformationtechnologyexperience(this.table).subscribe(data => {
+      console.log(data);
+      this.listInformationtechnologyexperience = data;
+    });
+  }
+
+  deleteInformationtechnologyexperience(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.informationtechnologyexperienceService.deleteInformationtechnologyexperience(this.table, Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
     }
   }
 
+  add() {
+    this.router.navigate(['/pages/informationtechnologyexperience/create']);
+  }
+
+  edit(id: string) {
+    this.router.navigate([`/pages/informationtechnologyexperience/edit/${id}`]);
+  }
 }
