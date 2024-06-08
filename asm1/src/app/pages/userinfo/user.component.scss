@@ -1,4 +1,3 @@
-
 @import '../../@theme/styles/themes';
 @import 'bootstrap/scss/mixins/breakpoints';
 @import '@nebular/theme/styles/global/breakpoints';
@@ -17,7 +16,8 @@
 
   }
 }
-nb-card-header{
+
+nb-card-header {
   display: flex;
   justify-content: space-between;
 }
