@@ -1,5 +1,5 @@
 import { Iskill } from 'app/@core/interfaces/pages/skill';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
@@ -7,6 +7,8 @@ import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { Activity } from 'app/@core/interfaces/pages/activity';
 import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
+import { Ieducation } from 'app/@core/interfaces/pages/education';
+import { Iusers } from 'app/@core/interfaces/pages/users';
 
 @Injectable({
   providedIn: 'root',
@@ -182,4 +184,90 @@ export class PostService {
 
 
   // kết thúc bảng kinh nghiệm tin học
+
+
+
+
+  private educationSubject = new BehaviorSubject<Ieducation[]>([]);
+  education$ = this.educationSubject.asObservable();
+
+  private userSubject = new BehaviorSubject<Iusers[]>([]);
+  users$ = this.userSubject.asObservable();
+
+  getAllEducation(table: string): Observable<Ieducation[]> {
+    return this.http.get<Ieducation[]>(`${this.apiUrl}/${table}`).pipe(
+      tap((educationList: Ieducation[]) => {
+        this.setEducationList(educationList);
+      })
+    );
+  }
+
+  private setEducationList(educationList: Ieducation[]) {
+    this.educationSubject.next(educationList);
+  }
+
+  getByID(id: number, table: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  }
+
+  // getAllUser(table: string): Observable<any> {
+  //   return this.http.get(`${this.apiUrl}/${table}`);
+  // }
+
+  getAllUser2(table: string): Observable<Iusers[]> {
+    return this.http.get<Iusers[]>(`${this.apiUrl}/${table}`).pipe(
+      tap((userList: Iusers[]) => {
+        this.setUserList(userList);
+      })
+    );
+  }
+
+  private setUserList(userList: Iusers[]) {
+    this.userSubject.next(userList);
+  }
+
+  login(credentials: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials);
+  }
+
+  logout() {
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('token');
+  }
+
+  postUsers(data: Iusers, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
+      tap(() => this.getAllUser2(table).subscribe())
+    );
+  }
+
+  putUsers(data: Iusers, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
+      tap(() => this.getAllUser2(table).subscribe())
+    );
+  }
+
+  deleteUsers(table: string, id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
+      tap(() => this.getAllUser2(table).subscribe())
+    );
+  }
+
+  postEducation(data: Ieducation, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
+      tap(() => this.getAllEducation(table).subscribe())
+    );
+  }
+
+  putEducation(data: Ieducation, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
+      tap(() => this.getAllEducation(table).subscribe())
+    );
+  }
+
+  deleteEducation(table: string, id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
+      tap(() => this.getAllEducation(table).subscribe())
+    );
+  }
 }

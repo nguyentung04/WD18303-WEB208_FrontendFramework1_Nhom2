@@ -1,6 +1,6 @@
 //userinfo
 import { DeleteComponent } from './userinfo/delete/delete.component';
-import { EditComponent } from './userinfo/edit/edit.component';
+
 import { CreateComponent } from './userinfo/create/create.component';
 //skill
 import { CreateSkillComponent } from './skill/create-skill/create-skill.component';
@@ -13,11 +13,16 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
 import { usersComponent } from './users/users.component';
+// import { usersComponent } from './userinfo/user.component';
+import {EditComponent} from './users/edit/edit.component';
 import { SkillComponent } from './skill/skill.component';
 import { experienceComponent } from './experience/experience.component';
 import { languageComponent } from './inlanguage/language.component';
-
+import {CreateUsersComponent} from './users/create/create.component'
 import { educationComponent } from './education/education.component';
+import {CreateEducationComponent} from './education/create/create.component';
+import {EditEducationComponent } from './education/edit/edit.component';
+import {DeleteEducationComponent} from './education/delete/delete.component';
 import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { InformationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
@@ -49,7 +54,25 @@ const routes: Routes = [{
     {
       path: 'users',
       component: usersComponent,
-      data: { breadcrumb: 'Thông tin đăng nhập' },
+      data: { breadcrumb: 'Thông tin người dùng' },
+      children: [
+        {
+          path: 'create',
+          component: CreateUsersComponent,
+          data: { breadcrumb: 'Thêm người dùng' },
+        },
+       
+        {
+          path: 'edit/:id',
+          component: EditComponent,
+          data: { breadcrumb: 'Cập nhật người dùng' },
+        },
+        {
+          path: 'delete',
+          component: CreateComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'userinfo',
@@ -75,8 +98,26 @@ const routes: Routes = [{
     },
     {
       path: 'education',
-      component: educationComponent,
+      component:  educationComponent,
       data: { breadcrumb: 'Thông tin học vấn' },
+      children: [
+        {
+          path: 'create',
+          component: CreateEducationComponent,
+          data: { breadcrumb: 'Thêm hồ sơ học vấn' },
+        },
+       
+        {
+          path: 'edit/:id',
+          component: EditEducationComponent,
+          data: { breadcrumb: 'Cập nhật hồ sơ học vấn' },
+        },
+        {
+          path: 'delete',
+          component: DeleteEducationComponent,
+          data: { breadcrumb: 'Xóa nhân viên' },
+        },
+      ]
     },
     {
       path: 'skill',

@@ -15,6 +15,13 @@ db.connect(err => {
   }
 });
 
+const getByID = (table, id, callback) => {
+  const sql = `SELECT * FROM ?? WHERE ?`;
+  db.query(sql, [table, id], (err, results) => {
+    callback(err, results);
+  });
+};
+
 const getAll = (table, callback) => {
   const sql = `SELECT * FROM ??`;
   db.query(sql, [table], (err, results) => {
@@ -22,12 +29,7 @@ const getAll = (table, callback) => {
   });
 };
 
-const getByID = (table, id, callback) => {
-  const sql = `SELECT * FROM ?? WHERE id = ?`;
-  db.query(sql, [table, id], (err, results) => {
-    callback(err, results);
-  });
-};
+
 
 const insert = (table, data, callback) => {
   const sql = `INSERT INTO ?? SET ?`;

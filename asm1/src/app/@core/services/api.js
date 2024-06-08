@@ -2,14 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const multer = require("multer");
-const {
-  getAll,
-  insert,
-  update,
-  Delete,
-  getByID,
-  getAllSkillsByUserId,
-} = require("./database");
+const {getAll, insert, update, Delete, getByID,getAllSkillsByUserId,} = require("./database");
 
 const app = express();
 const port = 3000;
@@ -51,7 +44,7 @@ const upload = multer({ storage: storage });
 
 
 
-const tables = ['userinfo','skill', 'certificate', 'recruitment','informationtechnologyexperience','activity'];
+const tables = ['userinfo','skill', 'certificate', 'recruitment','informationtechnologyexperience','activity','education','login'];
 
 
 
