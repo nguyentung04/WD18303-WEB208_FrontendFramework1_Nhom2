@@ -31,7 +31,7 @@ export class InformationtechnologyexperienceComponent implements OnInit {
     });
   }
 
-  activityService
+
   deleteInformationtechnologyexperience(id: string) {
     const Id = parseInt(id, 10);
     if (confirm('Bạn chắc chắn muốn xóa?')) {

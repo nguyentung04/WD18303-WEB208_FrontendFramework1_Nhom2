@@ -28,7 +28,7 @@ export class CertificateEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
-    
+     
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
       user_id: new FormControl('', Validators.required),
@@ -44,7 +44,7 @@ export class CertificateEditComponent implements OnInit {
     }
 
     const updateCertificate: certificate = {
-      id: '',
+      id: this.id,
       nameCertificate: this.validForm.value.nameCertificate,
       issued: this.validForm.value.issued,
       user_id: this.validForm.value.user_id,

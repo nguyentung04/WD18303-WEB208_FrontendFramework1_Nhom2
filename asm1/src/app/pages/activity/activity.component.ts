@@ -86,8 +86,8 @@ export class ActivityComponent implements OnInit {
     });
   }
 
-  deleteActivity(id: string) {
-    const Id = parseInt(id, 10);
+  deleteCer(id: string) {
+    const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
       this.activityService.deleteUser(this.table, Id).subscribe(() => {
         console.log('Xóa thành công');
