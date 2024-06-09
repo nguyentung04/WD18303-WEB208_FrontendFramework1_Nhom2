@@ -11,9 +11,13 @@ import { PostService } from 'app/@core/services/apis/post.service';
 })
 export class ActivityEditComponent {
   [x: string]: any;
-
-  constructor(private router: Router, private activityService: PostService) {}
-
+  listActivity: Activity[] = [];
+  constructor(
+    private router: Router,
+    private activityService: PostService,
+    private formedit: ActivatedRoute
+  ) {}
+  id = this.formedit.snapshot.params.id;
   table: string = 'activity';
 
   validForm: FormGroup;
@@ -30,10 +34,6 @@ export class ActivityEditComponent {
   }
 
   onSubmit() {
-    if (this.validForm.invalid || !this.filename) {
-      return;
-    }
-
     const UpdateActivity: Activity = {
       id: '',
       full_name: this.validForm.value.full_name,
@@ -51,11 +51,11 @@ export class ActivityEditComponent {
       });
   }
 
-  getByID(id:string ) {
+  getByID(id: string) {
     const Id = parseInt(id);
-    this.activityService.getById( Id, this.table).subscribe((data) => {
+    this.activityService.getById(Id, this.table).subscribe((data) => {
       console.log(data);
-      this.list = data[0];
+      this.listActivity = data[0];
     });
   }
 

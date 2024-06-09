@@ -43,12 +43,22 @@ const update = (table, data, id, callback) => {
   });
 };
 
+
+
+
 const Delete = (table, id, callback) => {
+  console.log(`Deleting from table: ${table}, id: ${id}`);
   const sql = `DELETE FROM ?? WHERE id = ?`;
   db.query(sql, [table, id], (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+    } else {
+      console.log('Query results:', results);
+    }
     callback(err, results);
   });
 };
+
 const getAllSkillsByUserId = (callback) => {
   const sql = `
     SELECT 

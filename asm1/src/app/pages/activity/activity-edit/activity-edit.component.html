@@ -1,19 +1,19 @@
-<p>activity-edit works!</p>
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
-                        <h3>Thêm nhân viên</h3>
-                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" enctype="multipart/form-data">
-                           
+                        <h3>Sửa hoạt động</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm"   >
+                            <!-- enctype="multipart/form-data" -->
                             <div class="form-group row ">
                                 <label class="col-lg-4 col-form-label" for="img">Họ tên <span
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="full_name" value=`${full_name}`>
+                                    <input type="text" class="form-control" formControlName="full_name" >
                                     <div *ngIf="validForm.get('full_name').invalid && (validForm.get('full_name').dirty || validForm.get('full_name').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('full_name').errors.required">Vui lòng nhập dữ
@@ -77,7 +77,7 @@
                                 <label class="col-lg-4 col-form-label"><span class="text-danger"></span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <button type="submitsubmit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
                                         Nhận</button>
                                     <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
                                         lại</button>
