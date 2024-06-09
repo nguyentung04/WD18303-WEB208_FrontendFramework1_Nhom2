@@ -6,7 +6,7 @@ import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { Activity } from 'app/@core/interfaces/pages/activity';
-import { informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
+import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 
 @Injectable({
   providedIn: 'root',
@@ -114,7 +114,7 @@ export class PostService {
   // bang hoat dong
 
   getAllActivity(table: string): Observable<any> {
-    return this.http.get<Activity[]>(`${this.apiUrl}/${table}`);
+    return this.http.get(`${this.apiUrl}/${table}`);
   }
 
   postActivity(data: Activity, table: string): Observable<any> {
@@ -142,6 +142,7 @@ export class PostService {
   deleteActivity(table: string, id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${table}/${id}`);
   }
+  
   // kết thúc bảng hoạt động
 
   // bảng kinh nghiệm khóa học
@@ -150,18 +151,28 @@ export class PostService {
   }
 
   postInformationtechnologyexperience(
-    data:  informationtechnologyexperience,
+    data:  Informationtechnologyexperience,
     table: string
   ): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${table}`, data);
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      full_name: data.full_name,
+      software: data.software,
+      level: data.level
+
+    });
   }
 
   putInformationtechnologyexperience(
-    data:  informationtechnologyexperience,
+    data:  Informationtechnologyexperience,
     id: number,
     table: string
   ): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${table}/${id}`, data);
+    return this.http.put(`${this.apiUrl}/${table}/${id}`,  {
+      full_name: data.full_name,
+      software: data.software,
+      level: data.level
+
+    });
   }
 
   deleteInformationtechnologyexperience(

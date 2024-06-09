@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from './../../@core/services/apis/post.service';
-import { informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
+import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 
 @Component({
   selector: 'ngx-activity',
@@ -10,7 +10,7 @@ import { informationtechnologyexperience } from 'app/@core/interfaces/pages/info
 })
 export class InformationtechnologyexperienceComponent implements OnInit {
   showRouterOutlet: boolean = false;
-  listInformationtechnologyexperience: informationtechnologyexperience[] = [];
+  listInformationtechnologyexperience: Informationtechnologyexperience[] = [];
   table: string = 'informationtechnologyexperience';
 
   constructor(private router: Router, private informationtechnologyexperienceService: PostService) { }
@@ -32,16 +32,19 @@ export class InformationtechnologyexperienceComponent implements OnInit {
   }
 
   deleteInformationtechnologyexperience(id: string) {
-    const Id = parseInt(id);
+    const Id = parseInt(id, 10);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
       this.informationtechnologyexperienceService.deleteInformationtechnologyexperience(this.table, Id).subscribe(() => {
         console.log('Xóa thành công');
-        this.getAll();
+        this.listInformationtechnologyexperience = this.listInformationtechnologyexperience.filter(activity => activity.id !== Id.toString());
       }, error => {
         console.error(error);
+        alert('Có lỗi xảy ra khi xóa. Vui lòng thử lại.');
       });
     }
   }
+
+
 
   add() {
     this.router.navigate(['/pages/informationtechnologyexperience/create']);
