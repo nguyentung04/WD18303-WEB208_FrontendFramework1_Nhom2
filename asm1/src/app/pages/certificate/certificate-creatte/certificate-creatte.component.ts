@@ -14,11 +14,9 @@ export class CertificateCreatteComponent implements OnInit {
   certificateList: certificate[] = [];
   validForm: FormGroup;
 
-
   constructor(private router: Router, private certificate: PostService) { }
 
   ngOnInit(): void {
-
     this.validForm = new FormGroup({
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
