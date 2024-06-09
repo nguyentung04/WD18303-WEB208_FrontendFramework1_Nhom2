@@ -1,7 +1,7 @@
 <div *ngIf="!showRouterOutlet">
   <nb-card>
     <nb-card-header>
-      Bảng thông tin nhân viên
+      Bảng thông tuyển dụng
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
@@ -33,7 +33,7 @@
             <td>{{ re.result }}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
+              <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

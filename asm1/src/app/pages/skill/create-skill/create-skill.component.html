@@ -13,7 +13,7 @@
                                 </label>
                                 <div class="col-lg-6 p-2">                           
                                     <select class="form-control" formControlName="user_id" name="user_id">
-                                        <option *ngFor="let user of list" value="{{user.id}}">{{ user.id }}</option>
+                                        <option *ngFor="let user of list" value="{{user.id}}">{{ user.id }}  {{ user.fullname }} </option>
                                     </select>
                                     <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
                                         class="text-danger">

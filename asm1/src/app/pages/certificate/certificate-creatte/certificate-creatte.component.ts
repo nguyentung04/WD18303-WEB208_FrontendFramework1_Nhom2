@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
 @Component({
   selector: 'app-certificate-creatte',
@@ -14,7 +15,9 @@ export class CertificateCreatteComponent implements OnInit {
   certificateList: certificate[] = [];
   validForm: FormGroup;
 
-
+  filename = '';
+  userinfoList: IuserInfo[] = [];
+  table1: string = 'userinfo';
   constructor(private router: Router, private certificate: PostService) { }
 
   ngOnInit(): void {
@@ -22,13 +25,20 @@ export class CertificateCreatteComponent implements OnInit {
     this.validForm = new FormGroup({
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
-      nameReceiver: new FormControl('', Validators.required),
-     
+      user_id: new FormControl('', Validators.required),
       expiry: new FormControl('', Validators.required),
   
     });
+    this.getAll();
   }
 
+
+  getAll() {
+    this.certificate.getAllUser(this.table1).subscribe(data => {
+      console.log(data);
+      this.userinfoList = data;
+    })
+  }
  
 
   onSubmit() {
@@ -40,19 +50,16 @@ export class CertificateCreatteComponent implements OnInit {
       id: '',
       nameCertificate: this.validForm.value.nameCertificate,
       issued: this.validForm.value.issued,
-      nameReceiver: this.validForm.value.nameReceiver,
-    
+      user_id: this.validForm.value.user_id,
       expiry: this.validForm.value.expiry,
     
     };
 
     this.certificate.postCer(newCertificate, this.table).subscribe(res => {
       newCertificate.id = res.id;
+      this.certificateList.push(newCertificate);
       this.router.navigate(['/pages/certificate']);
-      }, error => {
-        console.error('Lỗi thêm tuyển dụng', error); 
-      }
-    );
+      });
   }
 
   back() {

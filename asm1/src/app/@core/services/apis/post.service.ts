@@ -19,6 +19,7 @@ export class PostService {
   getAllUser(table: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${table}`);
   }
+  
 
   uploadImg(formData: FormData, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}/upload`, formData);
@@ -38,6 +39,9 @@ export class PostService {
     return this.http.get(`${this.apiUrl}/${table}/${id}`);
   }
 
+  getUserById(id: string, table: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  }
   putUser(data: IuserInfo, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
       img: data.img,
@@ -53,43 +57,43 @@ export class PostService {
     return this.http.post(`${this.apiUrl}/${table}`, {
       nameCertificate: data.nameCertificate,
       issued: data.issued,
-      nameReceiver: data.nameReceiver,
+      user_id: data.user_id,
       expiry: data.expiry,
      
     });
   }
 
-  putCer(data: certificate, id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, {
-      nameCertificate: data.nameCertificate,
+  putCer(data: certificate, id: number,table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      // nameCertificate: data.nameCertificate,
       issued: data.issued,
-      nameReceiver: data.nameReceiver,
-      expiry: data.expiry,
-    
+      user_id: data.user_id,
+      // expiry: data.expiry,
     });
   }
 
   postRe(data: recruitment, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
-      nameRecruitment: data.nameRecruitment,
+      user_id: data.user_id,
       role: data.role,
-
       status: data.status,
       rate: data.rate,
-      nameExaminer: data.nameExaminer,
       result: data.result,
     });
   }
 
-  putRe(data: recruitment, id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, {
-      nameRecruitment: data.nameRecruitment,
+  putRe(data: recruitment, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      user_id: data.user_id,
       role: data.role,
       status: data.status,
       rate: data.rate,
-      nameExaminer: data.nameExaminer,
       result: data.result,
     });
+  }
+
+  updateUser(table: string, id: string, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${table}/${id}`, data);
   }
 
   deleteUser(table: string, id: number): Observable<any> {
@@ -139,9 +143,7 @@ export class PostService {
     });
   }
 
-  deleteActivity(table: string, id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
-  }
+ 
   // kết thúc bảng hoạt động
 
   // bảng kinh nghiệm khóa học
@@ -164,11 +166,6 @@ export class PostService {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, data);
   }
 
-  deleteInformationtechnologyexperience(
-    table: string,
-    id: number
-  ): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
-  }
+
   // kết thúc bảng kinh nghiệm tin học
 }

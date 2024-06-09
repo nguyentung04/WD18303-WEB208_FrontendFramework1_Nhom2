@@ -31,17 +31,7 @@ export class InformationtechnologyexperienceComponent implements OnInit {
     });
   }
 
-  deleteInformationtechnologyexperience(id: string) {
-    const Id = parseInt(id);
-    if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.informationtechnologyexperienceService.deleteInformationtechnologyexperience(this.table, Id).subscribe(() => {
-        console.log('Xóa thành công');
-        this.getAll();
-      }, error => {
-        console.error(error);
-      });
-    }
-  }
+  activityService
 
   add() {
     this.router.navigate(['/pages/informationtechnologyexperience/create']);

@@ -21,13 +21,14 @@ export class RecruitmentCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
-      nameRecruitment: new FormControl('', Validators.required), // Consider renaming to "name"
+      user_id: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       rate: new FormControl('', Validators.required),
-      nameExaminer: new FormControl('', Validators.required),
+    
       result: new FormControl('', Validators.required),
     });
+    this.getAll();
 
 
     
@@ -50,20 +51,17 @@ export class RecruitmentCreateComponent implements OnInit {
 
     const newRecruitment: recruitment = {
       id: '',
-      nameRecruitment: this.validForm.value.nameRecruitment,
+      user_id: this.validForm.value.user_id,
       role: this.validForm.value.role,
       status: this.validForm.value.status,
       rate: this.validForm.value.rate,
-      nameExaminer: this.validForm.value.nameExaminer,
       result: this.validForm.value.result,
-     
     };
 
     this.recruitment.postRe(newRecruitment, this.table).subscribe(res => { 
       newRecruitment.id = res.id;
+      this.recruitmentList.push(newRecruitment);
       this.router.navigate(['/pages/recruitment']); 
-    }, error => {
-      console.error('Lỗi thêm tuyển dụng', error); 
     });
   }
 

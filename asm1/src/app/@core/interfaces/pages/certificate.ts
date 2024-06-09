@@ -2,8 +2,7 @@ export interface certificate {
     id: string,
     nameCertificate:string,
     issued: string,
-    nameReceiver: string,
-   
+    user_id: number;
     expiry: string,
    
 }

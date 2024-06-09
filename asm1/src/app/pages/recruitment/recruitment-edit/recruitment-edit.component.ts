@@ -1,70 +1,99 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { PostService } from './../../../@core/services/apis/post.service';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
-import { PostService } from 'app/@core/services/apis/post.service';
 
 @Component({
   selector: 'app-recruitment-edit',
   templateUrl: './recruitment-edit.component.html',
   styleUrls: ['./recruitment-edit.component.scss']
 })
-export class RecruitmentEditComponent {
-  constructor(private router: Router, private recruitment: PostService,  private formedit: ActivatedRoute) { }
+export class RecruitmentEditComponent implements OnInit {
 
   table: string = 'recruitment';
-
-  recruitmentList: recruitment[] = [];
-
+  recruitmentList: recruitment[]=[];
   validForm: FormGroup;
+  id: string;
 
-  id = this.formedit.snapshot.params.id;
+  constructor(private router: Router,
+              private recruitmentService: PostService,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-    this.getByID(this.id);
-
+    this.id = this.activatedRoute.snapshot.params.id;
 
     this.validForm = new FormGroup({
-      nameRecruitment: new FormControl('', Validators.required), 
+      user_id: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required),
       rate: new FormControl('', Validators.required),
-      nameExaminer: new FormControl('', Validators.required),
       result: new FormControl('', Validators.required),
     });
+
+    this.getById(this.id);
   }
+
+
 
   onSubmit() {
     if (this.validForm.invalid) {
-      return
-    };
+      // Cung cấp phản hồi cho người dùng nếu biểu mẫu không hợp lệ
+      return;
+    }
 
-    const UpdateRecruitment: recruitment = {
+    const updateRecruitment: recruitment = {
       id: '',
-      nameRecruitment: this.validForm.value.nameRecruitment,
+      user_id: this.validForm.value.user_id,
       role: this.validForm.value.role,
       status: this.validForm.value.status,
       rate: this.validForm.value.rate,
-      nameExaminer: this.validForm.value.nameExaminer,
       result: this.validForm.value.result,
     };
 
-    this.recruitment.putRe(UpdateRecruitment, this.id).subscribe(res => {
-      UpdateRecruitment.id = res.id;
-   
-      this.router.navigate(['/pages/recruitment']);
-    });
+    this.recruitmentService.putRe(updateRecruitment, parseInt(this.id, 10), this.table).subscribe(
+      res => {
+        // Xử lý thành công, có thể hiển thị một tin nhắn thành công
+        this.router.navigate(['/pages/recruitment']);
+      },
+      error => {
+        // Xử lý lỗi, hiển thị một tin nhắn lỗi
+      }
+    );
   }
 
-  getByID(id: string) {
-    const ID = parseInt(id);
-    this.recruitment.getById(ID, this.table).subscribe(data => {
-      console.log(data);
-      this.recruitmentList = data[0];
-    })
+  getById(id: string): void {
+    const ID = parseInt(id, 10);
+    console.log(`Fetching recruitment with ID: ${ID}`); // Log the ID being fetched
+    this.recruitmentService.getById(ID, this.table).subscribe(
+      data => {
+        console.log('API response:', data); // Log the full API response
+  
+        if (data) {
+          this.recruitmentList = [data]; // Wrap data in an array to match the expected type
+  
+          if (this.validForm) {
+            this.validForm.patchValue({
+              user_id: data. user_id,
+        role: data. role,
+        status: data. status,
+        rate: data. rate,
+        result: data. result,
+            });
+          }
+        } else {
+          console.warn('No recruitment data found.');
+        }
+      },
+      error => {
+        console.error('Error fetching data', error);
+      }
+    );
+  
   }
+
+
+
 
   back() {
     this.router.navigate(['/pages/recruitment']);

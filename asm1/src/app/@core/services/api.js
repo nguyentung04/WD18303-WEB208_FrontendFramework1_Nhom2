@@ -30,7 +30,7 @@ const upload = multer({ storage:storage });
 
 
 
-const tables = ['userinfo','skill', 'certificate', 'certificate', 'categories', 'activity', 'informationtechnologyexperience', 'shippers', 'regions', 'territories'];
+const tables = ['userinfo','skill', 'certificate', 'recruitment','informationtechnologyexperience'];
 
 
 
@@ -101,17 +101,21 @@ tables.forEach(table => {
     });
   });
   
-
+ 
 
   app.delete(`/api/${table}/:id`, (req, res) => {
-    const { id } = req.params;
-    Delete(table, { id }, (err, result) => {
+    const itemId = req.params.id;
+    // Thực hiện xóa dữ liệu từ bảng `table` với itemId
+    Delete(table, itemId, (err, result) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
-      res.json({ message: `Xóa ${table} thành công` });
+      res.json({ message: `Xóa khỏi ${table} thành công`, id: itemId });
     });
   });
+  
+
+  
 });
 
 app.listen(port, () => {

@@ -40,14 +40,18 @@ export class certificateComponent implements OnInit {
   deleteCer(id: string) {
     const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.certificate.deleteUser(this.table, Id).subscribe(() => {
-        console.log('Xóa thành công');
-        this.getAll();
-      }, error => {
-        console.error(error);
-      });
+      this.certificate.deleteUser(this.table, Id).subscribe(
+        () => {
+          console.log('Xóa thành công');
+          this.getAll();
+        },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
+  
 
 
   add() {

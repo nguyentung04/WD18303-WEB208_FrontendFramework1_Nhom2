@@ -31,10 +31,10 @@ export class ActivityComponent implements OnInit {
     });
   }
 
-  deleteActivity(id: string) {
+  deleteCer(id: string) {
     const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.activityService.deleteActivity(this.table, Id).subscribe(() => {
+      this.activityService.deleteUser(this.table, Id).subscribe(() => {
         console.log('Xóa thành công');
         this.getAll();
       }, error => {
