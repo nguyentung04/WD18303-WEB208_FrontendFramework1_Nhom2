@@ -126,12 +126,12 @@ const routes: Routes = [{
     {
       path: 'informationtechnologyexperience',
       component: informationtechnologyexperienceComponent,
-      data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
+      data: { breadcrumb: 'Quản lý kinh nghiệm tin học' },
     },
     {
       path: 'activity',
       component: activityComponent,
-      data: {breadcrumb: 'Quản lý hoạt động'},
+      data: { breadcrumb: 'Quản lý hoạt động' },
     },
     {
       path: 'inlanguage',
@@ -145,7 +145,7 @@ const routes: Routes = [{
         },
         {
           path: 'edit/:id',
-          component: EditLanguageComponent ,
+          component: EditLanguageComponent,
           data: { breadcrumb: 'Cập nhật bảng ngoại ngữ' },
         },
         {
@@ -158,8 +158,9 @@ const routes: Routes = [{
     {
       path: 'experience',
       component: experienceComponent,
-      data: {breadcrumb: 'Quản lý kinh nghiệm'},
+      data: { breadcrumb: 'Quản lý kinh nghiệm' },
       children: [
+
         {
           path: 'create',
           component: CreateExperienceComponent,
@@ -175,10 +176,10 @@ const routes: Routes = [{
           component: DeleteExperienceComponent,
           data: { breadcrumb: 'Xóa bảng kinh nghiệm' },
         },
+
       ]
     },
-   
- 
+
   ],
 }];
 
