@@ -9,6 +9,7 @@ import { IExperience } from 'app/@core/interfaces/pages/experience';
 export class LevelStateService {
   private levelSource = new Subject<{ action: string, data: (Ilanguage[] | IExperience[]), table: string }>();
   users = this.levelSource.asObservable();
+  snapshot: any;
 
   Users(action: string, data: Ilanguage[] | IExperience[], table: string) {
     this.levelSource.next({ action, data, table });

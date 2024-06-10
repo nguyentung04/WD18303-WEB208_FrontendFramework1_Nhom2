@@ -1,6 +1,6 @@
 export interface IExperience {
     id: string,
-    name: string,
+    user_id: string,
     company: string,
     vacancies: string,
     startdate: string,

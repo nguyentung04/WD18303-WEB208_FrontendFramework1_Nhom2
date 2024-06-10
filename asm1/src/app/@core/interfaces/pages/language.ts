@@ -1,6 +1,6 @@
 export interface Ilanguage {
     id: string,
-    name: string,
+    user_id: string,
     language: string,
     level: string
 }

@@ -32,8 +32,8 @@ import { languageModule } from './inlanguage/language.module';
     recruitmentModule,
     informationtechnologyexperienceModule,
     activityModule,
-    languageModule,
-    experienceModule
+    experienceModule,
+    languageModule
   ],
   declarations: [
     PagesComponent,

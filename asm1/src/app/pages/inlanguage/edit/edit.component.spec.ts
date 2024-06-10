@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditLanguageComponent } from './edit.component';
-import { EditComponent } from 'app/pages/userinfo/edit/edit.component';
 
 
 

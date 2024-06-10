@@ -6,6 +6,9 @@ import { NbCardModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateExperienceComponent } from './create-experience/create-experience.component';
+import { EditExperienceComponent } from './edit-experience/edit-experience.component';
+import { DeleteExperienceComponent } from './delete-experience/delete-experience.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   declarations: [
-    experienceComponent
+    experienceComponent,
+    CreateExperienceComponent,
+    EditExperienceComponent,
+    DeleteExperienceComponent
   ],
 })
 export class experienceModule { }

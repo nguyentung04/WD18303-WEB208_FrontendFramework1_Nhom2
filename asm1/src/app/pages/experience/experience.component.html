@@ -15,10 +15,11 @@
             <th scope="col">Ngày bắt đầu</th>
             <th scope="col">Ngày kết thúc</th>
             <th scope="col">Mô tả</th>
+            <th scope="col">Tháo tác</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let list of lists">
+          <tr *ngFor="let list of experienceList">
             <th scope="row">{{list.id}}</th>
             <th>{{list.name}}</th>
             <th>{{list.company}}</th>
@@ -28,8 +29,8 @@
             <th>{{list.describe}}</th>
 
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
+              <button type="button" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2"   (click)="deleteUser(list.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

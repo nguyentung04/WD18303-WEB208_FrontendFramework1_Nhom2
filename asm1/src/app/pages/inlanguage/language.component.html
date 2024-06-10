@@ -9,20 +9,21 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Họ tên</th>
+      
             <th scope="col">Ngôn ngữ</th>
             <th scope="col">Trình độ</th>
+            <th scope="col">Thao tác</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let list of languageList ">
             <th scope="row">{{list.id}}</th>
-            <th>{{list.name}}</th>
+         
             <th>{{list.language}}</th>
             <th>{{list.level}}</th>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete(list.id)">Xóa</button>
+              <button type="submit" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2"  (click)="deleteUser(list.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

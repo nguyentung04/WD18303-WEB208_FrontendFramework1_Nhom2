@@ -1,50 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
 import { PostService } from 'app/@core/services/apis/post.service';
-import { LevelStateService } from 'app/pages/inlanguage/load';
+
 
 @Component({
   selector: 'app-edit-experience',
   templateUrl: './edit-experience.component.html',
-  styleUrls: ['./edit-experience.component.scss']
+  styleUrls: ['./edit-experience.component.scss'],
 })
-export class EditExperienceComponent {
-  constructor(private router: Router, private experience: PostService, private levelState: LevelStateService, private formedit: ActivatedRoute) { }
+export class EditExperienceComponent implements OnInit {
+  table: string = 'experience';
 
-  table: string = 'exprience';
+  experienceList: IExperience[] = [];
 
-  list: IExperience[] = [];
-
+  
   validForm: FormGroup;
-  id = this.formedit.snapshot.params.id;
+
+  id = this.experienceRoute.snapshot.params.id;
+
+  constructor(
+    private router: Router,
+    private experienceService: PostService,
+    private experienceRoute: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-
-    this.getByID(this.id);
-
-
     this.validForm = new FormGroup({
-      name: new FormControl('', Validators.required),
       company: new FormControl('', Validators.required),
-      level: new FormControl('', Validators.required),
       vacancies: new FormControl('', Validators.required),
       startdate: new FormControl('', Validators.required),
       enddate: new FormControl('', Validators.required),
       describe: new FormControl('', Validators.required),
     });
-  }
 
+    this.getByID(this.id);
+
+  }
 
   onSubmit() {
     if (this.validForm.invalid) {
-      return
-    };
+      return;
+    }
 
-    const UpdateEx: IExperience = {
-      id: '',
-      name: this.validForm.value.name,
+    const updateEx: IExperience = {
+      id:'',
+      user_id: this.validForm.value.user_id,
       company: this.validForm.value.company,
       vacancies: this.validForm.value.vacancies,
       startdate: this.validForm.value.startdate,
@@ -52,25 +54,45 @@ export class EditExperienceComponent {
       describe: this.validForm.value.describe,
     };
 
-    this.experience.putExperience(UpdateEx, this.id, this.table).subscribe(res => {
-      UpdateEx.id = res.id;
-      this.levelState.Users('update', [UpdateEx], this.table);
-      this.router.navigate(['/pages/experience']);
-    });
+    console.log('Submitting form:', updateEx);
+
+    this.experienceService
+      .putExperience(updateEx, this.id, this.table).subscribe(
+        (res) => {
+          console.log('Update response:', res); // Log the response from the API
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate(['/pages/experience']);
+            });
+        },
+        (error) => {
+          console.error('Error updating experience', error); // Log any error
+        }
+      );
   }
 
   getByID(id: string) {
-    const ID = parseInt(id);
-    this.experience.getById(ID, this.table).subscribe(data => {
-      console.log(data);
-      this.list = data[0];
-    })
+    const ID = parseInt(id); 
+    this.experienceService.getById(ID, this.table).subscribe(
+      (data) => {
+        this.experienceList = data[0];
+        console.log('API response:', data);
+        this.validForm.patchValue({
+          company: data.company,
+          vacancies: data.vacancies,
+          startdate: data.startdate,
+          enddate: data.enddate,
+          describe: data.describe
+        }); 
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+      }
+    );
   }
 
-  back() {
+  back(): void {
     this.router.navigate(['/pages/experience']);
   }
 }
-
-
-

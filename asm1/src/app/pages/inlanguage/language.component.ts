@@ -58,7 +58,7 @@ export class languageComponent implements OnInit {
   add() {
     this.router.navigate(['/pages/inlanguage/create'])
   }
-  edit(id: string) {
+  edit(id:number) {
     this.router.navigate([`/pages/inlanguage/edit/${id}`])
   }
 

@@ -108,14 +108,14 @@ export class PostService {
 
   postLanguage(data: Ilanguage, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
-      name: data.name,
+      user_id: data.user_id,
       language: data.language,
       level: data.level 
     });
   }
   putLanguage(data: Ilanguage, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-      name: data.name,
+   
       language: data.language,
       level: data.level 
     });
@@ -123,7 +123,7 @@ export class PostService {
 
   postExperience(data: IExperience, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
-      name: data.name,
+      user_id: data.user_id,
       company: data.company,
       vacancies: data.vacancies,
       startdate: data.startdate,
@@ -133,7 +133,6 @@ export class PostService {
   }
   putExperience(data: IExperience, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-      name: data.name,
       company: data.company,
       vacancies: data.vacancies,
       startdate: data.startdate,
