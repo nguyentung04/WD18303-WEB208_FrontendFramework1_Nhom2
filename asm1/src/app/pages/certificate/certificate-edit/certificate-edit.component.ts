@@ -28,10 +28,9 @@ export class CertificateEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
-     
+      user_id: new FormControl('', Validators.required),
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
-      user_id: new FormControl('', Validators.required),
       expiry: new FormControl('', Validators.required),
     });
 
@@ -45,9 +44,9 @@ export class CertificateEditComponent implements OnInit {
 
     const updateCertificate: certificate = {
       id: this.id,
+      user_id: this.validForm.value.user_id,
       nameCertificate: this.validForm.value.nameCertificate,
       issued: this.validForm.value.issued,
-      user_id: this.validForm.value.user_id,
       expiry: this.validForm.value.expiry,
     };
 
@@ -59,7 +58,9 @@ export class CertificateEditComponent implements OnInit {
       res => {
         updateCertificate.id = res.id;
         console.log('Update response:', res); // Log the response from the API
-        this.router.navigate(['/pages/certificate']);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/pages/certificate']);
+        });
       },
       error => {
         console.error('Error updating certificate', error); // Log any error
@@ -80,9 +81,9 @@ export class CertificateEditComponent implements OnInit {
 
           if (this.validForm) {
             this.validForm.patchValue({
+              user_id: data.user_id,
               nameCertificate: data.nameCertificate,
               issued: data.issued,
-              user_id: data.user_id,
               expiry: data.expiry
             });
           }

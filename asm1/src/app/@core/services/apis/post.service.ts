@@ -65,10 +65,10 @@ export class PostService {
 
   putCer(data: certificate, id: number,table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-      // nameCertificate: data.nameCertificate,
-      issued: data.issued,
       user_id: data.user_id,
-      // expiry: data.expiry,
+      nameCertificate: data.nameCertificate,
+      issued: data.issued,
+      expiry: data.expiry,
     });
   }
 

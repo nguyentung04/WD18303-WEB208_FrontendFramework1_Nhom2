@@ -105,6 +105,7 @@ tables.forEach(table => {
   });
 
   app.put(`/api/${table}/:id`, (req, res) => {
+    console.log('Request Body:', req.body); // Log the incoming request body
     const { id } = req.params;
     update(table, req.body, parseInt(id, 10), (err, result) => {
       if (err) {
@@ -113,6 +114,8 @@ tables.forEach(table => {
       res.json({ message: `Cập nhật ${table} thành công` });
     });
   });
+  
+  
   
 
   app.get("/api/skill", (req, res) => {

@@ -61,9 +61,13 @@ export class RecruitmentCreateComponent implements OnInit {
     this.recruitment.postRe(newRecruitment, this.table).subscribe(res => { 
       newRecruitment.id = res.id;
       this.recruitmentList.push(newRecruitment);
-      this.router.navigate(['/pages/recruitment']); 
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/recruitment']);
+      });
     });
-  }
+   
+}
+   
 
   back() {
     this.router.navigate(['/pages/recruitment']); 
