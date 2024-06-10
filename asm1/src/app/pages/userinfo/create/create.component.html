@@ -42,6 +42,7 @@
                                         class="text-danger">
                                         <span *ngIf="validForm.get('birthday').errors.required">Vui lòng nhập dữ
                                             liệu!</span>
+                                            <span *ngIf="validForm.get('birthday').errors?.maxYear">Năm sinh phải nhỏ hơn 2003!</span>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,8 @@
                                     <div *ngIf="validForm.get('email').invalid && (validForm.get('email').dirty || validForm.get('email').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('email').errors.required">Vui lòng nhập dữ
-                                            liệu!</span>
+                                            liệu!</span> 
+                                            <span *ngIf="validForm.get('email').errors.email">Email không hợp lệ!</span>
                                     </div>
                                 </div>
                             </div>
@@ -81,6 +83,7 @@
                                         class="text-danger">
                                         <span *ngIf="validForm.get('phone').errors.required">Vui lòng nhập dữ
                                             liệu!</span>
+                                              <span *ngIf="validForm.get('phone').errors.pattern">số điện thoại không hợp lệ!</span>
                                     </div>
                                 </div>
                             </div>

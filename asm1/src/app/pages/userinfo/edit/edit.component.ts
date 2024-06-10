@@ -4,20 +4,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { PostService } from 'app/@core/services/apis/post.service';
-import { UserStateService } from '../load';
+
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent {
-  constructor(private router: Router, private user: PostService, private UserState: UserStateService, private formedit: ActivatedRoute) { }
+export class EditComponent1 {
+  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute) { }
 
   table: string = 'userinfo';
 
   list: IuserInfo[] = [];
-
   validForm: FormGroup;
 
   filename = '';
@@ -27,14 +26,14 @@ export class EditComponent {
 
     this.getByID(this.id);
 
-
     this.validForm = new FormGroup({
       img: new FormControl('', Validators.required),
       fullname: new FormControl('', Validators.required),
       birthday: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl('', [ Validators.required,Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+    ]),
     });
   }
 
@@ -60,6 +59,12 @@ export class EditComponent {
       return
     };
 
+    const birthday = new Date(this.validForm.value.birthday);
+    if (birthday.getFullYear() > 2003) {
+      this.validForm.controls['birthday'].setErrors({ maxYear: true });
+      return;
+    }
+    
     const UpdateUser: IuserInfo = {
       id: '',
       img: this.filename,
@@ -71,9 +76,9 @@ export class EditComponent {
     };
 
     this.user.putUser(UpdateUser, this.id, this.table).subscribe(res => {
-      UpdateUser.id = res.id;
-      this.UserState.Users('update', [UpdateUser], this.table);
-      this.router.navigate(['/pages/userinfo']);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/userinfo']);
+      });
     });
   }
 
@@ -82,6 +87,13 @@ export class EditComponent {
     this.user.getById(ID, this.table).subscribe(data => {
       console.log(data);
       this.list = data[0];
+      this.validForm.patchValue({
+        fullname: data.fullname,
+        birthday: data.birthday,
+        address: data.address,
+        email: data.email,
+        phone: data.phone,
+      })
     })
   }
 

@@ -13,6 +13,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/users',
   },
   {
+    title: 'Quản lý CV',
+    icon: 'briefcase-outline',
+    link: '/pages/cv',
+  },
+  {
     title: 'Thông tin nhân viên',
     icon: 'person-outline',
     link: '/pages/userinfo',
@@ -56,5 +61,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Quản lý kinh nghiệm',
     icon: 'briefcase-outline',
     link: '/pages/experience',
-  }
+  },
+
 ];

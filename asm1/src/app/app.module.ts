@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   NbSidebarModule,
@@ -10,10 +11,11 @@ import {
   NbDatepickerModule,
   NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule
 } from '@nebular/theme';
-
 import {HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
+import { PostService } from './@core/services/apis/post.service';
+import { PostService2 } from './@core/services/apis/post.services';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import {ThemeModule} from "./@theme/theme.module";
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -40,7 +44,10 @@ import {ThemeModule} from "./@theme/theme.module";
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    PostService,
+    PostService2
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

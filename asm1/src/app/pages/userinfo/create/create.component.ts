@@ -1,10 +1,10 @@
 import { PostService } from './../../../@core/services/apis/post.service';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
-import { UserStateService } from '../load';
+
 
 @Component({
   selector: 'app-create',
@@ -12,7 +12,7 @@ import { UserStateService } from '../load';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  constructor(private router: Router, private user: PostService, private UserState: UserStateService) { }
+  constructor(private router: Router, private user: PostService) { }
 
   table: string = 'userinfo';
 
@@ -26,10 +26,11 @@ export class CreateComponent {
     this.validForm = new FormGroup({
       img: new FormControl('', Validators.required),
       fullname: new FormControl('', Validators.required),
-      birthday: new FormControl('', Validators.required),
+      birthday: new FormControl('', [Validators.required]),
       address: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl('', [ Validators.required,Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+      ]),
     });
   }
 
@@ -55,6 +56,12 @@ export class CreateComponent {
       return
     };
 
+    const birthday = new Date(this.validForm.value.birthday);
+    if (birthday.getFullYear() > 2003) {
+      this.validForm.controls['birthday'].setErrors({ maxYear: true });
+      return;
+    }
+
     const newUser: IuserInfo = {
       id: '',
       img: this.filename,
@@ -66,9 +73,9 @@ export class CreateComponent {
     };
 
     this.user.postUser(newUser, this.table).subscribe(res => {
-      newUser.id = res.id;
-      this.UserState.Users('add',[newUser], this.table);
-      this.router.navigate(['/pages/userinfo']);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/userinfo']);
+      });
     });
   }
 
