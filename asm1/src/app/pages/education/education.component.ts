@@ -1,6 +1,6 @@
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit ,Pipe, PipeTransform} from '@angular/core';
-import { PostService } from '../../@core/services/apis/post.service';
+import { PostService2 } from '../../@core/services/apis/post.services';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
@@ -17,7 +17,7 @@ export class educationComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
-  constructor(private postService: PostService, private router: Router) { }
+  constructor(private postService: PostService2, private router: Router) { }
 
   ngOnInit() {
     this.postService.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {

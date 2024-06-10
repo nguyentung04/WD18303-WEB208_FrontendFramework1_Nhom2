@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
 import { PostService } from './@core/services/apis/post.service';
+import { PostService2 } from './@core/services/apis/post.services';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { PostService } from './@core/services/apis/post.service';
     ThemeModule.forRoot(),
   ],
   providers: [
-    PostService
+    PostService,
+    PostService2
   ],
   bootstrap: [AppComponent]
 })

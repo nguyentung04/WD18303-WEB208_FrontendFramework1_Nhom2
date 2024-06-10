@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Ieducation } from 'app/@core/interfaces/pages/education';
-import { PostService } from 'app/@core/services/apis/post.service';
+import { PostService2 } from 'app/@core/services/apis/post.services';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
 @Component({
@@ -16,7 +16,7 @@ export class CreateEducationComponent {
 
   validForm: FormGroup;
 
-  constructor(private router: Router, private postService: PostService) {}
+  constructor(private router: Router, private postService: PostService2) {}
 
   ngOnInit(): void {
     this.postService.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {

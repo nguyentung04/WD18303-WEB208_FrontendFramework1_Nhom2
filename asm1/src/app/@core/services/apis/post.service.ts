@@ -188,86 +188,86 @@ export class PostService {
 
 
 
-  private educationSubject = new BehaviorSubject<Ieducation[]>([]);
-  education$ = this.educationSubject.asObservable();
+  // private educationSubject = new BehaviorSubject<Ieducation[]>([]);
+  // education$ = this.educationSubject.asObservable();
 
-  private userSubject = new BehaviorSubject<Iusers[]>([]);
-  users$ = this.userSubject.asObservable();
+  // private userSubject = new BehaviorSubject<Iusers[]>([]);
+  // users$ = this.userSubject.asObservable();
 
-  getAllEducation(table: string): Observable<Ieducation[]> {
-    return this.http.get<Ieducation[]>(`${this.apiUrl}/${table}`).pipe(
-      tap((educationList: Ieducation[]) => {
-        this.setEducationList(educationList);
-      })
-    );
-  }
-
-  private setEducationList(educationList: Ieducation[]) {
-    this.educationSubject.next(educationList);
-  }
-
-  getByID(id: number, table: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${table}/${id}`);
-  }
-
-  // getAllUser(table: string): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/${table}`);
+  // getAllEducation(table: string): Observable<Ieducation[]> {
+  //   return this.http.get<Ieducation[]>(`${this.apiUrl}/${table}`).pipe(
+  //     tap((educationList: Ieducation[]) => {
+  //       this.setEducationList(educationList);
+  //     })
+  //   );
   // }
 
-  getAllUser2(table: string): Observable<Iusers[]> {
-    return this.http.get<Iusers[]>(`${this.apiUrl}/${table}`).pipe(
-      tap((userList: Iusers[]) => {
-        this.setUserList(userList);
-      })
-    );
-  }
+  // private setEducationList(educationList: Ieducation[]) {
+  //   this.educationSubject.next(educationList);
+  // }
 
-  private setUserList(userList: Iusers[]) {
-    this.userSubject.next(userList);
-  }
+  // getByID(id: number, table: string): Observable<any> {
+  //   return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  // }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
-  }
+  // // getAllUser(table: string): Observable<any> {
+  // //   return this.http.get(`${this.apiUrl}/${table}`);
+  // // }
 
-  logout() {
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('token');
-  }
+  // getAllUser2(table: string): Observable<Iusers[]> {
+  //   return this.http.get<Iusers[]>(`${this.apiUrl}/${table}`).pipe(
+  //     tap((userList: Iusers[]) => {
+  //       this.setUserList(userList);
+  //     })
+  //   );
+  // }
 
-  postUsers(data: Iusers, table: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
-      tap(() => this.getAllUser2(table).subscribe())
-    );
-  }
+  // private setUserList(userList: Iusers[]) {
+  //   this.userSubject.next(userList);
+  // }
 
-  putUsers(data: Iusers, id: number, table: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
-      tap(() => this.getAllUser2(table).subscribe())
-    );
-  }
+  // login(credentials: any): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/login`, credentials);
+  // }
 
-  deleteUsers(table: string, id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
-      tap(() => this.getAllUser2(table).subscribe())
-    );
-  }
+  // logout() {
+  //   localStorage.removeItem('userInfo');
+  //   localStorage.removeItem('token');
+  // }
 
-  postEducation(data: Ieducation, table: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
-      tap(() => this.getAllEducation(table).subscribe())
-    );
-  }
+  // postUsers(data: Iusers, table: string): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
+  //     tap(() => this.getAllUser2(table).subscribe())
+  //   );
+  // }
 
-  putEducation(data: Ieducation, id: number, table: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
-      tap(() => this.getAllEducation(table).subscribe())
-    );
-  }
+  // putUsers(data: Iusers, id: number, table: string): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
+  //     tap(() => this.getAllUser2(table).subscribe())
+  //   );
+  // }
 
-  deleteEducation(table: string, id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
-      tap(() => this.getAllEducation(table).subscribe())
-    );
-  }
+  // deleteUsers(table: string, id: number): Observable<any> {
+  //   return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
+  //     tap(() => this.getAllUser2(table).subscribe())
+  //   );
+  // }
+
+  // postEducation(data: Ieducation, table: string): Observable<any> {
+  //   return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
+  //     tap(() => this.getAllEducation(table).subscribe())
+  //   );
+  // }
+
+  // putEducation(data: Ieducation, id: number, table: string): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
+  //     tap(() => this.getAllEducation(table).subscribe())
+  //   );
+  // }
+
+  // deleteEducation(table: string, id: number): Observable<any> {
+  //   return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
+  //     tap(() => this.getAllEducation(table).subscribe())
+  //   );
+  // }
 }

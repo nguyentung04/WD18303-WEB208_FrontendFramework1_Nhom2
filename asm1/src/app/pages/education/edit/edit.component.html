@@ -7,11 +7,11 @@
             <h3>Sửa thông tin học vấn</h3>
             <form [formGroup]="validForm" (ngSubmit)="onSubmit()" class="form-valide">
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="name">Tên <span class="text-danger">*</span></label>
+                <label class="col-lg-4 col-form-label" for="name">Trường qua đào tạo <span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
                   <input type="text" class="form-control" id="name" formControlName="name" required>
                   <div *ngIf="validForm.get('name').invalid && (validForm.get('name').dirty || validForm.get('name').touched)" class="text-danger">
-                    <div *ngIf="validForm.get('name').errors.required">Tên không được để trống</div>
+                    <div *ngIf="validForm.get('name').errors.required">Trường qua đào tạo không được để trống</div>
                   </div>
                 </div>
               </div>
@@ -40,39 +40,3 @@
                   <div *ngIf="validForm.get('endTime').invalid && (validForm.get('endTime').dirty || validForm.get('endTime').touched)" class="text-danger">
                     <div *ngIf="validForm.get('endTime').errors.required">Vui lòng chọn ngày kết thúc</div>
                   </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="graduation_Type">Xếp loại <span class="text-danger">*</span></label>
-                <div class="col-lg-6 p-2">
-                  <input type="text" class="form-control" id="graduation_Type" formControlName="graduation_Type" required>
-                  <div *ngIf="validForm.get('graduation_Type').invalid && (validForm.get('graduation_Type').dirty || validForm.get('graduation_Type').touched)" class="text-danger">
-                    <div *ngIf="validForm.get('graduation_Type').errors.required">Xếp loại không được để trống</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="user_id">Người dùng <span class="text-danger">*</span></label>
-                <div class="col-lg-6 p-2">
-                  <select class="form-control" id="user_id" formControlName="user_id" required>
-                    <option *ngFor="let user of list" [value]="user.id">{{ user.fullname }}</option>
-                  </select>
-                  <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)" class="text-danger">
-                    <div *ngIf="validForm.get('user_id').errors.required">Vui lòng chọn người dùng</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-lg-4 col-form-label"></label>
-                <div class="col-lg-6 p-2">
-                  <button type="submit" class="btn btn-primary">Xác Nhận</button>
-                  <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

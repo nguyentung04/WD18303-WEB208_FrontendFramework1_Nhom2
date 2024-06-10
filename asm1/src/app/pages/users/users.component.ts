@@ -1,7 +1,7 @@
 import { Router ,} from '@angular/router';
 import { Component, OnInit ,Pipe, PipeTransform} from '@angular/core';
 import { NavigationEnd } from '@angular/router';
-import { PostService } from '../../@core/services/apis/post.service';
+import { PostService2 } from '../../@core/services/apis/post.services';
 import { Iusers } from 'app/@core/interfaces/pages/users';
 
 
@@ -18,14 +18,14 @@ export class usersComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
-  constructor(private postService: PostService, private router: Router) { }
+  constructor(private postService: PostService2, private router: Router) { }
 
   ngOnInit() {
     // Subscribe to user data
     this.postService.users$.subscribe((login: Iusers[]) => {
       this.login = login.map(user => ({
         ...user,
-        // date_start: new Date(user.date_start).toLocaleDateString(),
+        date_start: new Date(user.date_start).toLocaleDateString(),
       }));
      
     });
@@ -48,7 +48,7 @@ export class usersComponent implements OnInit {
     this.postService.getAllUser(this.table).subscribe((login: Iusers[]) => {
       this.login = login.map(user => ({
         ...user,
-        // date_start: new Date(user.date_start).toLocaleDateString(), 
+        date_start: new Date(user.date_start).toLocaleDateString(), 
       }));
       console.log('User data from getAllUser:', this.login); // Log dữ liệu từ getAllUser
     });

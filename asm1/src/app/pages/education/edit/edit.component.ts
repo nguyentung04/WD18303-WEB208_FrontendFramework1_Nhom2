@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
-import { PostService } from 'app/@core/services/apis/post.service';
+import { PostService2 } from 'app/@core/services/apis/post.services';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditEducationComponent implements OnInit {
   educationData: Ieducation; // Biến để lưu trữ dữ liệu học vấn hiện tại
   id: number;
   
-  constructor(private router: Router, private route: ActivatedRoute, private postService: PostService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private postService: PostService2) { }
 
   ngOnInit(): void {
     // Lấy danh sách người dùng
@@ -64,7 +64,7 @@ export class EditEducationComponent implements OnInit {
   }
 
   getByID(id: number) {
-    this.postService.getById(id, 'education').subscribe(data => {
+    this.postService.getByID(id, 'education').subscribe(data => {
       if (data && data.length > 0) {
         this.educationData = data[0];
         this.populateForm(this.educationData);
