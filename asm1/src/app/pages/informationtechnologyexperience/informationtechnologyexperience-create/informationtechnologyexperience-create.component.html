@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <h3>Thêm hoạt động</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" enctype="multipart/form-data">
+                           
+                            <div class="form-group row ">
+                                <label class="col-lg-4 col-form-label" for="img">Họ tên <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" formControlName="full_name">
+                                    <div *ngIf="validForm.get('full_name').invalid && (validForm.get('full_name').dirty || validForm.get('full_name').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('full_name').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label class="col-lg-4 col-form-label" for="img">Phần mềm <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" formControlName="software">
+                                    <div *ngIf="validForm.get('software').invalid && (validForm.get('software').dirty || validForm.get('software').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('software').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row ">
+                                <label class="col-lg-4 col-form-label" for="img">level <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" formControlName="level">
+                                    <div *ngIf="validForm.get('level').invalid && (validForm.get('level').dirty || validForm.get('level').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group row ">
+                                <label class="col-lg-4 col-form-label"><span class="text-danger"></span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <button type="submitsubmit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                        Nhận</button>
+                                    <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
+                                        lại</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

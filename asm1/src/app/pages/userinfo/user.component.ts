@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { NavigationEnd, Router } from '@angular/router';
 
+import { IuserInfo } from './../../@core/interfaces/pages/userinfo';
+import { PostService } from './../../@core/services/apis/post.service';
 
-import { SmartTableData } from 'app/@core/data/userinfo';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -11,74 +11,51 @@ import { RouterLink } from '@angular/router';
   templateUrl: './user.component.html',
 })
 export class userComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
 
-  users = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      img: {
-        title: 'Hình ảnh',
-        type: 'html',
-        filter: false,
-        valuePrepareFunction: (value: any) => {
-          return `<img src="${value}" class="rounded-circle w-25"> `;
-        }
-      },
-      fullname: {
-        title: 'Họ tên',
-        type: 'string',
-      },
-      birthday: {
-        title: 'Ngày sinh',
-        type: 'string',
-      },
-      address: {
-        title: 'Địa chỉ',
-        type: 'string',
-      },
-      email: {
-        title: 'E-mail',
-        type: 'string',
-      },
-      phone: {
-        title: 'Số điện thoại',
-        type: 'number',
-      },
+  userinfoList: IuserInfo[] = [];
 
-    },
-  };
+  table: string = 'userinfo';
 
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private router: Router, private UserInfo: PostService) {
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/userinfo/');
+      }
+    });
+    this.getAll();
+
+  }
+
+  getAll() {
+    this.UserInfo.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.userinfoList = data;
+    })
+  }
+
+  deleteUser(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.UserInfo.deleteUser(this.table, Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
     }
   }
+
+
+  add() {
+    this.router.navigate(['/pages/userinfo/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/userinfo/edit/${id}`])
+  }
+
 
 }

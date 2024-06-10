@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+              <h3>Cập nhật kinh nghiệm</h3>
+              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">            
+                <div class="form-group row" >
+                  <label class="col-lg-4 col-form-label" for="company">Công ty <span class="text-danger">*</span></label>
+                  <div class="col-lg-6 p-2">
+                    <input type="text" class="form-control"  formControlName="company" >
+                    <div *ngIf="validForm.get('company').invalid && (validForm.get('company').dirty || validForm.get('company').touched)" class="text-danger">
+                      <span *ngIf="validForm.get('company').errors.required">Vui lòng nhập dữ liệu!</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="vacancies">Vị trí<span class="text-danger">*</span></label>
+                  <div class="col-lg-6 p-2">
+                    <input type="text" class="form-control" id="vacancies" formControlName="vacancies">
+                    <div *ngIf="validForm.get('vacancies').invalid && (validForm.get('vacancies').dirty || validForm.get('vacancies').touched)" class="text-danger">
+                      <span *ngIf="validForm.get('vacancies').errors.required">Vui lòng nhập dữ liệu!</span>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="startdate">Ngày bắt đầu<span class="text-danger">*</span></label>
+                <div class="col-lg-6 p-2">
+                  <input type="date" class="form-control" id="startdate" formControlName="startdate">
+                  <div *ngIf="validForm.get('startdate').invalid && (validForm.get('startdate').dirty || validForm.get('startdate').touched)" class="text-danger">
+                    <span *ngIf="validForm.get('startdate').errors.required">Vui lòng nhập dữ liệu!</span>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="enddate">Ngày kết thúc<span class="text-danger">*</span></label>
+                <div class="col-lg-6 p-2">
+                  <input type="date" class="form-control" id="enddate" formControlName="enddate">
+                  <div *ngIf="validForm.get('enddate').invalid && (validForm.get('enddate').dirty || validForm.get('enddate').touched)" class="text-danger">
+                    <span *ngIf="validForm.get('enddate').errors.required">Vui lòng nhập dữ liệu!</span>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="describe">Mô tả<span class="text-danger">*</span></label>
+                <div class="col-lg-6 p-2">
+                  <textarea name="" class="form-control"  cols="30" rows="5" formControlName="describe"></textarea>
+                  <div *ngIf="validForm.get('describe').invalid && (validForm.get('describe').dirty || validForm.get('describe').touched)" class="text-danger">
+                    <span *ngIf="validForm.get('describe').errors.required">Vui lòng nhập dữ liệu!</span>
+                  </div>
+              </div>
+            </div>
+              <div class="form-group row">
+                <div class="col-lg-6 p-2 offset-lg-4">
+                  <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác Nhận</button>
+                  <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

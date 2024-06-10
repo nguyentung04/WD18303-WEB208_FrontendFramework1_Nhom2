@@ -1,11 +1,57 @@
-<nb-card>
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
     <nb-card-header>
-     Bảng thông tin đăng nhập
+      Bảng thông tin đăng nhập
+      <button type="button" class="btn btn-outline-primary" (click)="addLogin()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="users" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-      </ng2-smart-table>
-    </nb-card-body>
-</nb-card>
-  
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên đăng nhập</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phân quyền</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of paginatedUsers; let i = index">
+            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ getRoleName(user.role_id) }}</td>
+            <td>{{ user.date_start }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="editLogin(user.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteLogin(user.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
+      <!-- Pagination -->
+      <div class="pagination-container">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" (click)="prevPage()" [disabled]="currentPage === 1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </button>
+            </li>
+            <li class="page-item" *ngFor="let page of totalPagesArray()">
+              <button class="page-link" (click)="setCurrentPage(page)" [class.active]="page === currentPage">{{ page }}</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= login.length" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>

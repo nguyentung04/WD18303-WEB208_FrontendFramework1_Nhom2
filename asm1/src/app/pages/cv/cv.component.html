@@ -1,0 +1,27 @@
+<div *ngIf="!showRouterOutlet">
+<nb-card>
+    <nb-card-header>
+        Bảng thông tin ứng viên
+    </nb-card-header>
+    <nb-card-body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Số thứ tự</th>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of lists">
+                    <th scope="row">{{list.id}}</th>
+                    <td>{{list.fullname}}</td>
+                    <td> <button type="submit" class="btn btn-outline-primary m-2" (click)="detail(list.id)">Chi
+                            tiết</button> </td>
+                </tr>
+            </tbody>
+        </table>
+    </nb-card-body>
+</nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>

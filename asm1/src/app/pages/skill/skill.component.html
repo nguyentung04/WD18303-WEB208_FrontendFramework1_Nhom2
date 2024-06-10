@@ -1,12 +1,30 @@
-
-<nb-card>
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
     <nb-card-header>
-     Bảng kỹ năng 
+      Bảng kỹ năng làm việc
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="skill" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-      </ng2-smart-table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Số thứ tự</th>
+            <th scope="col">Kỹ năng</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of lists">
+            <th scope="row">{{list.id}}</th>
+            <th>{{list.skill}}</th>
+            <td>
+              <button type="button" class="btn btn-outline-success"  (click)="edit(list.id)" >Sửa</button>
+              <button type="submit" class="btn btn-outline-danger m-2" (click)="delete(list.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </nb-card-body>
   </nb-card>
-  
-  
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>

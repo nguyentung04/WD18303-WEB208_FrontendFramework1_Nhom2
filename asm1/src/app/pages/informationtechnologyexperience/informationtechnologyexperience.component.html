@@ -1,11 +1,35 @@
-
-<nb-card>
-  <nb-card-header>
-   Bảng thông tin nhân viên
-  </nb-card-header>
-  <nb-card-body>
-    <ng2-smart-table [settings]="informationtechnologyexperience" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-    </ng2-smart-table>
-  </nb-card-body>
-</nb-card>
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
+    <nb-card-header>
+      Bảng thông tin nhân viên
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
+      </nb-card-header>
+    <nb-card-body>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Phần mềm</th>
+            <th scope="col">Trình độ</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let informationtechnologyexperience of listInformationtechnologyexperience">
+            <th scope="row">{{informationtechnologyexperience.id}}</th>
+            <td>{{informationtechnologyexperience.full_name}}</td>
+            <td>{{informationtechnologyexperience.software}}</td>
+            <td>{{informationtechnologyexperience.level}}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="edit(informationtechnologyexperience.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteInformationtechnologyexperience(informationtechnologyexperience.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>
 

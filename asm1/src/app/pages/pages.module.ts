@@ -12,10 +12,13 @@ import { recruitmentModule } from './recruitment/recruitment.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PaginatorModule } from "../@theme/components/paginator/paginator.module";
 import { informationtechnologyexperienceModule } from './informationtechnologyexperience/informationtechnologyexperience.module';
+
+
+
 import { activityModule } from './activity/activity.module';
 import { languageModule } from './inlanguage/language.module';
 import { experienceModule } from './experience/experience.module';
-
+import { CvModule } from './cv/cv.module';
 
 
 
@@ -35,7 +38,8 @@ import { experienceModule } from './experience/experience.module';
     informationtechnologyexperienceModule,
     activityModule,
     languageModule,
-    experienceModule
+    experienceModule,
+    CvModule
   ],
   declarations: [
     PagesComponent,
