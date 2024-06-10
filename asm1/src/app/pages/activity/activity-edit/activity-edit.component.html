@@ -13,12 +13,7 @@
                                 </label>
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" formControlName="user_id"value="user_id">
-                                    <!-- <select class="form-select" aria-label="Default select example" formControlName="user_id">
-                                        <option [value]="user_id" disabled selected>Chọn nhân viên</option>
-                                        <option *ngFor="let user of list" [value]="user.user_id">
-                                          {{ user.id }} {{user.fullname}}
-                                        </option>
-                                      </select> -->
+                                
                                     <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
@@ -83,7 +78,7 @@
                                 <label class="col-lg-4 col-form-label"><span class="text-danger"></span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <button type="submitsubmit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
                                         Nhận</button>
                                     <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
                                         lại</button>

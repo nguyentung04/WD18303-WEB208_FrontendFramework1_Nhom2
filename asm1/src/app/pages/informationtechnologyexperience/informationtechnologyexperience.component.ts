@@ -67,6 +67,8 @@ export class InformationtechnologyexperienceComponent implements OnInit {
     }
   }
 
+
+
   add() {
     this.router.navigate(['/pages/informationtechnologyexperience/create']);
   }

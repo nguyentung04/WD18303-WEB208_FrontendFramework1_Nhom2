@@ -102,9 +102,17 @@ const update = (table, data, id, callback) => {
   });
 };
 
+
+
+
 const Delete = (table, id, callback) => {
   const sql = `DELETE FROM ?? WHERE  ?`;
   db.query(sql, [table, id], (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+    } else {
+      console.log('Query results:', results);
+    }
     callback(err, results);
   });
 };
