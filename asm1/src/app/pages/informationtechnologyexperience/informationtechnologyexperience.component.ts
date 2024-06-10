@@ -13,39 +13,59 @@ export class InformationtechnologyexperienceComponent implements OnInit {
   listInformationtechnologyexperience: Informationtechnologyexperience[] = [];
   table: string = 'informationtechnologyexperience';
 
-  constructor(private router: Router, private informationtechnologyexperienceService: PostService) { }
+  constructor(
+    private router: Router,
+    private informationtechnologyexperienceService: PostService
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/informationtechnologyexperience/');
+        this.showRouterOutlet = this.router.url.includes(
+          '/informationtechnologyexperience/'
+        );
       }
     });
     this.getAll();
   }
 
   getAll() {
-    this.informationtechnologyexperienceService.getAllInformationtechnologyexperience(this.table).subscribe(data => {
-      console.log(data);
-      this.listInformationtechnologyexperience = data;
-    });
+    this.informationtechnologyexperienceService
+      .getAllUser(this.table)
+      .subscribe((data) => {
+        console.log(data);
+        this.listInformationtechnologyexperience = data;
+      });
   }
 
-  activityService
+  activityService;
   deleteInformationtechnologyexperience(id: string) {
     const Id = parseInt(id, 10);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.informationtechnologyexperienceService.deleteUser(this.table, Id).subscribe(() => {
-        console.log('Xóa thành công');
-        this.listInformationtechnologyexperience = this.listInformationtechnologyexperience.filter(activity => activity.id !== Id.toString());
-      }, error => {
-        console.error(error);
-        alert('Có lỗi xảy ra khi xóa. Vui lòng thử lại.');
-      });
+      this.informationtechnologyexperienceService
+        .deleteUser(this.table, Id)
+        .subscribe(
+          () => {
+            console.log('Xóa thành công');
+            this.router
+              .navigateByUrl('/', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigate([
+                  '/pages/informationtechnologyexperience',
+                ]);
+              });
+            this.listInformationtechnologyexperience =
+              this.listInformationtechnologyexperience.filter(
+                (activity) => activity.id !== Id.toString()
+              );
+          },
+          (error) => {
+            console.error(error);
+            alert('Có lỗi xảy ra khi xóa. Vui lòng thử lại.');
+          }
+        );
     }
   }
-
-
 
   add() {
     this.router.navigate(['/pages/informationtechnologyexperience/create']);

@@ -9,7 +9,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
 @Component({
   selector: 'app-certificate-edit',
   templateUrl: './certificate-edit.component.html',
-  styleUrls: ['./certificate-edit.component.scss']
+  styleUrls: ['./certificate-edit.component.scss'],
 })
 export class CertificateEditComponent implements OnInit {
   table: string = 'certificate';
@@ -28,7 +28,6 @@ export class CertificateEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
-    
       nameCertificate: new FormControl('', Validators.required),
       issued: new FormControl('', Validators.required),
       user_id: new FormControl('', Validators.required),
@@ -55,16 +54,18 @@ export class CertificateEditComponent implements OnInit {
 
     const numericId = parseInt(this.id, 10); // Convert this.id to a number
 
-    this.certificateService.putCer(updateCertificate, numericId, this.table).subscribe(
-      res => {
-        updateCertificate.id = res.id;
-        console.log('Update response:', res); // Log the response from the API
-        this.router.navigate(['/pages/certificate']);
-      },
-      error => {
-        console.error('Error updating certificate', error); // Log any error
-      }
-    );
+    this.certificateService
+      .putCer(updateCertificate, numericId, this.table)
+      .subscribe(
+        (res) => {
+          updateCertificate.id = res.id;
+          console.log('Update response:', res); // Log the response from the API
+          this.router.navigate(['/pages/certificate']);
+        },
+        (error) => {
+          console.error('Error updating certificate', error); // Log any error
+        }
+      );
   }
 
   getByID(id: string): void {
@@ -72,7 +73,7 @@ export class CertificateEditComponent implements OnInit {
     console.log(`Fetching certificate with ID: ${ID}`); // Log the ID being fetched
 
     this.certificateService.getById(ID, this.table).subscribe(
-      data => {
+      (data) => {
         console.log('API response:', data); // Log the full API response
 
         if (data) {
@@ -83,7 +84,7 @@ export class CertificateEditComponent implements OnInit {
               nameCertificate: data.nameCertificate,
               issued: data.issued,
               user_id: data.user_id,
-              expiry: data.expiry
+              expiry: data.expiry,
             });
           }
 
@@ -92,7 +93,7 @@ export class CertificateEditComponent implements OnInit {
           console.warn('No certificate data found.');
         }
       },
-      error => {
+      (error) => {
         console.error('Error fetching data', error);
       }
     );
