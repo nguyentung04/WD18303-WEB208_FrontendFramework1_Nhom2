@@ -32,7 +32,8 @@ export class EditComponent {
       birthday: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl('', [ Validators.required,Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+    ]),
     });
   }
 
@@ -58,6 +59,12 @@ export class EditComponent {
       return
     };
 
+    const birthday = new Date(this.validForm.value.birthday);
+    if (birthday.getFullYear() > 2003) {
+      this.validForm.controls['birthday'].setErrors({ maxYear: true });
+      return;
+    }
+    
     const UpdateUser: IuserInfo = {
       id: '',
       img: this.filename,
@@ -80,6 +87,13 @@ export class EditComponent {
     this.user.getById(ID, this.table).subscribe(data => {
       console.log(data);
       this.list = data[0];
+      this.validForm.patchValue({
+        fullname: data.fullname,
+        birthday: data.birthday,
+        address: data.address,
+        email: data.email,
+        phone: data.phone,
+      })
     })
   }
 
