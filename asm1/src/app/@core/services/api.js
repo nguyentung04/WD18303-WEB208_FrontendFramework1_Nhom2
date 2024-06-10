@@ -1,8 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const multer = require("multer");
-const {getAll, insert, update, Delete, getByID,getAllSkillsByUserId,} = require("./database");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const multer = require('multer');
+const { getAll, insert, update, Delete, getByID, getAllSkill, getAllSkillsByUserId, updateSkill, getAllCV, getAllCVByID, DeleteSkill } = require('./database');
 
 const app = express();
 const port = 3000;
@@ -29,23 +29,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// const tables = [
-//   "userinfo",
-//   "skill",
-//   "certificate",
-//   "certificate",
-//   "categories",
-//   "activity",
-//   "informationtechnologyexperience",
-//   "shippers",
-//   "regions",
-//   "territories",
-// ];
 
-
-
-const tables = ['userinfo','skill', 'certificate', 'recruitment','informationtechnologyexperience','activity','education','login'];
-
+const tables = ['userinfo', 'skill', 'language', 'experience', 'activity', 'certificate', 'education', 'informationtechnologyexperience', 'recruitment'];
 
 
 tables.forEach(table => {
@@ -57,6 +42,8 @@ tables.forEach(table => {
       res.json(results);
     });
   });
+
+
 
   app.get(`/api/${table}/:id`, (req, res) => {
     const id = req.params.id;
@@ -136,6 +123,36 @@ tables.forEach(table => {
 
   
 });
+
+
+
+
+  app.get('/api/cv/:id', (req, res) => {
+    const { id } = req.params;
+    getAllCVByID((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    }, id);
+  });
+
+  app.get(`/api/cv`, (req, res) => {
+    getAllCV((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    });
+  });
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Server đang chạy tại http://localhost:${port}`);

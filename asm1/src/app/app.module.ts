@@ -24,6 +24,8 @@ import { PostService2 } from './@core/services/apis/post.services';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

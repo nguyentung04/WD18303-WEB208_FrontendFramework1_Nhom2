@@ -39,6 +39,10 @@ import { ActivityDeleteComponent } from './activity/activity-delete/activity-del
 import { InformationtechnologyexperienceCreateComponent } from './informationtechnologyexperience/informationtechnologyexperience-create/informationtechnologyexperience-create.component';
 import { InformationtechnologyexperienceEditComponent } from './informationtechnologyexperience/informationtechnologyexperience-edit/informationtechnologyexperience-edit.component';
 import { InformationtechnologyexperienceDeleteComponent } from './informationtechnologyexperience/informationtechnologyexperience-delete/informationtechnologyexperience-delete.component';
+import { CreateLanguageComponent } from './inlanguage/create/create.component';
+import { EditLanguageComponent } from './inlanguage/edit/edit.component';
+import { CreateExperienceComponent } from './experience/create-experience/create-experience.component';
+import { EditExperienceComponent } from './experience/edit-experience/edit-experience.component';
 
 
 
@@ -229,12 +233,46 @@ const routes: Routes = [{
     {
       path: 'inlanguage',
       component: languageComponent,
-      data: { breadcrumb: 'Quản lý ngôn ngữ' },
+      data: { breadcrumb: 'Quản lý bảng ngoại ngữ' },
+      children: [
+        {
+          path: 'create',
+          component: CreateLanguageComponent,
+          data: { breadcrumb: 'Thêm bảng ngoại ngữ ' },
+        },
+        {
+          path: 'edit/:id',
+          component: EditLanguageComponent ,
+          data: { breadcrumb: 'Cập nhật bảng ngoại ngữ' },
+        },
+        {
+          path: 'delete',
+          component: languageComponent,
+          data: { breadcrumb: 'Xóa bảng ngoại ngữ' },
+        },
+      ]
     },
     {
       path: 'experience',
       component: experienceComponent,
       data: {breadcrumb: 'Quản lý kinh nghiệm'},
+      children: [
+        {
+          path: 'create',
+          component: CreateExperienceComponent,
+          data: { breadcrumb: 'Thêm bảng kinh nghiệm' },
+        },
+        {
+          path: 'edit/:id',
+          component: EditExperienceComponent,
+          data: { breadcrumb: 'Cập nhật bảng kinh nghiệm' },
+        },
+        {
+          path: 'delete',
+          component: experienceComponent,
+          data: { breadcrumb: 'Xóa bảng kinh nghiệm' },
+        },
+      ]
     },
    
  

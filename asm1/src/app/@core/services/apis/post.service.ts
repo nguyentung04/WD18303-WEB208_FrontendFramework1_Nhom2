@@ -9,6 +9,8 @@ import { Activity } from 'app/@core/interfaces/pages/activity';
 import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
 import { Iusers } from 'app/@core/interfaces/pages/users';
+import { Ilanguage } from 'app/@core/interfaces/pages/language';
+import { IExperience } from 'app/@core/interfaces/pages/experience';
 
 @Injectable({
   providedIn: 'root',
@@ -109,6 +111,13 @@ export class PostService {
       skill: data.skill,
     });
   }
+  putLanguage(data: Ilanguage, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+   
+      language: data.language,
+      level: data.level 
+    });
+  }
 
   putSkill(data: Iskill, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
@@ -181,6 +190,37 @@ export class PostService {
 
     });
   }
+
+  postLanguage(data: Ilanguage, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      user_id: data.user_id,
+      language: data.language,
+      level: data.level 
+    });
+  }
+
+  postExperience(data: IExperience, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      user_id: data.user_id,
+      company: data.company,
+      vacancies: data.vacancies,
+      startdate: data.startdate,
+      enddate: data.enddate,
+      describe: data.describe
+    });
+  }
+
+  putExperience(data: IExperience, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+      user_id: data.user_id,
+      company: data.company,
+      vacancies: data.vacancies,
+      startdate: data.startdate,
+      enddate: data.enddate,
+      describe: data.describe
+    });
+  }
+ 
 
 
   // kết thúc bảng kinh nghiệm tin học
