@@ -24,8 +24,8 @@
             <th>{{list.name}}</th>
             <th>{{list.company}}</th>
             <th>{{list.vacancies}}</th>
-            <th>{{list.startdate}}</th>
-            <th>{{list.enddate}}</th>
+            <th>{{list.startdate |  date: 'dd/MM/yyyy'}}</th>
+            <th>{{list.enddate |  date: 'dd/MM/yyyy'}}</th>
             <th>{{list.describe}}</th>
 
             <td>
