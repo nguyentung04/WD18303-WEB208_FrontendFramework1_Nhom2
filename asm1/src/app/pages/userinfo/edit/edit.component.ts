@@ -88,14 +88,19 @@ export class EditComponent1 {
       console.log(data);
       this.list = data[0];
       this.validForm.patchValue({
-        fullname: data.fullname,
-        birthday: data.birthday,
-        address: data.address,
-        email: data.email,
-        phone: data.phone,
-      })
+      fullname: data.fullname,
+      birthday: data.birthday,
+      address: data.address,
+      email: data.email,
+      phone: data.phone,
+    })
+
+    
     })
   }
+
+
+
 
   back() {
     this.router.navigate(['/pages/userinfo']);

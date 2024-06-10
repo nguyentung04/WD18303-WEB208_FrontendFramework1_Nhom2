@@ -9,13 +9,12 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tên ứng tuyển</th>
+            <th scope="col">ID</th>      
             <th scope="col">Vị trí</th>
             <th scope="col">Thời gian nộp</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Đánh giá</th>
-            <th scope="col">Phụ trách ứng tuyển</th>
+          
             <th scope="col">Kết quả</th>
             <th scope="col">Hành động</th>
 
@@ -24,12 +23,11 @@
         <tbody>
           <tr *ngFor="let re of recruitmentList">
             <td>{{ re.id }}</td>
-            <td>{{ re.nameRecruitment }}</td>
             <td>{{ re.role }}</td>
-            <td>{{ re.submissionTime }}</td>
+            <td>{{ re.submissionTime |  date: 'dd/MM/yyyy'}}</td>
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
-            <td>{{ re.nameExaminer }}</td>
+     
             <td>{{ re.result }}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
