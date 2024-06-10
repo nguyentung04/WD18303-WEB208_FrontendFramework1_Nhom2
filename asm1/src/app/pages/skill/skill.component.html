@@ -8,18 +8,18 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Số thứ tự</th>
             <th scope="col">Kỹ năng</th>
             <th scope="col">Thao tác</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let list of lists">
-            <th scope="row">{{list.user_id}}</th>
-            <th>{{list.kynang}}</th>
+            <th scope="row">{{list.id}}</th>
+            <th>{{list.skill}}</th>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
+              <button type="button" class="btn btn-outline-success"  (click)="edit(list.id)" >Sửa</button>
+              <button type="submit" class="btn btn-outline-danger m-2" (click)="delete(list.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

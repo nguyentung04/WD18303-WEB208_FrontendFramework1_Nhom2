@@ -15,6 +15,7 @@ import { userComponent } from './userinfo/user.component';
 import { usersComponent } from './users/users.component';
 // import { usersComponent } from './userinfo/user.component';
 import {EditComponent} from './users/edit/edit.component';
+
 import { SkillComponent } from './skill/skill.component';
 import { experienceComponent } from './experience/experience.component';
 import { languageComponent } from './inlanguage/language.component';
@@ -43,6 +44,10 @@ import { CreateLanguageComponent } from './inlanguage/create/create.component';
 import { EditLanguageComponent } from './inlanguage/edit/edit.component';
 import { CreateExperienceComponent } from './experience/create-experience/create-experience.component';
 import { EditExperienceComponent } from './experience/edit-experience/edit-experience.component';
+import { CvComponent } from './cv/cv.component';
+import { CvdetailComponent } from './cv/cvdetail/cvdetail.component';
+import { EditComponent1 } from './userinfo/edit/edit.component';
+
 
 
 
@@ -90,7 +95,7 @@ const routes: Routes = [{
         },
         {
           path: 'edit/:id',
-          component: EditComponent,
+          component: EditComponent1,
           data: { breadcrumb: 'Cập nhật thông tin' },
         },
         {
@@ -255,27 +260,20 @@ const routes: Routes = [{
     {
       path: 'experience',
       component: experienceComponent,
-      data: {breadcrumb: 'Quản lý kinh nghiệm'},
+      data: { breadcrumb: 'Quản lý kinh nghiệm' },
+    },
+        {
+      path: 'cv',
+      component: CvComponent,
+      data: { breadcrumb: 'Quản lý cv' },
       children: [
         {
-          path: 'create',
-          component: CreateExperienceComponent,
-          data: { breadcrumb: 'Thêm bảng kinh nghiệm' },
-        },
-        {
-          path: 'edit/:id',
-          component: EditExperienceComponent,
-          data: { breadcrumb: 'Cập nhật bảng kinh nghiệm' },
-        },
-        {
-          path: 'delete',
-          component: experienceComponent,
-          data: { breadcrumb: 'Xóa bảng kinh nghiệm' },
-        },
+          path: 'cvdetail/:id',
+          component: CvdetailComponent,
+          data: { breadcrumb: 'chi tiết' }
+        }
       ]
-    },
-   
- 
+    }
   ],
 }];
 

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const { getAll, insert, update, Delete, getByID, getAllSkill, getAllSkillsByUserId, updateSkill, getAllCV, getAllCVByID, DeleteSkill } = require('./database');
+const { getAll, insert, update, Delete, getByID,getAllSkill, getAllSkillsByUserId,updateSkill, getAllCV, getAllCVByID, DeleteSkill} = require('./database');
 
 const app = express();
 const port = 3000;
@@ -98,14 +98,14 @@ tables.forEach(table => {
   
   
 
-  app.get("/api/skill", (req, res) => {
-    getAllSkillsByUserId((err, results) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json(results);
-    });
-  });
+  // app.get("/api/skill", (req, res) => {
+  //   getAllSkillsByUserId((err, results) => {
+  //     if (err) {
+  //       return res.status(500).json({ error: err.message });
+  //     }
+  //     res.json(results);
+  //   });
+  // });
   
  
 
@@ -119,9 +119,29 @@ tables.forEach(table => {
       res.json({ message: `Xóa khỏi ${table} thành công`, id: itemId });
     });
   });
-  
 
   
+
+  app.get('/api/cv/:id', (req, res) => {
+    const { id } = req.params;
+    getAllCVByID((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    }, id);
+  });
+
+  app.get(`/api/cv`, (req, res) => {
+    getAllCV((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    });
+  });
+
+
 });
 
 
@@ -145,6 +165,7 @@ tables.forEach(table => {
       res.json(results);
     });
   });
+
 
 
 

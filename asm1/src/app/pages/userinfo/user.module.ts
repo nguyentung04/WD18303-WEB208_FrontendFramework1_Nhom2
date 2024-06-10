@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,8 +9,10 @@ import { BreadcrumbModule } from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
 import { CreateComponent } from './create/create.component';
-import { EditComponent } from './edit/edit.component';
+
 import { DeleteComponent } from './delete/delete.component';
+import { EditComponent1 } from './edit/edit.component';
+// import { EditComponent } from '../users/edit/edit.component';
 
 
 
@@ -26,9 +29,11 @@ import { DeleteComponent } from './delete/delete.component';
   declarations: [
     userComponent,
     CreateComponent,
-    EditComponent,
+    // EditComponent,
+    EditComponent1,
     DeleteComponent,
 
   ],
 })
 export class userModule { }
+

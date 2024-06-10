@@ -122,6 +122,13 @@ const Delete = (table, id, callback) => {
   });
 };
 
+const DeleteSkill = (callback, id) => {
+  const sql = `DELETE FROM skill WHERE user_id = ?`;
+  db.query(sql, [id], (err, results) => {
+    callback(err, results);
+  });
+};
+
 
 module.exports = {
   getAll,
@@ -131,5 +138,6 @@ module.exports = {
   getByID,
   getAllCV,
   getAllCVByID,
+  DeleteSkill,
   db
 };

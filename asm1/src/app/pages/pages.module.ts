@@ -18,6 +18,7 @@ import { informationtechnologyexperienceModule } from './informationtechnologyex
 import { activityModule } from './activity/activity.module';
 import { languageModule } from './inlanguage/language.module';
 import { experienceModule } from './experience/experience.module';
+import { CvModule } from './cv/cv.module';
 
 
 
@@ -36,8 +37,9 @@ import { experienceModule } from './experience/experience.module';
     recruitmentModule,
     informationtechnologyexperienceModule,
     activityModule,
+    languageModule,
     experienceModule,
-    languageModule
+    CvModule
   ],
   declarations: [
     PagesComponent,

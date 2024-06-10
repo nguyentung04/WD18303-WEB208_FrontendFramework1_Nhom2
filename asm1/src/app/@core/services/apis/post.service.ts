@@ -12,6 +12,11 @@ import { Iusers } from 'app/@core/interfaces/pages/users';
 import { Ilanguage } from 'app/@core/interfaces/pages/language';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
 
+
+
+
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,6 +24,16 @@ export class PostService {
   private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
+
+  
+  getById(id: number, table: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  }
+
+  getUserById(id: string, table: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  }
+ 
 
   getAllUser(table: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${table}`);
@@ -28,6 +43,7 @@ export class PostService {
   uploadImg(formData: FormData, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}/upload`, formData);
   }
+
   postUser(data: IuserInfo, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       img: data.img,
@@ -38,14 +54,13 @@ export class PostService {
       phone: data.phone,
     });
   }
-
-  getById(id: number, table: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+  updateUser(table: string, id: string, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${table}/${id}`, data);
+  }
+  deleteUser(table: string, id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
   }
 
-  getUserById(id: string, table: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${table}/${id}`);
-  }
   putUser(data: IuserInfo, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
       img: data.img,
@@ -57,6 +72,13 @@ export class PostService {
     });
   }
 
+
+
+  getByIdCV(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/cv/${id}`);
+  }
+
+//chungchi
   postCer(data: certificate, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       nameCertificate: data.nameCertificate,
@@ -76,6 +98,7 @@ export class PostService {
     });
   }
 
+  //ungtuyen
   postRe(data: recruitment, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       user_id: data.user_id,
@@ -95,14 +118,9 @@ export class PostService {
       result: data.result,
     });
   }
+  //
 
-  updateUser(table: string, id: string, data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${table}/${id}`, data);
-  }
-
-  deleteUser(table: string, id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
-  }
+  
 
   //skill
   postSkill(data: Iskill, table: string): Observable<any> {
@@ -111,17 +129,10 @@ export class PostService {
       skill: data.skill,
     });
   }
-  putLanguage(data: Ilanguage, id: number, table: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-   
-      language: data.language,
-      level: data.level 
-    });
-  }
+  
 
   putSkill(data: Iskill, id: number, table: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-      user_id: data.user_id,
       skill: data.skill
     });
   }
@@ -190,7 +201,7 @@ export class PostService {
 
     });
   }
-
+// ngôn ngữ
   postLanguage(data: Ilanguage, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       user_id: data.user_id,
@@ -199,6 +210,15 @@ export class PostService {
     });
   }
 
+  putLanguage(data: Ilanguage, id: number, table: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+   
+      language: data.language,
+      level: data.level 
+    });
+  }
+
+  //kinh nghiệm
   postExperience(data: IExperience, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       user_id: data.user_id,
@@ -223,91 +243,4 @@ export class PostService {
  
 
 
-  // kết thúc bảng kinh nghiệm tin học
-
-
-
-
-  // private educationSubject = new BehaviorSubject<Ieducation[]>([]);
-  // education$ = this.educationSubject.asObservable();
-
-  // private userSubject = new BehaviorSubject<Iusers[]>([]);
-  // users$ = this.userSubject.asObservable();
-
-  // getAllEducation(table: string): Observable<Ieducation[]> {
-  //   return this.http.get<Ieducation[]>(`${this.apiUrl}/${table}`).pipe(
-  //     tap((educationList: Ieducation[]) => {
-  //       this.setEducationList(educationList);
-  //     })
-  //   );
-  // }
-
-  // private setEducationList(educationList: Ieducation[]) {
-  //   this.educationSubject.next(educationList);
-  // }
-
-  // getByID(id: number, table: string): Observable<any> {
-  //   return this.http.get(`${this.apiUrl}/${table}/${id}`);
-  // }
-
-  // // getAllUser(table: string): Observable<any> {
-  // //   return this.http.get(`${this.apiUrl}/${table}`);
-  // // }
-
-  // getAllUser2(table: string): Observable<Iusers[]> {
-  //   return this.http.get<Iusers[]>(`${this.apiUrl}/${table}`).pipe(
-  //     tap((userList: Iusers[]) => {
-  //       this.setUserList(userList);
-  //     })
-  //   );
-  // }
-
-  // private setUserList(userList: Iusers[]) {
-  //   this.userSubject.next(userList);
-  // }
-
-  // login(credentials: any): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/login`, credentials);
-  // }
-
-  // logout() {
-  //   localStorage.removeItem('userInfo');
-  //   localStorage.removeItem('token');
-  // }
-
-  // postUsers(data: Iusers, table: string): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
-  //     tap(() => this.getAllUser2(table).subscribe())
-  //   );
-  // }
-
-  // putUsers(data: Iusers, id: number, table: string): Observable<any> {
-  //   return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
-  //     tap(() => this.getAllUser2(table).subscribe())
-  //   );
-  // }
-
-  // deleteUsers(table: string, id: number): Observable<any> {
-  //   return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
-  //     tap(() => this.getAllUser2(table).subscribe())
-  //   );
-  // }
-
-  // postEducation(data: Ieducation, table: string): Observable<any> {
-  //   return this.http.post(`${this.apiUrl}/${table}`, data).pipe(
-  //     tap(() => this.getAllEducation(table).subscribe())
-  //   );
-  // }
-
-  // putEducation(data: Ieducation, id: number, table: string): Observable<any> {
-  //   return this.http.put(`${this.apiUrl}/${table}/${id}`, data).pipe(
-  //     tap(() => this.getAllEducation(table).subscribe())
-  //   );
-  // }
-
-  // deleteEducation(table: string, id: number): Observable<any> {
-  //   return this.http.delete(`${this.apiUrl}/${table}/${id}`).pipe(
-  //     tap(() => this.getAllEducation(table).subscribe())
-  //   );
-  // }
 }
