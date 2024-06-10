@@ -1,6 +1,6 @@
 export interface Informationtechnologyexperience {
-    id?: string;
-    full_name: string;
-    software: string;
-    level: string;
-  }
+  id: string;
+  user_id :string;
+  software: string;
+  level: string;
+}

@@ -137,33 +137,30 @@ export class PostService {
     });
   }
 
-  // bang hoat dong
+// bang hoat dong
+postActivity(data: Activity, table: string): Observable<any> {
+  return this.http.post(`${this.apiUrl}/${table}`,  {
+    user_id: data.user_id,
+    role: data.role,
+    start_time: data.start_time,
+    end_time: data.end_time,
+    content_description: data.content_description,
+    
+  });
+}
 
-  getAllActivity(table: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${table}`);
-  }
+putActivity(data: Activity, id: number, table: string): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${table}/${id}`, {
+    user_id: data.user_id,
+    role: data.role,
+    start_time: data.start_time,
+    end_time: data.end_time,
+    content_description: data.content_description,
+    
+  });
+}
 
-  postActivity(data: Activity, table: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${table}`,  {
-      full_name: data.full_name,
-      role: data.role,
-      start_time: data.start_time,
-      end_time: data.end_time,
-      content_description: data.content_description,
-      
-    });
-  }
 
-  putActivity(data: Activity, id: number, table: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${table}/${id}`, {
-      full_name: data.full_name,
-      role: data.role,
-      start_time: data.start_time,
-      end_time: data.end_time,
-      content_description: data.content_description,
-      
-    });
-  }
 
  
   deleteActivity(table: string, id: number): Observable<any> {
@@ -173,16 +170,12 @@ export class PostService {
   // kết thúc bảng hoạt động
 
   // bảng kinh nghiệm khóa học
-  getAllInformationtechnologyexperience(table: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${table}`);
-  }
-
   postInformationtechnologyexperience(
     data:  Informationtechnologyexperience,
     table: string
   ): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
-      full_name: data.full_name,
+      user_id : data.user_id ,
       software: data.software,
       level: data.level
 
@@ -195,7 +188,7 @@ export class PostService {
     table: string
   ): Observable<any> {
     return this.http.put(`${this.apiUrl}/${table}/${id}`,  {
-      full_name: data.full_name,
+      user_id : data.user_id ,
       software: data.software,
       level: data.level
 

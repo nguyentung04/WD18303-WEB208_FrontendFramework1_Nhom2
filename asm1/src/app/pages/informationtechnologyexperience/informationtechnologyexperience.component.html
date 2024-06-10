@@ -1,15 +1,14 @@
 <div *ngIf="!showRouterOutlet">
   <nb-card>
     <nb-card-header>
-      Bảng thông tin nhân viên
+      Bảng thông tin kinh nghiệm nhân viên
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
       </nb-card-header>
     <nb-card-body>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Họ tên</th>
+            <th scope="col">Id nhân viên</th>
             <th scope="col">Phần mềm</th>
             <th scope="col">Trình độ</th>
             <th scope="col">Thao tác</th>
@@ -17,8 +16,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let informationtechnologyexperience of listInformationtechnologyexperience">
-            <th scope="row">{{informationtechnologyexperience.id}}</th>
-            <td>{{informationtechnologyexperience.full_name}}</td>
+            <td>{{informationtechnologyexperience.user_id}}</td>
             <td>{{informationtechnologyexperience.software}}</td>
             <td>{{informationtechnologyexperience.level}}</td>
             <td>
@@ -32,4 +30,3 @@
   </nb-card>
 </div>
 <router-outlet *ngIf="showRouterOutlet"></router-outlet>
-
