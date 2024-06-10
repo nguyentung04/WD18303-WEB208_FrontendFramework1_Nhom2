@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { PostService } from 'app/@core/services/apis/post.service';
 import { Iskill } from 'app/@core/interfaces/pages/skill';
-import { UserStateService } from '../userinfo/load';
+
 
 @Component({
   selector: 'ngx-dashboard',
@@ -17,11 +17,13 @@ export class SkillComponent implements OnInit {
   showRouterOutlet: boolean = false;
 
   lists: Iskill[] = [];
+  list: Iskill[] = [];
 
   table: string = 'skill';
+
   id = this.formedit.snapshot.params.id;
 
-  constructor(private router: Router, private skills: PostService, private UserState: UserStateService,private formedit: ActivatedRoute) {
+  constructor(private router: Router, private skills: PostService,  private formedit: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -31,20 +33,27 @@ export class SkillComponent implements OnInit {
       }
     });
     this.getAll();
-    this.UserState.users.subscribe(({ action, data }) => {
-      if (action === 'add') {
-        this.lists.push(...data as Iskill[]);
-      } else if (action === 'update') {
-        this.getAll();
-      }
-    });
+
   }
 
   getAll() {
-    this.skills.getAllUser( this.table).subscribe(data => {
+    this.skills.getAllUser(this.table).subscribe(data => {
       console.log(data);
       this.lists = data;
     })
+  }
+
+
+  delete(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.skills.deleteUser(this.table,Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
+    }
   }
 
   add() {

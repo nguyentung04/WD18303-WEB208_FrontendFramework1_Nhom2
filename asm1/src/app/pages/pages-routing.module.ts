@@ -22,6 +22,9 @@ import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { activityComponent } from './activity/activity.component';
+import { CvComponent } from './cv/cv.component';
+import { CvdetailComponent } from './cv/cvdetail/cvdetail.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -112,6 +115,18 @@ const routes: Routes = [{
       path: 'experience',
       component: experienceComponent,
       data: { breadcrumb: 'Quản lý kinh nghiệm' },
+    },
+        {
+      path: 'cv',
+      component: CvComponent,
+      data: { breadcrumb: 'Quản lý cv' },
+      children: [
+        {
+          path: 'cvdetail/:id',
+          component: CvdetailComponent,
+          data: { breadcrumb: 'chi tiết' }
+        }
+      ]
     }
   ],
 }];

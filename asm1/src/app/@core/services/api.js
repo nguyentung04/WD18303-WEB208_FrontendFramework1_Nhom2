@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const { getAll, insert, update, Delete, getByID,getAllSkillsByUserId } = require('./database');
+const { getAll, insert, update, Delete, getByID,getAllSkill, getAllSkillsByUserId,updateSkill, getAllCV, getAllCVByID, DeleteSkill} = require('./database');
 
 const app = express();
 const port = 3000;
@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-const tables = ['userinfo','skill', 'orders', 'customers', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
+const tables = ['userinfo', 'skill', 'orders', 'customers', 'categories', 'suppliers', 'employees', 'shippers', 'regions', 'territories'];
 
 
 tables.forEach(table => {
@@ -41,16 +41,17 @@ tables.forEach(table => {
     });
   });
 
+
+
   app.get(`/api/${table}/:id`, (req, res) => {
     const { id } = req.params;
-    getByID(table, {id}, (err, results) => {
+    getByID(table, { id }, (err, results) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
       res.json(results);
     });
   });
-
 
 
   app.post(`/api/${table}`, (req, res) => {
@@ -85,17 +86,7 @@ tables.forEach(table => {
       res.json({ message: `Cập nhật ${table} thành công` });
     });
   });
-
-  app.get('/api/skill', (req, res) => {
-    getAllSkillsByUserId((err, results) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json(results);
-    });
-  });
-  
-
+ 
 
   app.delete(`/api/${table}/:id`, (req, res) => {
     const { id } = req.params;
@@ -106,7 +97,31 @@ tables.forEach(table => {
       res.json({ message: `Xóa ${table} thành công` });
     });
   });
+
+  
+
+  app.get('/api/cv/:id', (req, res) => {
+    const { id } = req.params;
+    getAllCVByID((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    }, id);
+  });
+
+  app.get(`/api/cv`, (req, res) => {
+    getAllCV((err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      res.json(results);
+    });
+  });
+
+
 });
+
 
 
 

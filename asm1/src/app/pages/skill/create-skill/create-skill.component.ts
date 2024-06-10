@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { PostService } from 'app/@core/services/apis/post.service';
 import { Iskill } from 'app/@core/interfaces/pages/skill';
-import { UserStateService } from 'app/pages/userinfo/load';
+
 
 @Component({
   selector: 'app-create-skill',
@@ -14,7 +14,7 @@ import { UserStateService } from 'app/pages/userinfo/load';
   styleUrls: ['./create-skill.component.scss']
 })
 export class CreateSkillComponent {
-  constructor(private router: Router, private user: PostService, private UserState: UserStateService) { }
+  constructor(private router: Router, private user: PostService) { }
 
   table: string = 'skill';
   table1: string = 'userinfo';
@@ -55,10 +55,10 @@ export class CreateSkillComponent {
     };
 
     this.user.postSkill(newUser, this.table).subscribe(res => {
-      newUser.id = res.id;
       this.lists.push(newUser);
-      // this.UserState.Users('add',[newUser], this.table);
-      this.router.navigate(['/pages/skill']);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/skill']);
+      });   
     });
   }
 

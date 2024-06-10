@@ -13,7 +13,8 @@
                                 </label>
                                 <div class="col-lg-6 p-2">                           
                                     <select class="form-control" formControlName="user_id" name="user_id">
-                                        <option *ngFor="let user of list" value="{{user.id}}">{{ user.id }}</option>
+                                        <option value="">--Chọn--</option>
+                                        <option *ngFor="let user of list" value="{{user.id}}">{{ user.fullname }}</option>
                                     </select>
                                     <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
                                         class="text-danger">
@@ -27,7 +28,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="skill">
+                                    <textarea class="form-control" cols="5" rows="7" formControlName="skill"></textarea>
                                     <div *ngIf="validForm.get('skill').invalid && (validForm.get('skill').dirty || validForm.get('skill').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('skill').errors.required">Vui lòng nhập dữ
