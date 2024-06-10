@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <h3>Cập nhật tuyển dụng</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="user_id">Tên ứng tuyển <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="user_id"
+                                        formControlName="user_id" placeholder="Nhập tên chứng chỉ">
+                                    <div *ngIf="validForm.get('user_id')?.invalid && validForm.get('user_id')?.touched"
+                                        class="text-danger">
+                                        Tên ứng tuyển là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="role">Vị trí <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="role" formControlName="role"
+                                        placeholder="Nhập tổ chức cấp">
+                                    <div *ngIf="validForm.get('role')?.invalid && validForm.get('role')?.touched"
+                                        class="text-danger">
+                                        Tổ chức cấp là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="status">Trạng thái <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="status" formControlName="status">
+                                    <div *ngIf="validForm.get('status')?.invalid && validForm.get('status')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="rate">Đánh giá <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="rate" formControlName="rate">
+                                    <div *ngIf="validForm.get('rate')?.invalid && validForm.get('rate')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="result">Kết quả <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="result" formControlName="result">
+                                    <div *ngIf="validForm.get('result')?.invalid && validForm.get('result')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-lg-6 p-2 offset-lg-4">
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                        Nhận</button>
+                                    <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
+                                        lại</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

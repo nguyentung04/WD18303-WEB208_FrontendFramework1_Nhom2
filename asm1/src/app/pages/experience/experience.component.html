@@ -1,11 +1,42 @@
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
+    <nb-card-header>
+      Bảng quản lý kinh nghiệm
+      <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
+    </nb-card-header>
+    <nb-card-body>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Công ty</th>
+            <th scope="col">Vị trí</th>
+            <th scope="col">Ngày bắt đầu</th>
+            <th scope="col">Ngày kết thúc</th>
+            <th scope="col">Mô tả</th>
+            <th scope="col">Tháo tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of experienceList">
+            <th scope="row">{{list.id}}</th>
+            <th>{{list.name}}</th>
+            <th>{{list.company}}</th>
+            <th>{{list.vacancies}}</th>
+            <th>{{list.startdate}}</th>
+            <th>{{list.enddate}}</th>
+            <th>{{list.describe}}</th>
 
-<nb-card>
-  <nb-card-header>
-   Bảng kinh nghiệm
-  </nb-card-header>
-  <nb-card-body>
-    <ng2-smart-table [settings]="experience" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-    </ng2-smart-table>
-  </nb-card-body>
-</nb-card>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2"   (click)="deleteUser(list.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>
 

@@ -11,7 +11,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent {
+export class EditComponent1 {
   constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute) { }
 
   table: string = 'userinfo';

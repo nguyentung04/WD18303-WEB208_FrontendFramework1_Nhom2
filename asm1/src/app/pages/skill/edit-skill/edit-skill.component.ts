@@ -25,7 +25,6 @@ export class EditSkillComponent {
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
-
       skill: new FormControl('', Validators.required),
     });
     this.getById(this.id);
@@ -37,6 +36,10 @@ export class EditSkillComponent {
     this.user.getById(ID, this.table).subscribe(data => {
       this.list = data[0];
       console.log(data);
+      this.validForm.patchValue({
+           skill:data.skill,
+      }   
+      )
     })
   }
 

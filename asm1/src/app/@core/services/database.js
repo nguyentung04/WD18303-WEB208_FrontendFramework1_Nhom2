@@ -89,6 +89,9 @@ const getByID = (table, id, callback) => {
   });
 };
 
+
+
+
 const insert = (table, data, callback) => {
   const sql = `INSERT INTO ?? SET ?`;
   db.query(sql, [table, data], (err, results) => {
@@ -97,15 +100,24 @@ const insert = (table, data, callback) => {
 };
 
 const update = (table, data, id, callback) => {
-  const sql = `UPDATE ?? SET ? WHERE ?`;
+  const sql = `UPDATE ?? SET ? WHERE id = ?`;
   db.query(sql, [table, data, id], (err, results) => {
     callback(err, results);
   });
 };
 
+
+
+
 const Delete = (table, id, callback) => {
-  const sql = `DELETE FROM ?? WHERE  ?`;
+  console.log(`Deleting from table: ${table}, id: ${id}`);
+  const sql = `DELETE FROM ?? WHERE id = ?`;
   db.query(sql, [table, id], (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+    } else {
+      console.log('Query results:', results);
+    }
     callback(err, results);
   });
 };

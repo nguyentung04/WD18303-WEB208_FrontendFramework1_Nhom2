@@ -1,8 +1,8 @@
-import {Component,OnInit} from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-
-
-import { certificateData } from 'app/@core/data/certificate-table';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
+import { PostService }  from '../../@core/services/apis/post.service'
+import { certificate } from 'app/@core/interfaces/pages/certificate';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,77 +10,57 @@ import { certificateData } from 'app/@core/data/certificate-table';
   templateUrl: './certificate.component.html',
 })
 export class certificateComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
+  certificateList: certificate[] = [] ;
+  table: string = 'certificate'
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      nameCertificate: {
-        title: 'Tên chứng chỉ',
-        type: 'string',
-      },
-      issued: {
-        title: 'Tổ chức cấp',
-        type: 'string',
-      },
-      nameReceiver: {
-        title: 'Tên người nhận',
-        type: 'string',
-      },
-      dateRange: {
-        title: 'Ngày cấp',
-        type: 'date',
-      },
-      expiry: {
-        title: 'Hạn sử dụng',
-        type: 'text',
-      },
-      image: {
-        title: 'Hình ảnh',
-        type: 'custom',
-        renderComponent: ImageRenderComponent,
-      },
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: certificateData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private router: Router, private certificate: PostService) {
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/certificate/');
+      }
+    });
+    this.getAll();
+
+
+  }
+
+  getAll() {
+    this.certificate.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.certificateList = data;
+    })
+  }
+
+
+
+  deleteCer(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.certificate.deleteUser(this.table, Id).subscribe(
+        () => {
+          console.log('Xóa thành công');
+          this.getAll();
+        },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
+  
 
-}
 
-@Component({
-  template: '<img [src]="rowData.image" style="max-width: 100px; max-height: 100px;">',
-})
-export class ImageRenderComponent {
-  value: string;
-  rowData: any;
+  add() {
+    this.router.navigate(['/pages/certificate/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/certificate/edit/${id}`])
+  }
+
+ 
+
 }
