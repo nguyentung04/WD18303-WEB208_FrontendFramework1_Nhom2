@@ -1,0 +1,71 @@
+<nb-card>
+    <nb-card-header>
+        Bảng thông tin ứng viên
+    </nb-card-header>
+    <nb-card-body>
+        <div class="container my-3">
+            <div class="row" *ngIf="list ">
+                <div class="col-md-4 left-column mb-4 mb-md-0">
+                    <div class="text-center mb-4">
+                        <img src="../../../../assets/images/1.jpg" class="img-fluid rounded-circle  profile-picture"
+                            alt="Profile Picture">
+                        <h5>{{list.fullname}}</h5>
+                        <p>{{list.status}}</p>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Thông tin cá nhân</h6>
+                        <p><strong>Địa chỉ:</strong> {{list.address}}</p>
+                        <p><strong>Điện thoại:</strong> {{list.phone}}</p>
+                        <p><strong>Email:</strong> {{list.email}}</p>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Học vấn</h6>
+                        <div>
+                            <p>{{list.edu_name}} ({{list.start_year}} - {{list.end_year}})</p>
+                            <p><em>{{list.specialized}} - {{list.graduation_Type}}</em></p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Kỹ năng tin học</h6>
+                        <ul>
+                            <li>{{list.software}} - {{list.info_level}}</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Ngôn ngữ</h6>
+                        <ul>
+                            <li>{{list.language}} - {{list.language_level}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 right-column">
+                    <div class="mb-4">
+                        <h6>Mục tiêu nghề nghiệp</h6>
+                        <p>Tìm kiếm một vị trí Web Developer trong một công ty năng động và sáng tạo để phát triển kỹ
+                            năng và đóng góp vào sự thành công của công ty.</p>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Kinh nghiệm làm việc</h6>
+                        <div class="mb-3">
+                            <h6></h6>
+                            <div>
+                                <div class="ex-custom">
+                                    <p><strong>{{list.company}}</strong></p>
+                                    <p>{{list.start_date}} - {{list.end_date}}</p>
+                                </div>
+                                <p>- {{list.vacancies}}</p>
+                                <p>{{list.describe}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6>Kỹ năng</h6>
+                        <ul>
+                            <li>{{list.skill}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

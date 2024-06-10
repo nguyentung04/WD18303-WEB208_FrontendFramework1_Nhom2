@@ -9,6 +9,7 @@ import { RecruitmentCreateComponent } from './recruitment-create/recruitment-cre
 import { RecruitmentEditComponent } from './recruitment-edit/recruitment-edit.component';
 import { RecruitmentDeleteComponent } from './recruitment-delete/recruitment-delete.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { RouterModule } from '@angular/router';
     Ng2SmartTableModule,
     NbCardModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     recruitmentComponent,

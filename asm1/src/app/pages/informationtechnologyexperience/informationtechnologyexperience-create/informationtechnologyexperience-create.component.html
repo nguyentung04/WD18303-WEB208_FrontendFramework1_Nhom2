@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-validation">
+                        <h3>Thêm thông tin kinh nghiệm tin học nhân viên</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm"
+                            enctype="multipart/form-data">
+                            <div class="form-group row ">
+                                <label class="col-lg-4 col-form-label">Id nhân viên <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="user_id">
+                                        <option value="" disabled selected>Chọn nhân viên</option>
+                                        <option *ngFor="let user of list" [value]="user.id">
+                                            {{ user.id }} {{user.fullname}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="img">Phần mềm <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" formControlName="software">
+                                    <div *ngIf="validForm.get('software').invalid && (validForm.get('software').dirty || validForm.get('software').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('software').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="img">Level <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" formControlName="level">
+                                    <div *ngIf="validForm.get('level').invalid && (validForm.get('level').dirty || validForm.get('level').touched)"
+                                        class="text-danger">
+                                        <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ
+                                            liệu!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label"><span class="text-danger"></span>
+                                </label>
+                                <div class="col-lg-6 p-2">
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                        Nhận</button>
+                                    <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
+                                        lại</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

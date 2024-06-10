@@ -1,7 +1,7 @@
 <div *ngIf="!showRouterOutlet">
   <nb-card>
     <nb-card-header>
-      Bảng thông tin nhân viên
+      Bảng thông tuyển dụng
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
@@ -22,18 +22,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td>Otto</td>
+          <tr *ngFor="let re of recruitmentList">
+            <td>{{ re.id }}</td>
+            <td>{{ re.nameRecruitment }}</td>
+            <td>{{ re.role }}</td>
+            <td>{{ re.submissionTime }}</td>
+            <td>{{ re.status }}</td>
+            <td>{{ re.rate }}</td>
+            <td>{{ re.nameExaminer }}</td>
+            <td>{{ re.result }}</td>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit()">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="delete()">Xóa</button>
+              <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
+              <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
             </td>
           </tr>
         </tbody>

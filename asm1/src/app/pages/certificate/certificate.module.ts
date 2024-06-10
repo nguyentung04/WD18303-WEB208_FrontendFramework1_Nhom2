@@ -9,6 +9,7 @@ import { CertificateEditComponent } from './certificate-edit/certificate-edit.co
 import { CertificateDeleteComponent } from './certificate-delete/certificate-delete.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     NbCardModule,
     CommonModule,
     RouterModule,
-    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     certificateComponent,
