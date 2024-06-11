@@ -67,8 +67,8 @@ tables.forEach(table => {
       });
     });
   });
-
-  app.post(`/api/${table}/upload`, upload.single("img"), (req, res) => {
+  //
+  app.post(`/api/${table}/upload`, upload.single('img'), (req, res) => {
     if (!req.file) {
       return res.status(200).json({ error: "không thể up hình" });
     }

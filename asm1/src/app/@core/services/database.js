@@ -1,17 +1,17 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'mysql',
-  database: 'cv'
+  host: "localhost",
+  user: "root",
+  password: "mysql",
+  database: "cv",
 });
 
-db.connect(err => {
+db.connect((err) => {
   if (err) {
-    console.error('Kết nối MySQL thất bại: ', err);
+    console.error("Kết nối MySQL thất bại: ", err);
   } else {
-    console.log('Kết nối MySQL thành công');
+    console.log("Kết nối MySQL thành công");
   }
 });
 
@@ -45,7 +45,6 @@ LEFT JOIN certificate ON userinfo.id = certificate.user_id`;
     callback(err, results);
   });
 };
-
 
 const getAllCVByID = (callback, id) => {
   const sql = `
@@ -107,8 +106,7 @@ const update = (table, data, id, callback) => {
 
 
 const Delete = (table, id, callback) => {
-  console.log(`Deleting from table: ${table}, id: ${id}`);
-  const sql = `DELETE FROM ?? WHERE id = ?`;
+  const sql = `DELETE FROM ?? WHERE  ?`;
   db.query(sql, [table, id], (err, results) => {
     if (err) {
       console.error('Error executing query:', err);

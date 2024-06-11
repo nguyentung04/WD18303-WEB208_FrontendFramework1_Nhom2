@@ -41,26 +41,26 @@ export class InformationtechnologyexperienceEditComponent {
 
   onSubmit() {
     const UpdateInformationtechnologyexperience: Informationtechnologyexperience =
-    {
-      id: '',
-      user_id: this.validForm.value.user_id,
-      software: this.validForm.value.software,
-      level: this.validForm.value.level,
-    };
+      {
+        id: '',
+        user_id: this.validForm.value.user_id,
+        software: this.validForm.value.software,
+        level: this.validForm.value.level,
+      };
 
 
 
-    console.log('Submitting form:', UpdateInformationtechnologyexperience);
-    const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành một số
-    this.informationtechnologyexperienceService
-      .putInformationtechnologyexperience(UpdateInformationtechnologyexperience, numericId, this.table)
-      .subscribe((res) => {
-        UpdateInformationtechnologyexperience.id = res.id;
-        console.log('Update response:', res);
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/pages/informationtechnologyexperience']);
+      console.log('Submitting form:', UpdateInformationtechnologyexperience);
+      const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành một số
+      this.informationtechnologyexperienceService
+        .putInformationtechnologyexperience(UpdateInformationtechnologyexperience, numericId, this.table)
+        .subscribe((res) => {
+          UpdateInformationtechnologyexperience.id = res.id;
+          console.log('Update response:', res);
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/pages/informationtechnologyexperience']);
+          });
         });
-      });
   }
 
 
