@@ -15,7 +15,7 @@ export class EditComponent implements OnInit {
 
   table: string = 'login';
   validForm: FormGroup;
-  userData: Iusers; // Biến để lưu trữ dữ liệu người dùng hiện tại
+  userData: Iusers; 
   id: number;
 
   ngOnInit(): void {
@@ -53,20 +53,17 @@ export class EditComponent implements OnInit {
     this.user.getByID(id, this.table).subscribe(data => {
       this.userData = data[0]; 
       this.populateForm(this.userData); 
-      console.log('Old user data:', this.userData);
+      console.log(this.userData);
     });
   }
 
   populateForm(user: Iusers) {
-    // Chuyển đổi chuỗi ngày thành kiểu Date
     const date_start = new Date(user.date_start);
-  
-    // Sử dụng patchValue để chỉ cập nhật các trường cần thiết
     this.validForm.patchValue({
       name: user.name,
       email: user.email,
       role_id: user.role_id,
-      date_start: date_start.toISOString().substring(0, 10), // Chuyển đổi lại thành chuỗi ngày ("YYYY-MM-DD")
+      date_start: date_start.toISOString().substring(0, 10), 
       password: user.password
     });
   }

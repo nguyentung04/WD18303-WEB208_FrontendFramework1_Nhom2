@@ -8,7 +8,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">id nhân viên</th>
+            <th scope="col">STT</th>
             <th scope="col">Vai trò</th>
             <th scope="col">Thời gian bắt đầu</th>
             <th scope="col">Thời gian kết thúc</th>
@@ -17,8 +17,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let activity of listActivity">
-            <th scope="row">{{activity.user_id}}</th>
+          <tr *ngFor="let activity of listActivity ; index as i">
+            <th scope="row">{{i + 1}}</th>
             <td>{{activity.role}}</td>
             <td>{{activity.start_time}}</td>
             <td>{{activity.end_time}}</td>

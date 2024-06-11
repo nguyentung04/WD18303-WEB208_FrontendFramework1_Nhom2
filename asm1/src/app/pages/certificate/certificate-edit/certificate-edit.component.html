@@ -5,11 +5,11 @@
           <div class="card-body">
             <div class="form-validation">
               <h3>Cập nhật chứng chỉ</h3>
-              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">
+              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" *ngIf="certificateList">
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="nameCertificate">Tên chứng chỉ <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" id="nameCertificate" formControlName="nameCertificate">
+                    <input type="text" class="form-control" id="nameCertificate" formControlName="nameCertificate" [(ngModel)]="certificateList.nameCertificate">
                     <div *ngIf="validForm.get('nameCertificate').invalid && (validForm.get('nameCertificate').dirty || validForm.get('nameCertificate').touched)" class="text-danger">
                       <span *ngIf="validForm.get('nameCertificate').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="issued">Tổ chức cấp <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" id="issued" formControlName="issued">
+                    <input type="text" class="form-control" id="issued" formControlName="issued"  [(ngModel)]="certificateList.issued">
                     <div *ngIf="validForm.get('issued').invalid && (validForm.get('issued').dirty || validForm.get('issued').touched)" class="text-danger">
                       <span *ngIf="validForm.get('issued').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="user_id">Tên người nhận <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" id="user_id" formControlName="user_id">
+                    <input type="text" class="form-control" id="user_id" formControlName="user_id" [(ngModel)]="certificateList.user_id" disabled>
                     <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)" class="text-danger">
                       <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="expiry">Hạn sử dụng <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" id="expiry" formControlName="expiry">
+                    <input type="text" class="form-control" id="expiry" formControlName="expiry" [(ngModel)]="certificateList.expiry">
                     <div *ngIf="validForm.get('expiry').invalid && (validForm.get('expiry').dirty || validForm.get('expiry').touched)" class="text-danger">
                       <span *ngIf="validForm.get('expiry').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>

@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="form-validation">
                         <h3>Thêm nhân viên</h3>
-                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" *ngIf="list">
                             <div class="form-group row ">
                                 <label class="col-lg-4 col-form-label" for="img">Hình ảnh <span
                                         class="text-danger">*</span>
@@ -24,7 +24,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="fullname"
+                                    <input type="text" class="form-control" formControlName="fullname" [(ngModel)]="list.fullname"
                                        >
                                     <div *ngIf="validForm.get('fullname').invalid && (validForm.get('fullname').dirty || validForm.get('fullname').touched)"
                                         class="text-danger">
@@ -38,7 +38,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="date" class="form-control" formControlName="birthday"
+                                    <input type="date" class="form-control" formControlName="birthday" [(ngModel)]="list.birthday"
                                    >
                                     <div *ngIf="validForm.get('birthday').invalid && (validForm.get('birthday').dirty || validForm.get('birthday').touched)"
                                         class="text-danger">
@@ -53,7 +53,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="address"
+                                    <input type="text" class="form-control" formControlName="address" [(ngModel)]="list.address"
                                       >
                                     <div *ngIf="validForm.get('address').invalid && (validForm.get('address').dirty || validForm.get('address').touched)"
                                         class="text-danger">
@@ -67,7 +67,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="email"
+                                    <input type="text" class="form-control" formControlName="email" id="email" [(ngModel)]="list.email"
                                        >
                                     <div *ngIf="validForm.get('email').invalid && (validForm.get('email').dirty || validForm.get('email').touched)"
                                         class="text-danger">
@@ -82,7 +82,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="phone"
+                                    <input type="text" class="form-control" formControlName="phone" [(ngModel)]="list.phone"
                                         >
                                     <div *ngIf="validForm.get('phone').invalid && (validForm.get('phone').dirty || validForm.get('phone').touched)"
                                         class="text-danger">

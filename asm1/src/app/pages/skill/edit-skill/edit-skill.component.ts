@@ -36,10 +36,6 @@ export class EditSkillComponent {
     this.user.getById(ID, this.table).subscribe(data => {
       this.list = data[0];
       console.log(data);
-      this.validForm.patchValue({
-           skill:data.skill,
-      }   
-      )
     })
   }
 

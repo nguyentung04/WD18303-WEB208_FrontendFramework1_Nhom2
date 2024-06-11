@@ -76,23 +76,24 @@ export class RecruitmentEditComponent implements OnInit {
     console.log(`Fetching recruitment with ID: ${ID}`); // Log the ID being fetched
     this.recruitmentService.getById(ID, this.table).subscribe(
       (data) => {
+        this.recruitmentList = data[0];
         console.log('API response:', data); // Log the full API response
 
-        if (data) {
-          this.recruitmentList = [data]; // Wrap data in an array to match the expected type
+        // if (data) {
+        //   this.recruitmentList = [data]; // Wrap data in an array to match the expected type
 
-          if (this.validForm) {
-            this.validForm.patchValue({
-              user_id: data.user_id,
-              role: data.role,
-              status: data.status,
-              rate: data.rate,
-              result: data.result,
-            });
-          }
-        } else {
-          console.warn('No recruitment data found.');
-        }
+        //   if (this.validForm) {
+        //     this.validForm.patchValue({
+        //       user_id: data.user_id,
+        //       role: data.role,
+        //       status: data.status,
+        //       rate: data.rate,
+        //       result: data.result,
+        //     });
+        //   }
+        // } else {
+        //   console.warn('No recruitment data found.');
+        // }
       },
       (error) => {
         console.error('Error fetching data', error);

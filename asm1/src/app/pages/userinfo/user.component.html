@@ -8,7 +8,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Số thứ tự</th>
+            <th scope="col">STT</th>
             <th scope="col">Hình ảnh</th>
             <th scope="col">Họ tên</th>
             <th scope="col">Ngày sinh</th>
@@ -19,8 +19,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let list of userinfoList">
-            <th scope="row">{{list.id}}</th>
+          <tr *ngFor="let list of userinfoList ; index as i">
+            <th scope="row">{{i + 1}}</th>
             <th><img src="../../../assets/images/{{list.img}}" alt="" class="imgCustom rounded-circle"></th>
             <td>{{list.fullname}}</td>
             <td>{{list.birthday |  date: 'dd/MM/yyyy'}}</td>

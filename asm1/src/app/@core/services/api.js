@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-const tables = ['userinfo', 'skill', 'language', 'experience', 'activity', 'certificate', 'education', 'informationtechnologyexperience', 'recruitment'];
+const tables = ['userinfo', 'skill', 'language', 'experience', 'activity', 'certificate', 'education', 'informationtechnologyexperience', 'recruitment','login'];
 
 
 tables.forEach(table => {

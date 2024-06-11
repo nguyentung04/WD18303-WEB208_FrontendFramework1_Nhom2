@@ -41,26 +41,26 @@ export class InformationtechnologyexperienceEditComponent {
 
   onSubmit() {
     const UpdateInformationtechnologyexperience: Informationtechnologyexperience =
-      {
-        id: '',
-        user_id: this.validForm.value.user_id,
-        software: this.validForm.value.software,
-        level: this.validForm.value.level,
-      };
+    {
+      id: '',
+      user_id: this.validForm.value.user_id,
+      software: this.validForm.value.software,
+      level: this.validForm.value.level,
+    };
 
 
 
-      console.log('Submitting form:', UpdateInformationtechnologyexperience);
-      const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành một số
-      this.informationtechnologyexperienceService
-        .putInformationtechnologyexperience(UpdateInformationtechnologyexperience, numericId, this.table)
-        .subscribe((res) => {
-          UpdateInformationtechnologyexperience.id = res.id;
-          console.log('Update response:', res);
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate(['/pages/informationtechnologyexperience']);
-          });
+    console.log('Submitting form:', UpdateInformationtechnologyexperience);
+    const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành một số
+    this.informationtechnologyexperienceService
+      .putInformationtechnologyexperience(UpdateInformationtechnologyexperience, numericId, this.table)
+      .subscribe((res) => {
+        UpdateInformationtechnologyexperience.id = res.id;
+        console.log('Update response:', res);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/pages/informationtechnologyexperience']);
         });
+      });
   }
 
 
@@ -71,22 +71,22 @@ export class InformationtechnologyexperienceEditComponent {
     this.informationtechnologyexperienceService.getById(ID, this.table).subscribe(
       (data) => {
         console.log('API response:', data); //Ghi lại phản hồi API đầy đủ
+        this.listInformationtechnologyexperience = data[0]
+        // if (data) {
+        //   this.listInformationtechnologyexperience = [data]; //Gói dữ liệu trong một mảng để phù hợp với loại dự kiến
+        //   if (this.validForm) {
+        //     this.validForm.patchValue({
+        //       user_id : data.user_id ,
+        //       software: data.software,
+        //       level: data.level,
 
-        if (data) {
-          this.listInformationtechnologyexperience = [data]; //Gói dữ liệu trong một mảng để phù hợp với loại dự kiến
-          if (this.validForm) {
-            this.validForm.patchValue({
-              user_id : data.user_id ,
-              software: data.software,
-              level: data.level,
+        //     });
+        //   }
 
-            });
-          }
-
-          this.cdr.detectChanges(); //Phát hiện thay đổi kích hoạt theo cách thủ công
-        } else {
-          console.warn('No certificate data found.');
-        }
+        //   this.cdr.detectChanges(); //Phát hiện thay đổi kích hoạt theo cách thủ công
+        // } else {
+        //   console.warn('No certificate data found.');
+        // }
       },
       (error) => {
         console.error('Error fetching data', error);

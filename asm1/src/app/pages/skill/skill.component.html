@@ -8,14 +8,14 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Số thứ tự</th>
+            <th scope="col">STT</th>
             <th scope="col">Kỹ năng</th>
             <th scope="col">Thao tác</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let list of lists">
-            <th scope="row">{{list.id}}</th>
+          <tr *ngFor="let list of lists ; index as i">
+            <th scope="row">{{i + 1}}</th>
             <th>{{list.skill}}</th>
             <td>
               <button type="button" class="btn btn-outline-success"  (click)="edit(list.id)" >Sửa</button>

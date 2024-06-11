@@ -78,13 +78,13 @@ export class EditExperienceComponent implements OnInit {
       (data) => {
         this.experienceList = data[0];
         console.log('API response:', data);
-        this.validForm.patchValue({
-          company: data.company,
-          vacancies: data.vacancies,
-          startdate: data.startdate,
-          enddate: data.enddate,
-          describe: data.describe
-        }); 
+        // this.validForm.patchValue({
+        //   company: data.company,
+        //   vacancies: data.vacancies,
+        //   startdate: data.startdate,
+        //   enddate: data.enddate,
+        //   describe: data.describe
+        // }); 
       },
       (error) => {
         console.error('Error fetching data', error);

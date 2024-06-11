@@ -5,11 +5,11 @@
           <div class="card-body">
             <div class="form-validation">
               <h3>Cập nhật kinh nghiệm</h3>
-              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">            
+              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" *ngIf="experienceList">            
                 <div class="form-group row" >
                   <label class="col-lg-4 col-form-label" for="company">Công ty <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control"  formControlName="company" >
+                    <input type="text" class="form-control"  formControlName="company"[(ngModel)]="experienceList.company" >
                     <div *ngIf="validForm.get('company').invalid && (validForm.get('company').dirty || validForm.get('company').touched)" class="text-danger">
                       <span *ngIf="validForm.get('company').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="vacancies">Vị trí<span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" id="vacancies" formControlName="vacancies">
+                    <input type="text" class="form-control" id="vacancies" formControlName="vacancies" [(ngModel)]="experienceList.vacancies">
                     <div *ngIf="validForm.get('vacancies').invalid && (validForm.get('vacancies').dirty || validForm.get('vacancies').touched)" class="text-danger">
                       <span *ngIf="validForm.get('vacancies').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -27,7 +27,7 @@
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="startdate">Ngày bắt đầu<span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <input type="date" class="form-control" id="startdate" formControlName="startdate">
+                  <input type="date" class="form-control" id="startdate" formControlName="startdate" [(ngModel)]="experienceList.startdate">
                   <div *ngIf="validForm.get('startdate').invalid && (validForm.get('startdate').dirty || validForm.get('startdate').touched)" class="text-danger">
                     <span *ngIf="validForm.get('startdate').errors.required">Vui lòng nhập dữ liệu!</span>
                   </div>
@@ -36,7 +36,7 @@
             <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="enddate">Ngày kết thúc<span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <input type="date" class="form-control" id="enddate" formControlName="enddate">
+                  <input type="date" class="form-control" id="enddate" formControlName="enddate" [(ngModel)]="experienceList.enddate">
                   <div *ngIf="validForm.get('enddate').invalid && (validForm.get('enddate').dirty || validForm.get('enddate').touched)" class="text-danger">
                     <span *ngIf="validForm.get('enddate').errors.required">Vui lòng nhập dữ liệu!</span>
                   </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="describe">Mô tả<span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <textarea name="" class="form-control"  cols="30" rows="5" formControlName="describe"></textarea>
+                  <textarea name="" class="form-control"  cols="30" rows="5" formControlName="describe" [(ngModel)]="experienceList.describe"></textarea>
                   <div *ngIf="validForm.get('describe').invalid && (validForm.get('describe').dirty || validForm.get('describe').touched)" class="text-danger">
                     <span *ngIf="validForm.get('describe').errors.required">Vui lòng nhập dữ liệu!</span>
                   </div>

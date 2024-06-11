@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { PostService } from 'app/@core/services/apis/post.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent1 {
-  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute) { }
+  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute, private datePipe: DatePipe) { }
 
   table: string = 'userinfo';
 
@@ -20,6 +21,7 @@ export class EditComponent1 {
   validForm: FormGroup;
 
   filename = '';
+  
   id = this.formedit.snapshot.params.id;
 
   ngOnInit(): void {
@@ -32,8 +34,8 @@ export class EditComponent1 {
       birthday: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [ Validators.required,Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
-    ]),
+      phone: new FormControl('', [Validators.required, Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+      ]),
     });
   }
 
@@ -64,7 +66,7 @@ export class EditComponent1 {
       this.validForm.controls['birthday'].setErrors({ maxYear: true });
       return;
     }
-    
+
     const UpdateUser: IuserInfo = {
       id: '',
       img: this.filename,
@@ -82,24 +84,13 @@ export class EditComponent1 {
     });
   }
 
-  getByID(id: string) {
-    const ID = parseInt(id);
+  getByID(id: string): void {
+    const ID = parseInt(id, 10);
     this.user.getById(ID, this.table).subscribe(data => {
-      console.log(data);
       this.list = data[0];
-      this.validForm.patchValue({
-      fullname: data.fullname,
-      birthday: data.birthday,
-      address: data.address,
-      email: data.email,
-      phone: data.phone,
-    })
 
-    
     })
   }
-
-
 
 
   back() {

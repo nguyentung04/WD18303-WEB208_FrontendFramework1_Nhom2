@@ -76,22 +76,7 @@ export class CertificateEditComponent implements OnInit {
       data => {
         console.log('API response:', data); // Log the full API response
 
-        if (data) {
-          this.certificateList = [data]; // Wrap data in an array to match the expected type
-
-          if (this.validForm) {
-            this.validForm.patchValue({
-              user_id: data.user_id,
-              nameCertificate: data.nameCertificate,
-              issued: data.issued,
-              expiry: data.expiry
-            });
-          }
-
-          this.cdr.detectChanges(); // Trigger change detection manually
-        } else {
-          console.warn('No certificate data found.');
-        }
+      this.certificateList=data[0];
       },
       error => {
         console.error('Error fetching data', error);

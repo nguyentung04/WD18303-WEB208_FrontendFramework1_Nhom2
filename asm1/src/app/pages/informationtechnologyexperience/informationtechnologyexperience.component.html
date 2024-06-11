@@ -8,15 +8,15 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Id nhân viên</th>
+            <th scope="col">STT</th>
             <th scope="col">Phần mềm</th>
             <th scope="col">Trình độ</th>
             <th scope="col">Thao tác</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let informationtechnologyexperience of listInformationtechnologyexperience">
-            <td>{{informationtechnologyexperience.user_id}}</td>
+          <tr *ngFor="let informationtechnologyexperience of listInformationtechnologyexperience ; index as i">
+            <td>{{i + 1}}</td>
             <td>{{informationtechnologyexperience.software}}</td>
             <td>{{informationtechnologyexperience.level}}</td>
             <td>

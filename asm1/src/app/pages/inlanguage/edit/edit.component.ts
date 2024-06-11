@@ -65,10 +65,6 @@ export class EditLanguageComponent implements OnInit {
     this.languageService.getById(ID, this.table).subscribe(data => {
       console.log(data); 
       this.list = data[0];
-      this.validForm.patchValue({
-        language: data.language,
-        level: data.level 
-      });
     });
   }
 
