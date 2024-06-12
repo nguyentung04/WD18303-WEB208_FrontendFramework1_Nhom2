@@ -248,7 +248,7 @@ const routes: Routes = [{
         },
         {
           path: 'edit/:id',
-          component: EditLanguageComponent ,
+          component: EditLanguageComponent,
           data: { breadcrumb: 'Cập nhật bảng ngoại ngữ' },
         },
         {
@@ -261,8 +261,9 @@ const routes: Routes = [{
     {
       path: 'experience',
       component: experienceComponent,
-      data: {breadcrumb: 'Quản lý kinh nghiệm'},
+      data: { breadcrumb: 'Quản lý kinh nghiệm' },
       children: [
+
         {
           path: 'create',
           component: CreateExperienceComponent,
@@ -278,6 +279,7 @@ const routes: Routes = [{
           component: DeleteExperienceComponent,
           data: { breadcrumb: 'Xóa bảng kinh nghiệm' },
         },
+
       ]
     },
         {
