@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Iusers } from 'app/@core/interfaces/pages/users';
 import { PostService2 } from 'app/@core/services/apis/post.services';
-
 
 @Component({
   selector: 'app-create',
@@ -11,23 +10,31 @@ import { PostService2 } from 'app/@core/services/apis/post.services';
   styleUrls: ['./create.component.scss']
 })
 export class CreateUsersComponent implements OnInit {
-  constructor(private router: Router, private userService: PostService2) { }
-
-  table: string = 'login';
-
   validForm: FormGroup;
+  table: string = 'login';
+  lists: any[] = [];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: PostService2
+  ) {}
 
   ngOnInit(): void {
-    this.validForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      role_id: new FormControl('', Validators.required),
-      date_start: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+    this.initializeForm();
+  }
+
+  initializeForm(): void {
+    this.validForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      role_id: ['', Validators.required],
+      date_start: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.validForm.invalid) {
       return;
     }
@@ -38,17 +45,18 @@ export class CreateUsersComponent implements OnInit {
       email: this.validForm.value.email,
       role_id: this.validForm.value.role_id,
       date_start: this.validForm.value.date_start,
-      password: this.validForm.value.password,
+      password: this.validForm.value.password
     };
 
     this.userService.postUsers(newUser, this.table).subscribe(res => {
-      this.router.navigate(['/pages/users']);
+      this.lists.push(newUser);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/users']);
+      });   
     });
   }
 
-  back() {
+  back(): void {
     this.router.navigate(['/pages/users']);
   }
-
-  
 }

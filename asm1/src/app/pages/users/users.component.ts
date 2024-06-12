@@ -15,42 +15,25 @@ export class usersComponent implements OnInit {
   showRouterOutlet: boolean = false;
   login: Iusers[] = [];
   table: string = 'login';
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
 
   constructor(private postService: PostService2, private router: Router) { }
 
   ngOnInit() {
-    // Subscribe to user data
-    this.postService.users$.subscribe((login: Iusers[]) => {
-      this.login = login.map(user => ({
-        ...user,
-        date_start: new Date(user.date_start).toLocaleDateString(),
-      }));
-     
-    });
-  
-    // Check for activated child routes
+    this.getLogin()
+    // Kiểm tra khi có route con được kích hoạt
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showRouterOutlet = this.router.url.includes('/users/');
       }
     });
-  
-    // Fetch user data
-    this.getLogin();
   }
-  
-  
+
   getLogin() {
-    this.postService.getAllUser2(this.table).subscribe();
-  
     this.postService.getAllUser(this.table).subscribe((login: Iusers[]) => {
       this.login = login.map(user => ({
         ...user,
         date_start: new Date(user.date_start).toLocaleDateString(), 
       }));
-      console.log('User data from getAllUser:', this.login); // Log dữ liệu từ getAllUser
     });
   }
   
@@ -78,28 +61,5 @@ export class usersComponent implements OnInit {
     return roles[role_id] || 'Unknown';
   }
 
-  get paginatedUsers() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.login.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  nextPage() {
-    if ((this.currentPage * this.itemsPerPage) < this.login.length) {
-      this.currentPage++;
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
-  totalPagesArray(): number[] {
-    const totalPages = Math.ceil(this.login.length / this.itemsPerPage);
-    return Array(totalPages).fill(0).map((x, i) => i + 1);
-  }
   
-  setCurrentPage(page: number) {
-    this.currentPage = page;
-  }
 }

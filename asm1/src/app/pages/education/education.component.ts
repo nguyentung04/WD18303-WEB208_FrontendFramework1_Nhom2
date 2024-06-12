@@ -1,3 +1,4 @@
+
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, OnInit ,Pipe, PipeTransform} from '@angular/core';
 import { PostService2 } from '../../@core/services/apis/post.services';
@@ -14,8 +15,6 @@ export class educationComponent implements OnInit {
   showRouterOutlet: boolean = false;
   education: Ieducation[] = [];
   table: string = 'education';
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
 
   constructor(private postService: PostService2, private router: Router) { }
 
@@ -23,19 +22,9 @@ export class educationComponent implements OnInit {
     this.postService.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {
       this.list = users;
     });
-
-    // Subscribe to education list changes
-    this.postService.education$.subscribe((education: Ieducation[]) => {
-      this.education = education.map(edu => ({
-        ...edu,
-        startTime: new Date(edu.startTime).toLocaleDateString(),
-        endTime: new Date(edu.endTime).toLocaleDateString()
-      }));
-    });
-
     this.getEducation();
     
-    // Check for activated child routes
+    // Kiểm tra khi có route con được kích hoạt
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showRouterOutlet = this.router.url.includes('/education/');
@@ -44,7 +33,6 @@ export class educationComponent implements OnInit {
   }
   
   getEducation() {
-    this.postService.getAllEducation(this.table).subscribe();
     this.postService.getAllUser(this.table).subscribe((education: Ieducation[]) => {
       this.education = education.map(edu => ({
         ...edu,
@@ -69,32 +57,4 @@ export class educationComponent implements OnInit {
       });
     }
   }
-
-  get paginatedEducation() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.education.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  nextPage() {
-    if ((this.currentPage * this.itemsPerPage) < this.education.length) {
-      this.currentPage++;
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
-  }
-
-  totalPagesArray(): number[] {
-    const totalPages = Math.ceil(this.education.length / this.itemsPerPage);
-    return Array(totalPages).fill(0).map((x, i) => i + 1);
-  }
-  
-  setCurrentPage(page: number) {
-    this.currentPage = page;
-  }
-
-
 }
