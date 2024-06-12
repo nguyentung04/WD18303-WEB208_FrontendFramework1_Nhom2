@@ -1,12 +1,65 @@
-<nb-card>
+<div *ngIf="!showRouterOutlet">
+  <nb-card>
     <nb-card-header>
-     Bảng thông tin học vấn
+      Bảng thông học vấn
+      <button type="button" class="btn btn-outline-primary" (click)="addEducation()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="education" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
-      </ng2-smart-table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên nhân viên</th>
+            <th scope="col">Chuyên ngành</th>
+            <th scope="col">Trường qua đào tạo</th>
+            <th scope="col">Xếp loại</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let edu of paginatedEducation; let i = index;">
+            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <!-- Sử dụng biến user để lưu trữ thông tin về người dùng tương ứng với user_id của bản ghi giáo dục -->
+            <ng-container *ngIf="list && list.length > 0">
+              <!-- Tìm kiếm người dùng với user_id tương ứng -->
+              <ng-container *ngFor="let user of list">
+                <ng-container *ngIf="user.id === edu.user_id">
+                  <td>{{ user.fullname }}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <td>{{ edu.specialized }}</td>
+            <td>{{ edu.name }}</td>
+            <td>{{ edu.graduation_Type }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="editEducation(edu.id)">Sửa</button>
+              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteEducation(edu.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Pagination -->
+      <div class="pagination-container">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" (click)="prevPage()" [disabled]="currentPage ===
+              1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </button>
+            </li>
+            <li class="page-item" *ngFor="let page of totalPagesArray()">
+              <button class="page-link" (click)="setCurrentPage(page)" [class.active]="page === currentPage">{{ page }}</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= education.length" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </nb-card-body>
-</nb-card>
-
-
-
+  </nb-card>
+</div>
+<router-outlet *ngIf="showRouterOutlet"></router-outlet>

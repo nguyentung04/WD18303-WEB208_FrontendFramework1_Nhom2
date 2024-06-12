@@ -11,40 +11,56 @@ import { certificate } from 'app/@core/interfaces/pages/certificate';
 })
 export class certificateComponent implements OnInit {
   showRouterOutlet: boolean = false;
-  login: certificate[] = [] ;
+  certificateList: certificate[] = [] ;
   table: string = 'certificate'
 
-  constructor(private postService: PostService) { }
+  constructor(private router: Router, private certificate: PostService) {
+  }
 
   ngOnInit() {
-    this.getLogin();
-  }
-
-  getLogin() {
-
-    this.postService.getAllUser(this.table).subscribe(login => {
-      this.login = login;
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/certificate/');
+      }
     });
+    this.getAll();
+
+
   }
 
-  addCer(user: any) {
-    const tableName = 'certificate';
-    this.postService.postCer(user, tableName).subscribe(() => {
-      this.getLogin();
-    });
+  getAll() {
+    this.certificate.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.certificateList = data;
+    })
   }
 
-  editCer(id: number, user: any) { 
-    const tableName = 'certificate';
-    this.postService.putCer(user, id).subscribe(() => {
-      this.getLogin();
-    });
+
+
+  deleteCer(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.certificate.deleteUser(this.table, Id).subscribe(
+        () => {
+          console.log('Xóa thành công');
+          this.getAll();
+        },
+        error => {
+          console.error(error);
+        }
+      );
+    }
+  }
+  
+
+
+  add() {
+    this.router.navigate(['/pages/certificate/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/certificate/edit/${id}`])
   }
 
-  deleteCer(id: number) { 
-    const tableName = 'certificate';
-    this.postService.deleteUser(tableName, id).subscribe(() => {
-      this.getLogin();
-    });
-  }
+ 
+
 }

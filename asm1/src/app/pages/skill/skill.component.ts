@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { SmartTableData } from 'app/@core/data/skill';
+import { NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
+import { PostService } from 'app/@core/services/apis/post.service';
+import { Iskill } from 'app/@core/interfaces/pages/skill';
+
 
 @Component({
   selector: 'ngx-dashboard',
@@ -9,50 +14,52 @@ import { SmartTableData } from 'app/@core/data/skill';
 })
 
 export class SkillComponent implements OnInit {
-  ngOnInit(): void { }
+  showRouterOutlet: boolean = false;
 
-  skill = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      skills: {
-        title: 'Kỹ năng ',
-        type: 'string',
-      }
-  
+  lists: Iskill[] = [];
+  list: Iskill[] = [];
 
-    },
-  };
+  table: string = 'skill';
 
-  source: LocalDataSource = new LocalDataSource();
+  id = this.formedit.snapshot.params.id;
 
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private router: Router, private skills: PostService,  private formedit: ActivatedRoute) {
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/skill/');
+      }
+    });
+    this.getAll();
+
+  }
+
+  getAll() {
+    this.skills.getAllUser(this.table).subscribe(data => {
+      console.log(data);
+      this.lists = data;
+    })
+  }
+
+
+  delete(id: string) {
+    const Id = parseInt(id);
+    if (confirm('Bạn chắc chắn muốn xóa?')) {
+      this.skills.deleteUser(this.table,Id).subscribe(() => {
+        console.log('Xóa thành công');
+        this.getAll();
+      }, error => {
+        console.error(error);
+      });
     }
   }
 
+  add() {
+    this.router.navigate(['/pages/skill/create'])
+  }
+  edit(id: string) {
+    this.router.navigate([`/pages/skill/edit/${id}`])
+  }
 }
