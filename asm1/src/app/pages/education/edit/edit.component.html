@@ -65,10 +65,11 @@
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label"></label>
                 <div class="col-lg-6 p-2">
-                  <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="!validForm.dirty && !validForm.touched">Xác Nhận</button>
                   <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
                 </div>
               </div>
+            
             </form>
           </div>
         </div>

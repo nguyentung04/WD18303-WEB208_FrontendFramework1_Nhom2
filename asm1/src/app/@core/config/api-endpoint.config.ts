@@ -1,7 +1,8 @@
 import {APP_CONFIG} from "./app.config";
 import {IAPIEndpoint} from "../interfaces";
+import { api } from "@environments/environmant.api";
 
-export const API_BASE_URL = APP_CONFIG.apiBaseUrl;
+export const API_BASE_URL = APP_CONFIG.apiUrl;
 
 export const API_ENDPOINT: IAPIEndpoint = {
   auth: {

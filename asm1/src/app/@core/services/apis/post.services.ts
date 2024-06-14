@@ -9,7 +9,7 @@ import { api } from '@environments/environmant.api';
   providedIn: 'root'
 })
 export class PostService2 {
- 
+
 
   private apiUrl = api.apiUrl;
 
@@ -19,6 +19,10 @@ export class PostService2 {
     return this.http.get(this.apiUrl + '/' + table + '/' + id);
   }
 
+  loginUser(email: string, password: string): Observable<any> {
+    return this.http.post('/api/login', { email, password });
+  }
+  
   getAllUser(table: string): Observable<any> {
     return this.http.get(this.apiUrl + '/' + table);
   }

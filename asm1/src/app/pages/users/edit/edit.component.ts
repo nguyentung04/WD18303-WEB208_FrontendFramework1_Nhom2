@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Iusers } from 'app/@core/interfaces/pages/users';
 import { PostService2 } from 'app/@core/services/apis/post.services';
-;
+
 
 @Component({
   selector: 'app-edit',
@@ -26,7 +26,7 @@ export class EditComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       role_id: new FormControl('', Validators.required),
       date_start: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+    
     });
   }
 
@@ -49,6 +49,7 @@ export class EditComponent implements OnInit {
       this.router.navigate(['/pages/users']);
     }); 
   });
+  
 }
 
 
@@ -69,7 +70,7 @@ export class EditComponent implements OnInit {
       email: user.email,
       role_id: user.role_id,
       date_start: date_start.toISOString().substring(0, 10), 
-      password: user.password
+     
     });
   }
 
