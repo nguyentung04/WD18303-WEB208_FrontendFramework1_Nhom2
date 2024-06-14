@@ -52,31 +52,31 @@ export class CertificateEditComponent implements OnInit {
 
     console.log('Submitting form:', updateCertificate);
 
-    const numericId = parseInt(this.id, 10); // Convert this.id to a number
+    const numericId = parseInt(this.id, 10);
 
     this.certificateService.putCer(updateCertificate, numericId, this.table).subscribe(
       res => {
         updateCertificate.id = res.id;
-        console.log('Update response:', res); // Log the response from the API
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/pages/certificate']);
-        });
+        console.log('Update response:', res);
+
+        this.router.navigate(['/pages/certificate']);
+
       },
       error => {
-        console.error('Error updating certificate', error); // Log any error
+        console.error('Error updating certificate', error);
       }
     );
   }
 
   getByID(id: string): void {
-    const ID = parseInt(id, 10); // Ensure the base is specified for parseInt
-    console.log(`Fetching certificate with ID: ${ID}`); // Log the ID being fetched
+    const ID = parseInt(id, 10);
+    console.log(`Fetching certificate with ID: ${ID}`);
 
     this.certificateService.getById(ID, this.table).subscribe(
       data => {
-        console.log('API response:', data); // Log the full API response
+        console.log('API response:', data);
 
-      this.certificateList=data[0];
+        this.certificateList = data[0];
       },
       error => {
         console.error('Error fetching data', error);

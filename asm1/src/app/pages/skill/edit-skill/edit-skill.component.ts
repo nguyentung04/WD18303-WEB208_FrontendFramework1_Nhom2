@@ -50,10 +50,8 @@ export class EditSkillComponent {
       skill: this.validForm.value.skill,
     };
 
-    this.user.putSkill(newSkill, this.id,this.table).subscribe(res => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.user.putSkill(newSkill, this.id,this.table).subscribe(res => { 
         this.router.navigate(['/pages/skill']);
-      }); 
     });
   }
 

@@ -20,11 +20,7 @@ export class languageComponent implements OnInit {
   constructor(private router: Router, private inlanguage: PostService, private levelState: LevelStateService) {
   }
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/inlanguage/');
-      }
-    });
+  
     this.getAll();
 
     this.levelState.users.subscribe(({ action, data }) => {

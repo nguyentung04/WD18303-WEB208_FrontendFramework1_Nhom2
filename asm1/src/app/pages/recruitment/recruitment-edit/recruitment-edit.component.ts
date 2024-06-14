@@ -60,10 +60,8 @@ export class RecruitmentEditComponent implements OnInit {
     this.recruitmentService.putRe(updateRecruitment, numericId, this.table).subscribe(
       res => {
         updateRecruitment.id = res.id;
-        console.log('Update response:', res); // Log the response from the API
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        console.log('Update response:', res); // Log the response from the API      
           this.router.navigate(['/pages/recruitment']);
-        });
       },
       error => {
         console.error('Error updating recruitment', error); // Log any error
