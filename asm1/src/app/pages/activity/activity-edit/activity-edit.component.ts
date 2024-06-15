@@ -49,23 +49,6 @@ export class ActivityEditComponent implements OnInit {
       (data) => {
         console.log('API response:', data); //Ghi lại phản hồi API đầy đủ
         this.list = data[0];
-        // if (data) {
-        //   this.listActivity = [data]; //Gói dữ liệu trong một mảng để phù hợp với loại dự kiến
-
-        //   if (this.validForm) {
-        //     this.validForm.patchValue({
-        //       user_id: data.user_id,
-        //       role: data.role,
-        //       start_time: data.start_time,
-        //       end_time: data.end_time,
-        //       content_description: data.content_description,
-        //     });
-        //   }
-
-        //   this.cdr.detectChanges(); //Phát hiện thay đổi kích hoạt theo cách thủ công
-        // } else {
-        //   console.warn('No certificate data found.');
-        // }
       },
       (error) => {
         console.error('Error fetching data', error);

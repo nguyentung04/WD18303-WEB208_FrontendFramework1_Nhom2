@@ -114,7 +114,7 @@ const update = (table, data, id, callback) => {
 
 
 const Delete = (table, id, callback) => {
-  const sql = `DELETE FROM ?? WHERE  ?`;
+  const sql = `DELETE FROM ?? WHERE  id=?`;
   db.query(sql, [table, id], (err, results) => {
     if (err) {
       console.error('Error executing query:', err);

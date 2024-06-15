@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Activity } from 'app/@core/interfaces/pages/activity';
-import { PostService2 } from 'app/@core/services/apis/activity.post.service';
+import { activityService } from 'app/@core/services/apis/activity.service';
 
 @Component({
   selector: 'ngx-activity',
@@ -13,10 +13,14 @@ export class ActivityComponent implements OnInit {
   listActivity: Activity[] = [];
   table: string = 'activity';
 
-  constructor(private router: Router, private activityService: PostService2) { }
+  constructor(private router: Router, private activityService: activityService) { }
 
   ngOnInit() {
-   
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.showRouterOutlet = this.router.url.includes('/activity/');
+      }
+    });
     this.getAll();
   }
 
@@ -27,19 +31,17 @@ export class ActivityComponent implements OnInit {
     });
   }
 
-  deleteActivity(id: string) {
-    const Id = parseInt(id, 10);
+  delete(id: string) {
+    const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.activityService.deleteActivity(this.table, Id).subscribe(() => {
-        console.log('Xóa thành công');
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/pages/activity']);
-        });
-        this.listActivity = this.listActivity.filter(activity => activity.id !== Id.toString());
-      }, error => {
-        console.error(error);
-        alert('Có lỗi xảy ra khi xóa. Vui lòng thử lại.');
-      });
+      this.activityService.delete(this.table, Id).subscribe(res => {
+          console.log('Xóa thành công');
+          this.getAll();
+        },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
   

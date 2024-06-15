@@ -18,7 +18,7 @@
                                             {{ user.id }} {{user.fullname}}
                                         </option>
                                     </select>
-                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
+                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').touched || submitted)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
                                             liệu!</span>
@@ -33,7 +33,7 @@
                                 </label>
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" formControlName="software">
-                                    <div *ngIf="validForm.get('software').invalid && (validForm.get('software').dirty || validForm.get('software').touched)"
+                                    <div *ngIf="validForm.get('software').invalid && (validForm.get('software').touched || submitted)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('software').errors.required">Vui lòng nhập dữ
                                             liệu!</span>
@@ -46,11 +46,11 @@
                                 </label>
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" formControlName="level">
-                                    <div *ngIf="validForm.get('level').invalid && (validForm.get('level').dirty || validForm.get('level').touched)"
-                                        class="text-danger">
-                                        <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ
-                                            liệu!</span>
-                                    </div>
+                                    <div *ngIf="validForm.get('level').invalid && (validForm.get('level').touched || submitted)"
+                                    class="text-danger">
+                                    <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ
+                                        liệu!</span>
+                                </div>
                                 </div>
                             </div>
 
@@ -58,7 +58,7 @@
                                 <label class="col-lg-4 col-form-label"><span class="text-danger"></span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                    <button type="submit" class="btn btn-primary">Xác
                                         Nhận</button>
                                     <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
                                         lại</button>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { PostService } from './../../@core/services/apis/post.service';
 import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
+import { informationtechnologyexperienceService } from 'app/@core/services/apis/informationtechnologyexperience.service';
 
 @Component({
   selector: 'ngx-activity',
@@ -15,54 +16,36 @@ export class InformationtechnologyexperienceComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private informationtechnologyexperienceService: PostService
+    private informationtechnologyexperienceService: informationtechnologyexperienceService
   ) {}
 
   ngOnInit() {
-   
     this.getAll();
   }
 
   getAll() {
     this.informationtechnologyexperienceService
-      .getAllUser(this.table)
+      .getAllInformationtechnologyexperience(this.table)
       .subscribe((data) => {
         console.log(data);
         this.listInformationtechnologyexperience = data;
       });
   }
 
-  activityService;
-  deleteInformationtechnologyexperience(id: string) {
-    const Id = parseInt(id, 10);
+  delete(id: string) {
+    const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.informationtechnologyexperienceService
-        .deleteUser(this.table, Id)
-        .subscribe(
-          () => {
-            console.log('Xóa thành công');
-            this.router
-              .navigateByUrl('/', { skipLocationChange: true })
-              .then(() => {
-                this.router.navigate([
-                  '/pages/informationtechnologyexperience',
-                ]);
-              });
-            this.listInformationtechnologyexperience =
-              this.listInformationtechnologyexperience.filter(
-                (activity) => activity.id !== Id.toString()
-              );
-          },
-          (error) => {
-            console.error(error);
-            alert('Có lỗi xảy ra khi xóa. Vui lòng thử lại.');
-          }
-        );
+      this.informationtechnologyexperienceService.delete(this.table, Id).subscribe(
+        (res) => {
+          console.log('Xóa thành công');
+          this.getAll();
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
   }
-
-
-
   add() {
     this.router.navigate(['/pages/informationtechnologyexperience/create']);
   }

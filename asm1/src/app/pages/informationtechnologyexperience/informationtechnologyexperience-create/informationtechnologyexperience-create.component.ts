@@ -20,6 +20,7 @@ export class InformationtechnologyexperienceCreateComponent implements OnInit {
   table1: string = 'userinfo';
   list: IuserInfo[] = [];
   validForm: FormGroup;
+  submitted = false;
 
   ngOnInit(): void {
     this.validForm = new FormGroup({
@@ -38,6 +39,11 @@ export class InformationtechnologyexperienceCreateComponent implements OnInit {
       });
   }
   onSubmit() {
+    this.submitted = true;
+
+    if (this.validForm.invalid) {
+      return;
+    }
     const newInformationtechnologyexperience: Informationtechnologyexperience =
       {
         id: '',
