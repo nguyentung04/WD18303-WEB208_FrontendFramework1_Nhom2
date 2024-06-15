@@ -1,0 +1,19 @@
+<div class="pagination-container d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <button class="page-link" [disabled]="isFirstPage()" (click)="goToFirstPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <li class="page-item">
+        <button class="page-link custom">{{ current_page }}</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" [disabled]="isLastPage()" (click)="goToLastPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
