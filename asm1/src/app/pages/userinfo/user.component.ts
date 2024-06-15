@@ -4,7 +4,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { IuserInfo } from './../../@core/interfaces/pages/userinfo';
 import { PostService } from './../../@core/services/apis/post.service';
 
-
 @Component({
   selector: 'ngx-dashboard',
   styleUrls: ['./user.component.scss'],

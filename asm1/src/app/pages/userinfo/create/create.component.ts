@@ -5,7 +5,6 @@ import { FormControl, FormGroup, MinValidator, Validators } from '@angular/forms
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
-
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',

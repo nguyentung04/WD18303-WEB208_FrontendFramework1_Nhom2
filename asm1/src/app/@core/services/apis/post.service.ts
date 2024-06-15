@@ -161,11 +161,8 @@ putActivity(data: Activity, id: number, table: string): Observable<any> {
 
 
 
- 
-  deleteActivity(table: string, id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
-  }
-  
+
+
   // kết thúc bảng hoạt động
 
   // bảng kinh nghiệm khóa học

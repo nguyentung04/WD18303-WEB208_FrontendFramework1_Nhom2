@@ -9,7 +9,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
 @Component({
   selector: 'app-certificate-edit',
   templateUrl: './certificate-edit.component.html',
-  styleUrls: ['./certificate-edit.component.scss']
+  styleUrls: ['./certificate-edit.component.scss'],
 })
 export class CertificateEditComponent implements OnInit {
   table: string = 'certificate';
@@ -73,12 +73,12 @@ export class CertificateEditComponent implements OnInit {
     console.log(`Fetching certificate with ID: ${ID}`); // Log the ID being fetched
 
     this.certificateService.getById(ID, this.table).subscribe(
-      data => {
+      (data) => {
         console.log('API response:', data); // Log the full API response
 
       this.certificateList=data[0];
       },
-      error => {
+      (error) => {
         console.error('Error fetching data', error);
       }
     );

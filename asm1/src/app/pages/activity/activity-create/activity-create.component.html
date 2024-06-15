@@ -19,11 +19,11 @@
                                             {{ user.id }} {{user.fullname}}
                                         </option>
                                     </select>
-                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
-                                        class="text-danger">
-                                        <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
-                                            liệu!</span>
-                                    </div>
+                                   
+                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"class="text-danger">
+                                        <div *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
+                                            liệu!</div>
+                                      </div>
                                 </div>
 
                             </div>
@@ -98,3 +98,4 @@
         </div>
     </div>
 </div>
+
