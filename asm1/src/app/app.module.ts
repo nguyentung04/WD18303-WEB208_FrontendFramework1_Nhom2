@@ -15,6 +15,7 @@ import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
 import { PostService } from './@core/services/apis/post.service';
 import { PostService2 } from './@core/services/apis/post.services';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,8 +25,6 @@ import { PostService2 } from './@core/services/apis/post.services';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
