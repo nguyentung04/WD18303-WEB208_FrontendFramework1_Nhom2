@@ -19,13 +19,7 @@ export class InformationtechnologyexperienceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes(
-          '/informationtechnologyexperience/'
-        );
-      }
-    });
+   
     this.getAll();
   }
 

@@ -38,7 +38,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="date" class="form-control" formControlName="birthday" [(ngModel)]="list.birthday"
+                                    <input type="date" class="form-control" formControlName="birthday" [(ngModel)]="list.birthday" name="birthday"
                                    >
                                     <div *ngIf="validForm.get('birthday').invalid && (validForm.get('birthday').dirty || validForm.get('birthday').touched)"
                                         class="text-danger">

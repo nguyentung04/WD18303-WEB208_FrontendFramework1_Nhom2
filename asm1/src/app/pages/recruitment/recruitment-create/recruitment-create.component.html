@@ -13,7 +13,7 @@
                                         <option *ngFor="let user of userinfoList" value="{{user.id}}">{{ user.id }} {{ user.fullname }}</option>
                                     </select>
                                     <div *ngIf="validForm.get(' user.id ')?.invalid && validForm.get(' user.id ')?.touched" class="text-danger">
-                                        Trạng thái là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -22,7 +22,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" id="role" formControlName="role" placeholder="Nhập tổ chức cấp">
                                     <div *ngIf="validForm.get('role')?.invalid && validForm.get('role')?.touched" class="text-danger">
-                                        Vị trí là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" id="status" formControlName="status">
                                     <div *ngIf="validForm.get('status')?.invalid && validForm.get('status')?.touched" class="text-danger">
-                                        Trạng thái là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" id="rate" formControlName="rate">
                                     <div *ngIf="validForm.get('rate')?.invalid && validForm.get('rate')?.touched" class="text-danger">
-                                        Đánh giá là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" id="result" formControlName="result">
                                     <div *ngIf="validForm.get('result')?.invalid && validForm.get('result')?.touched" class="text-danger">
-                                        Kết quả là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>

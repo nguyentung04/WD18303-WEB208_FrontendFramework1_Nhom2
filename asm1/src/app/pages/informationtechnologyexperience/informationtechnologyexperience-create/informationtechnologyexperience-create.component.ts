@@ -53,11 +53,9 @@ export class InformationtechnologyexperienceCreateComponent implements OnInit {
       )
       .subscribe((res) => {
         newInformationtechnologyexperience.id = res.id;
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
+       
             this.router.navigate(['/pages/informationtechnologyexperience']);
-          });
+         
       });
   }
 

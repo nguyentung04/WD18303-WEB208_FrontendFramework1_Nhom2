@@ -89,11 +89,9 @@ export class ActivityEditComponent implements OnInit {
       .subscribe((res) => {
         UpdateActivity.id = res.id;
         console.log('Update response:', res);
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
+        
             this.router.navigate(['/pages/activity']);
-          });
+      
       });
   }
 
