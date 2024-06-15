@@ -14,7 +14,7 @@
             <th scope="col">Thời gian nộp</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Đánh giá</th>
-          
+            <th scope="col">Ứng tuyển</th>
             <th scope="col">Kết quả</th>
             <th scope="col">Hành động</th>
 
@@ -27,7 +27,14 @@
             <td>{{ re.submissionTime |  date: 'dd/MM/yyyy'}}</td>
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
-     
+            <ng-container *ngIf="list && list.length > 0">
+              <!-- Tìm kiếm người dùng với user_id tương ứng -->
+              <ng-container *ngFor="let user of list">
+                <ng-container *ngIf="user.id === re .user_id">
+                  <td>{{ user.fullname }}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
             <td>{{ re.result }}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment'; // Update interface path
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+import { RecruitmenttService } from 'app/@core/services/apis/recruitment';
 
 @Component({
   selector: 'app-recruitment-creatte',
@@ -17,7 +18,7 @@ export class RecruitmentCreateComponent implements OnInit {
   filename = '';
   userinfoList: IuserInfo[] = [];
   table1: string = 'userinfo';
-  constructor(private router: Router, private recruitment: PostService) { }
+  constructor(private router: Router, private recruitment: RecruitmenttService) { }
 
   ngOnInit(): void {
     this.validForm = new FormGroup({

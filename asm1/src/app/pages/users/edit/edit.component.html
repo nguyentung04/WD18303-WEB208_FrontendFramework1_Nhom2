@@ -1,11 +1,10 @@
-
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
           <div class="form-validation">
-            <h3>Thêm người dùng</h3>
+            <h3>Sửa thông tin người dùng</h3>
             <form [formGroup]="validForm" (ngSubmit)="onSubmit()" class="form-valide">
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="name">Tên đăng nhập <span class="text-danger">*</span></label>
@@ -48,21 +47,13 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="password">Mật khẩu <span class="text-danger">*</span></label>
-                <div class="col-lg-6 p-2">
-                  <input type="password" class="form-control" id="password" formControlName="password" required>
-                  <div *ngIf="validForm.get('password').invalid && (validForm.get('password').dirty || validForm.get('password').touched)" class="text-danger">
-                    <div *ngIf="validForm.get('password').errors.required">Mật khẩu không được để trống</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
                 <label class="col-lg-4 col-form-label"></label>
                 <div class="col-lg-6 p-2">
-                  <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="!validForm.dirty && !validForm.touched">Xác Nhận</button>
                   <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay lại</button>
                 </div>
               </div>
+             
             </form>
           </div>
         </div>

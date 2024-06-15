@@ -14,7 +14,7 @@
                                         formControlName="user_id" placeholder="Nhập tên chứng chỉ" [(ngModel)]="recruitmentList.user_id" disabled>
                                     <div *ngIf="validForm.get('user_id')?.invalid && validForm.get('user_id')?.touched"
                                         class="text-danger">
-                                        Tên ứng tuyển là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                         placeholder="Nhập tổ chức cấp" [(ngModel)]="recruitmentList.role">
                                     <div *ngIf="validForm.get('role')?.invalid && validForm.get('role')?.touched"
                                         class="text-danger">
-                                        Tổ chức cấp là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control" id="status" formControlName="status" [(ngModel)]="recruitmentList.status">
                                     <div *ngIf="validForm.get('status')?.invalid && validForm.get('status')?.touched"
                                         class="text-danger">
-                                        Hạn sử dụng là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     <input type="text" class="form-control" id="rate" formControlName="rate" [(ngModel)]="recruitmentList.rate">
                                     <div *ngIf="validForm.get('rate')?.invalid && validForm.get('rate')?.touched"
                                         class="text-danger">
-                                        Hạn sử dụng là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                     <input type="text" class="form-control" id="result" formControlName="result" [(ngModel)]="recruitmentList.result">
                                     <div *ngIf="validForm.get('result')?.invalid && validForm.get('result')?.touched"
                                         class="text-danger">
-                                        Hạn sử dụng là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -74,8 +74,7 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-6 p-2 offset-lg-4">
-                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
-                                        Nhận</button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid || isUnchanged()">Xác Nhận</button>
                                     <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
                                         lại</button>
                                 </div>

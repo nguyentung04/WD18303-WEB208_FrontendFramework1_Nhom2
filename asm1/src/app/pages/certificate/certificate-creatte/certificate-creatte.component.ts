@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+import { CertificateService } from 'app/@core/services/apis/certificate';
 
 @Component({
   selector: 'app-certificate-creatte',
@@ -18,7 +19,7 @@ export class CertificateCreatteComponent implements OnInit {
   filename = '';
   userinfoList: IuserInfo[] = [];
   table1: string = 'userinfo';
-  constructor(private router: Router, private certificate: PostService) { }
+  constructor(private router: Router, private certificate: CertificateService) { }
 
   ngOnInit(): void {
 
