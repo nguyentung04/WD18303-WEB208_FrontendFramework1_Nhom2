@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-
+import { AuthService } from 'app/@core/services/apis'; // Import AuthService
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {LayoutService} from "../../../@core/services/common/layout.service";
+import { LayoutService } from 'app/@core/services/common/layout.service';
 
 @Component({
   selector: 'ngx-header',
@@ -30,32 +30,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [ { title: 'Thông tin' }, { title: 'Đăng xuất' } ];
+  router: any;
 
   constructor(
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    this.user = {name: 'ABC Company', picture: 'assets/images/logo.jpg'}
+    this.user = { name: 'ABC Company', picture: 'assets/images/logo.jpg' };
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
-        .pipe(
-            map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-            takeUntil(this.destroy$),
-        )
-        .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+      .pipe(
+        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
 
     this.themeService.onThemeChange()
-        .pipe(
-            map(({ name }) => name),
-            takeUntil(this.destroy$),
-        )
-        .subscribe(themeName => this.currentTheme = themeName);
+      .pipe(
+        map(({ name }) => name),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(themeName => this.currentTheme = themeName);
   }
 
   ngOnDestroy() {
@@ -76,5 +78,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  onLogoutClick() {
+    this.authService.logout().subscribe(
+      () => {
+        // Đăng xuất thành công, chuyển hướng đến trang đăng nhập
+        this.router.navigate(['/auth/login']);
+      },
+      (error) => {
+        // Xử lý lỗi nếu có
+        console.error('Đã xảy ra lỗi khi đăng xuất:', error);
+        // Hiển thị thông báo lỗi cho người dùng
+        // Ví dụ: this.toastr.error('Đăng xuất thất bại', 'Lỗi');
+      }
+    );
   }
 }
