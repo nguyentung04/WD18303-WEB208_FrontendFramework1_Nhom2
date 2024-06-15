@@ -1,9 +1,12 @@
 import {IAppConfig} from "../interfaces";
 import {environment} from "@environments/environment";
 
+
 export const APP_CONFIG: IAppConfig = {
   module: 'NHA-XE-TRUONG-DUNG',
   apiBaseUrl: environment.apiBaseUrl,
+
+
   httpStatus: {
     CONTINUE: 100,
     SWITCHING_PROTOCOLS: 101,

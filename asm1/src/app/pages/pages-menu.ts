@@ -18,7 +18,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/cv',
   },
   {
-    title: 'Thông tin nhân viên',
+    title: 'Thông tin ứng viên',
     icon: 'person-outline',
     link: '/pages/userinfo',
   },

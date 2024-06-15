@@ -1,10 +1,10 @@
-import { IuserInfo } from './../../../@core/interfaces/pages/userinfo';
+
 import { Iskill } from './../../../@core/interfaces/pages/skill';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { PostService } from 'app/@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { PostService } from 'app/@core/services/apis/post.service';
   styleUrls: ['./edit-skill.component.scss']
 })
 export class EditSkillComponent {
-  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute) { }
+  constructor(private router: Router, private user: UserInfoService, private formedit: ActivatedRoute) { }
 
   list: Iskill[] = [];
   table: string = 'skill';
@@ -36,10 +36,6 @@ export class EditSkillComponent {
     this.user.getById(ID, this.table).subscribe(data => {
       this.list = data[0];
       console.log(data);
-      this.validForm.patchValue({
-           skill:data.skill,
-      }   
-      )
     })
   }
 
@@ -54,10 +50,8 @@ export class EditSkillComponent {
       skill: this.validForm.value.skill,
     };
 
-    this.user.putSkill(newSkill, this.id,this.table).subscribe(res => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.user.putSkill(newSkill, this.id,this.table).subscribe(res => { 
         this.router.navigate(['/pages/skill']);
-      }); 
     });
   }
 

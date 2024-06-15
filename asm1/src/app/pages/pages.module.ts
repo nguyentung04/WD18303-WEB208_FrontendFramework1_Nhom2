@@ -7,7 +7,7 @@ import { userModule } from './userinfo/user.module';
 import { usersModule } from './users/users.module';
 import { educationModule } from './education/education.module';
 import { skillModule } from './skill/skill.module';
-import { certificateModule } from './certificate/certificate.module';
+
 import { recruitmentModule } from './recruitment/recruitment.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PaginatorModule } from "../@theme/components/paginator/paginator.module";
@@ -17,8 +17,11 @@ import { informationtechnologyexperienceModule } from './informationtechnologyex
 
 import { activityModule } from './activity/activity.module';
 import { experienceModule } from './experience/experience.module';
-import { CvModule } from './cv/cv.module';
 import { languageModule } from './inlanguage/language.module';
+import { CvModule } from './cv/cv.module';
+import { certificateModule } from './certificate/certificate.module';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -34,12 +37,14 @@ import { languageModule } from './inlanguage/language.module';
     userModule,
     skillModule,
     certificateModule,
-    recruitmentModule,
+   recruitmentModule,
     informationtechnologyexperienceModule,
     activityModule,
     languageModule,
     experienceModule,
-    CvModule
+    CvModule,
+    RouterModule,
+    CommonModule
   ],
   declarations: [
     PagesComponent,

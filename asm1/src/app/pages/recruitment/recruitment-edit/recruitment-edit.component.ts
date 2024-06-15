@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from './../../../@core/services/apis/post.service';
+
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
+import { RecruitmenttService } from 'app/@core/services/apis/recruitment';
 
 @Component({
   selector: 'app-recruitment-edit',
@@ -11,13 +12,14 @@ import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 })
 export class RecruitmentEditComponent implements OnInit {
   table: string = 'recruitment';
-  recruitmentList: recruitment[] = [];
+  recruitmentList: recruitment;
   validForm: FormGroup;
   id: string;
+  originalData: any;
 
   constructor(
     private router: Router,
-    private recruitmentService: PostService,
+    private recruitmentService: RecruitmenttService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {
@@ -25,8 +27,6 @@ export class RecruitmentEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.validForm = new FormGroup({
       user_id: new FormControl('', Validators.required),
       role: new FormControl('', Validators.required),
@@ -38,9 +38,32 @@ export class RecruitmentEditComponent implements OnInit {
     this.getById(this.id);
   }
 
-  onSubmit() {
-    if (this.validForm.invalid) {
-      // Cung cấp phản hồi cho người dùng nếu biểu mẫu không hợp lệ
+  getById(id: string): void {
+    const ID = parseInt(id, 10);
+    console.log(`Fetching recruitment with ID: ${ID}`);
+    
+    this.recruitmentService.getById(ID, this.table).subscribe(
+      data => {
+        this.recruitmentList = data[0];
+        this.originalData = { ...data[0] };
+      },
+    
+    );
+  }
+
+  isUnchanged(): boolean {
+    const formValues = this.validForm.getRawValue();
+    return (
+      formValues.user_id === this.originalData.user_id &&
+      formValues.role === this.originalData.role &&
+      formValues.status === this.originalData.status &&
+      formValues.rate === this.originalData.rate &&
+      formValues.result === this.originalData.result
+    );
+  }
+
+  onSubmit(): void {
+    if (this.validForm.invalid || this.isUnchanged()) {
       return;
     }
 
@@ -55,52 +78,21 @@ export class RecruitmentEditComponent implements OnInit {
 
     console.log('Submitting form:', updateRecruitment);
 
-    const numericId = parseInt(this.id, 10); // Convert this.id to a number
+    const numericId = parseInt(this.id, 10);
 
     this.recruitmentService.putRe(updateRecruitment, numericId, this.table).subscribe(
       res => {
         updateRecruitment.id = res.id;
-        console.log('Update response:', res); // Log the response from the API
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        console.log('Update response:', res); // Log the response from the API      
           this.router.navigate(['/pages/recruitment']);
-        });
       },
       error => {
-        console.error('Error updating recruitment', error); // Log any error
+        console.error('Error updating recruitment', error);
       }
     );
   }
 
-  getById(id: string): void {
-    const ID = parseInt(id, 10);
-    console.log(`Fetching recruitment with ID: ${ID}`); // Log the ID being fetched
-    this.recruitmentService.getById(ID, this.table).subscribe(
-      (data) => {
-        console.log('API response:', data); // Log the full API response
-
-        if (data) {
-          this.recruitmentList = [data]; // Wrap data in an array to match the expected type
-
-          if (this.validForm) {
-            this.validForm.patchValue({
-              user_id: data.user_id,
-              role: data.role,
-              status: data.status,
-              rate: data.rate,
-              result: data.result,
-            });
-          }
-        } else {
-          console.warn('No recruitment data found.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
-
-  back() {
+  back(): void {
     this.router.navigate(['/pages/recruitment']);
   }
 }

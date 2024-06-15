@@ -17,14 +17,14 @@
   }
 }
 
+
 nb-card-header {
   display: flex;
   justify-content: space-between;
 }
 
-nb-card-header {
-  display: flex;
-  justify-content: space-between;
+.custom-btn button:first-child {
+  margin-right: 20px;
 }
 
 .imgCustom {

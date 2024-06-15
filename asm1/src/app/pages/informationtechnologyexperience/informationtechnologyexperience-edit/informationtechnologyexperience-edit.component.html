@@ -4,18 +4,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
-                        <h3>Thêm hoạt động</h3>
-                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" enctype="multipart/form-data">
+                        <h3>Sửa thông tin kinh nhiệm tin học nhân viên</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" enctype="multipart/form-data" *ngIf="listInformationtechnologyexperience">
                            
                             <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="img">Họ tên <span
+                                <label class="col-lg-4 col-form-label" for="img">Id nhân viên<span
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="full_name">
-                                    <div *ngIf="validForm.get('full_name').invalid && (validForm.get('full_name').dirty || validForm.get('full_name').touched)"
+                                    <input type="text" class="form-control" formControlName="user_id" [(ngModel)]="listInformationtechnologyexperience.user_id" disabled>
+                                    <div *ngIf="validForm.get('user_id').invalid && (validForm.get('user_id').dirty || validForm.get('user_id').touched)"
                                         class="text-danger">
-                                        <span *ngIf="validForm.get('full_name').errors.required">Vui lòng nhập dữ
+                                        <span *ngIf="validForm.get('user_id').errors.required">Vui lòng nhập dữ
                                             liệu!</span>
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="software">
+                                    <input type="text" class="form-control" formControlName="software" [(ngModel)]="listInformationtechnologyexperience.software">
                                     <div *ngIf="validForm.get('software').invalid && (validForm.get('software').dirty || validForm.get('software').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('software').errors.required">Vui lòng nhập dữ
@@ -38,7 +38,7 @@
                                         class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" formControlName="level">
+                                    <input type="text" class="form-control" formControlName="level" [(ngModel)]="listInformationtechnologyexperience.level">
                                     <div *ngIf="validForm.get('level').invalid && (validForm.get('level').dirty || validForm.get('level').touched)"
                                         class="text-danger">
                                         <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ

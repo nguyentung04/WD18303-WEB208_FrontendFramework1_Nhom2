@@ -1,35 +1,38 @@
-<div *ngIf="!showRouterOutlet">
+
   <nb-card>
     <nb-card-header>
       Bảng thông tuyển dụng
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <!-- Hiển thị dữ liệu cố định của userComponent -->
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tên ứng tuyển</th>
+            <th scope="col">STT</th>      
             <th scope="col">Vị trí</th>
             <th scope="col">Thời gian nộp</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Đánh giá</th>
-            <th scope="col">Phụ trách ứng tuyển</th>
+            <th scope="col">Ứng tuyển</th>
             <th scope="col">Kết quả</th>
             <th scope="col">Hành động</th>
 
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let re of recruitmentList">
-            <td>{{ re.id }}</td>
-            <td>{{ re.nameRecruitment }}</td>
+          <tr *ngFor="let re of recruitmentList ; index as i">
+            <td>{{ i + 1}}</td>
             <td>{{ re.role }}</td>
-            <td>{{ re.submissionTime }}</td>
+            <td>{{ re.submissionTime |  date: 'dd/MM/yyyy'}}</td>
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
-            <td>{{ re.nameExaminer }}</td>
+            <ng-container *ngIf="list && list.length > 0">
+              <ng-container *ngFor="let user of list">
+                <ng-container *ngIf="user.id === re .user_id">
+                  <td>{{ user.fullname }}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
             <td>{{ re.result }}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
@@ -40,5 +43,4 @@
       </table>
     </nb-card-body>
   </nb-card>
-</div>
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>
+

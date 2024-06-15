@@ -1,16 +1,17 @@
 <nb-card>
     <nb-card-header>
         Bảng thông tin ứng viên
+        <button type="button" class="btn btn-outline-danger " (click)=" exportToPDF()">Xuất PDF</button>
     </nb-card-header>
     <nb-card-body>
-        <div class="container my-3">
+        <div class="container my-3" id="ExportPdf">
             <div class="row" *ngIf="list ">
                 <div class="col-md-4 left-column mb-4 mb-md-0">
                     <div class="text-center mb-4">
                         <img src="../../../../assets/images/1.jpg" class="img-fluid rounded-circle  profile-picture"
                             alt="Profile Picture">
                         <h5>{{list.fullname}}</h5>
-                        <p>{{list.nameRecruitment}}</p>
+                        <p>{{list.status}}</p>
                     </div>
                     <div class="mb-4">
                         <h6>Thông tin cá nhân</h6>

@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CreateSkillComponent } from './create-skill/create-skill.component';
 import { EditSkillComponent } from './edit-skill/edit-skill.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 
@@ -26,7 +27,8 @@ import { EditSkillComponent } from './edit-skill/edit-skill.component';
     CreateSkillComponent,
     EditSkillComponent,
     CreateSkillComponent,
-    EditSkillComponent
+    EditSkillComponent,
+    PaginatorComponent
   ],
 })
 export class skillModule { }

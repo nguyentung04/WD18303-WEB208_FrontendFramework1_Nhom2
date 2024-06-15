@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const bcrypt = require('bcryptjs');
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -93,11 +94,18 @@ const getByID = (table, id, callback) => {
 
 
 const insert = (table, data, callback) => {
+  // Mã hóa mật khẩu nếu trường hợp nó chưa được mã hóa
+  if (data.password) {
+    const salt = bcrypt.genSaltSync(10);
+    data.password = bcrypt.hashSync(data.password, salt);
+  }
+  
   const sql = `INSERT INTO ?? SET ?`;
   db.query(sql, [table, data], (err, results) => {
     callback(err, results);
   });
 };
+
 
 const update = (table, data, id, callback) => {
   const sql = `UPDATE ?? SET ? WHERE id = ?`;
@@ -128,6 +136,7 @@ const DeleteSkill = (callback, id) => {
     callback(err, results);
   });
 };
+
 
 module.exports = {
   getAll,
