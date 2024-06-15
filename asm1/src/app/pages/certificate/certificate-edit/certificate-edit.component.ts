@@ -5,6 +5,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { PostService } from 'app/@core/services/apis/post.service';
+import { CertificateService } from 'app/@core/services/apis/certificate';
 
 @Component({
   selector: 'app-certificate-edit',
@@ -20,7 +21,7 @@ export class CertificateEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private certificateService: PostService,
+    private certificateService: CertificateService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {

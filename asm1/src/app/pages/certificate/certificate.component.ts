@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { PostService }  from '../../@core/services/apis/post.service'
 import { certificate } from 'app/@core/interfaces/pages/certificate';
+import { CertificateService } from 'app/@core/services/apis/certificate';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -14,7 +15,7 @@ export class certificateComponent implements OnInit {
   certificateList: certificate[] = [] ;
   table: string = 'certificate'
 
-  constructor(private router: Router, private certificate: PostService) {
+  constructor(private router: Router, private certificate: CertificateService) {
   }
 
   ngOnInit() {
