@@ -1,40 +1,42 @@
 <nb-card>
-    <nb-card-header>
-      Bảng thông tin nhân viên
+  <nb-card-header>
+    Bảng thông tin nhân viên
+    <div class="custom-btn">
+      <button type="button" class="btn btn-outline-success " (click)=" exportUserinfo()">Xuất Excel</button>
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
-    </nb-card-header>
-    <nb-card-body>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Hình ảnh</th>
-            <th scope="col">Họ tên</th>
-            <th scope="col">Ngày sinh</th>
-            <th scope="col">Địa chỉ</th>
-            <th scope="col">Email</th>
-            <th scope="col">Số điện thoại</th>
-            <th scope="col">Chi tiết</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let list of userinfoList ; index as i">
-            <th scope="row">{{i + 1}}</th>
-            <th><img src="../../../assets/images/{{list.img}}" alt="" class="imgCustom rounded-circle"></th>
-            <td>{{list.fullname}}</td>
-            <td>{{list.birthday |  date: 'dd/MM/yyyy'}}</td>
-            <td>{{list.address}}</td>
-            <td>{{list.email}}</td>
-            <td>{{list.phone}}</td>
-            <td>
-              <button type="submit" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
-              <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteUser(list.id)">Xóa</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </nb-card-body>
-  </nb-card>
- 
-
-
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Hình ảnh</th>
+          <th scope="col">Họ tên</th>
+          <th scope="col">Ngày sinh</th>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Chi tiết</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of userinfoList ; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <th><img src="../../../assets/images/{{list.img}}" alt="" class="imgCustom rounded-circle"></th>
+          <td>{{list.fullname}}</td>
+          <td>{{list.birthday | date: 'dd/MM/yyyy'}}</td>
+          <td>{{list.address}}</td>
+          <td>{{list.email}}</td>
+          <td>{{list.phone}}</td>
+          <td>
+            <button type="submit" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
+            <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteUser(list.id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-paginator [current_page]="current_page" [last_page]="lastpage" [apiUrl]="apiUrl" (dataList)="getPage($event)">
+    </app-paginator>
+  </nb-card-body>
+</nb-card>

@@ -1,8 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import * as XLSX from 'xlsx';
+
+import { environment } from '@environments/environment';
 
 import { IuserInfo } from './../../@core/interfaces/pages/userinfo';
-import { PostService } from './../../@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 
 
 @Component({
@@ -16,17 +20,22 @@ export class userComponent implements OnInit {
   userinfoList: IuserInfo[] = [];
 
   table: string = 'userinfo';
+  //phân trang
+  lisdata: any;
+  lastpage: number = 0;
+  current_page: number = 1;
+  apiUrl = `${environment.apiBaseUrl}/${this.table}`;
 
-  constructor(private router: Router, private UserInfo: PostService) {
+
+  constructor(private router: Router, private UserInfo:UserInfoService) {
   }
 
   ngOnInit() {
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.showRouterOutlet = this.router.url.includes('/userinfo/');
-    //   }
-    // });
     this.getAll();
+
+  }
+  getPage(res: any) {
+    console.log(res);
 
   }
 
@@ -56,6 +65,31 @@ export class userComponent implements OnInit {
   edit(id: string) {
     this.router.navigate([`/pages/userinfo/edit/${id}`])
   }
+  //export ra file excel
 
+  exportToExcel(skills: any[]) {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(skills);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveExcelFile(excelBuffer, 'userinfo');
+  }
+
+  private saveExcelFile(buffer: any, fileName: string) {
+    const data: Blob = new Blob([buffer], { type: 'application/octet-stream' });
+    const url = window.URL.createObjectURL(data);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${fileName}.xlsx`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+  //
+  exportUserinfo() {
+    this.exportToExcel(this.userinfoList);
+  }
+
+  
 
 }
