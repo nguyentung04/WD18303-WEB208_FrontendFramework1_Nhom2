@@ -1,6 +1,6 @@
 import {IAppConfig} from "../interfaces";
 import {environment} from "@environments/environment";
-import { api } from "@environments/environmant.api";
+
 
 export const APP_CONFIG: IAppConfig = {
   module: 'NHA-XE-TRUONG-DUNG',

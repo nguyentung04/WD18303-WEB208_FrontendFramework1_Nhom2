@@ -1,11 +1,10 @@
-<div *ngIf="!showRouterOutlet">
+
   <nb-card>
     <nb-card-header>
       Bảng thông tuyển dụng
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <!-- Hiển thị dữ liệu cố định của userComponent -->
       <table class="table">
         <thead>
           <tr>
@@ -14,7 +13,7 @@
             <th scope="col">Thời gian nộp</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Đánh giá</th>
-          
+            <th scope="col">Ứng tuyển</th>
             <th scope="col">Kết quả</th>
             <th scope="col">Hành động</th>
 
@@ -27,7 +26,13 @@
             <td>{{ re.submissionTime |  date: 'dd/MM/yyyy'}}</td>
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
-     
+            <ng-container *ngIf="list && list.length > 0">
+              <ng-container *ngFor="let user of list">
+                <ng-container *ngIf="user.id === re .user_id">
+                  <td>{{ user.fullname }}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
             <td>{{ re.result }}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
@@ -38,5 +43,4 @@
       </table>
     </nb-card-body>
   </nb-card>
-</div>
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>
+

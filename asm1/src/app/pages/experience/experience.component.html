@@ -9,24 +9,30 @@
         <thead>
           <tr>
             <th scope="col">STT</th>
-      
+            <th scope="col">Họ tên</th> 
             <th scope="col">Công ty</th>
             <th scope="col">Vị trí</th>
             <th scope="col">Ngày bắt đầu</th>
             <th scope="col">Ngày kết thúc</th>
             <th scope="col">Mô tả</th>
-            <th scope="col">Tháo tác</th>
+            <th scope="col">Thao tác</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let list of experienceList ; index as i">
             <th scope="row">{{i +1}}</th>
-          
-            <th>{{list.company}}</th>
-            <th>{{list.vacancies}}</th>
-            <th>{{list.startdate |  date: 'dd/MM/yyyy'}}</th>
-            <th>{{list.enddate |  date: 'dd/MM/yyyy'}}</th>
-            <th>{{list.describe}}</th>
+            <ng-container *ngIf="listUser && listUser.length > 0">
+              <ng-container *ngFor="let user of listUser">
+                <ng-container *ngIf="user.id === list.user_id">
+                  <td>{{user.fullname}}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>      
+            <td>{{list.company}}</td>
+            <td>{{list.vacancies}}</td>
+            <td>{{list.startdate |  date: 'dd/MM/yyyy'}}</td>
+            <td>{{list.enddate |  date: 'dd/MM/yyyy'}}</td>
+            <td>{{list.describe}}</td>
 
             <td>
               <button type="button" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>

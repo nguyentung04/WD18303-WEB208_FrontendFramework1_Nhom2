@@ -1,7 +1,7 @@
-import { PostService } from './../../../@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 
@@ -11,7 +11,7 @@ import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent {
-  constructor(private router: Router, private user: PostService) { }
+  constructor(private router: Router, private user: UserInfoService) { }
 
   table: string = 'userinfo';
 
@@ -58,7 +58,8 @@ export class CreateComponent {
     const birthday = new Date(this.validForm.value.birthday);
     if (birthday.getFullYear() > 2003) {
       this.validForm.controls['birthday'].setErrors({ maxYear: true });
-      return;
+      return console.log('Năm sinh phải lớn hơn 2003!');
+      ;
     }
 
     const newUser: IuserInfo = {

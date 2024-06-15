@@ -10,6 +10,7 @@ import { NbCardModule } from '@nebular/theme';
 import { CreateComponent } from './create/create.component';
 import { EditComponent1 } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 
@@ -28,6 +29,7 @@ import { DeleteComponent } from './delete/delete.component';
     CreateComponent,
     EditComponent1,
     DeleteComponent,
+    PaginatorComponent
 
   ],
 })

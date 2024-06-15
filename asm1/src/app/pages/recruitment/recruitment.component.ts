@@ -1,26 +1,36 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
-import { PostService }  from '../../@core/services/apis/post.service'
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
+import { RecruitmenttService } from 'app/@core/services/apis/recruitment';
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 @Component({
   selector: 'ngx-dashboard',
   styleUrls: ['./recruitment.component.scss'],
   templateUrl: './recruitment.component.html',
 })
 export class recruitmentComponent implements OnInit {
-  showRouterOutlet: boolean = false;
-  recruitmentList: recruitment[] = [] ;
-  table: string = 'recruitment'
 
-  constructor(private router: Router, private recruitment: PostService) {
+  recruitmentList: recruitment[] = [] ;
+  table: string = 'recruitment';
+  table1: string = 'userinfo';
+  list: IuserInfo[] = [];
+  id: string
+  constructor(private router: Router, private recruitment: RecruitmenttService) {
   }
 
   ngOnInit() {
-    this.getAll();
 
+    this.recruitment.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {
+      this.list = users;
+    });
+
+    this.getAll();
+    // this.getUserById();
+    // this.getAllUser();
 
   }
+
+
 
   getAll() {
     this.recruitment.getAllUser(this.table).subscribe(data => {
@@ -28,8 +38,18 @@ export class recruitmentComponent implements OnInit {
       this.recruitmentList = data;
     })
   }
-
-
+  // getUserById() {
+  //   this.recruitment.getUserById(this.id, this.table1).subscribe(data => {
+  //     console.log(data);
+  //     this.list = data;
+  //   });
+  // }
+  // getAllUser() {
+  //   this.recruitment.getAllUser(this.table1).subscribe(data => {
+  //     console.log(data);
+  //     this.list = data;
+  //   })
+  // }
 
   deleteRe(id: string) {
     const Id = parseInt(id);

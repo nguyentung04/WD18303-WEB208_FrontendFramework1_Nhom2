@@ -30,6 +30,8 @@ export class educationComponent implements OnInit {
         this.showRouterOutlet = this.router.url.includes('/education/');
       }
     });
+    // Check for activated child routes
+
   }
   
   getEducation() {

@@ -9,7 +9,7 @@
         <thead>
           <tr>
             <th scope="col">STT</th>
-      
+            <th scope="col">Họ tên</th>
             <th scope="col">Ngôn ngữ</th>
             <th scope="col">Trình độ</th>
             <th scope="col">Thao tác</th>
@@ -18,9 +18,15 @@
         <tbody>
           <tr *ngFor="let list of languageList ; index as i">
             <th scope="row">{{i + 1}}</th>
-         
-            <th>{{list.language}}</th>
-            <th>{{list.level}}</th>
+            <ng-container *ngIf="listUser && listUser.length > 0">
+              <ng-container *ngFor="let user of listUser">
+                <ng-container *ngIf="user.id === list.user_id">
+                  <td>{{user.fullname}}</td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <td>{{list.language}}</td>
+            <td>{{list.level}}</td>
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="edit(list.id)">Sửa</button>
               <button type="button" class="btn btn-outline-danger m-2"  (click)="deleteUser(list.id)">Xóa</button>

@@ -89,6 +89,9 @@ const getByID = (table, id, callback) => {
   });
 };
 
+
+
+
 const insert = (table, data, callback) => {
   // Mã hóa mật khẩu nếu trường hợp nó chưa được mã hóa
   if (data.password) {

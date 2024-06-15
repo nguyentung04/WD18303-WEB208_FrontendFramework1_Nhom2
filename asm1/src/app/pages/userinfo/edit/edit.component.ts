@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
-import { PostService } from 'app/@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 import { DatePipe } from '@angular/common';
 
 
@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent1 {
-  constructor(private router: Router, private user: PostService, private formedit: ActivatedRoute, private datePipe: DatePipe) { }
+  constructor(private router: Router, private user: UserInfoService, private formedit: ActivatedRoute, private datePipe: DatePipe) { }
 
   table: string = 'userinfo';
 
@@ -21,7 +21,7 @@ export class EditComponent1 {
   validForm: FormGroup;
 
   filename = '';
-  
+
   id = this.formedit.snapshot.params.id;
 
   ngOnInit(): void {
@@ -64,9 +64,8 @@ export class EditComponent1 {
     const birthday = new Date(this.validForm.value.birthday);
     if (birthday.getFullYear() > 2003) {
       this.validForm.controls['birthday'].setErrors({ maxYear: true });
-      return;
+      return console.log('Năm sinh phải lớn hơn 2003!');
     }
-
 
     const UpdateUser: IuserInfo = {
       id: '',
@@ -79,8 +78,8 @@ export class EditComponent1 {
     };
 
     this.user.putUser(UpdateUser, this.id, this.table).subscribe(res => {
-    
-        this.router.navigate(['/pages/userinfo']);
+
+      this.router.navigate(['/pages/userinfo']);
     });
   }
 
@@ -88,12 +87,12 @@ export class EditComponent1 {
     const ID = parseInt(id, 10);
     this.user.getById(ID, this.table).subscribe(data => {
       this.list = data[0];
-    
+
     })
   }
-date(time:IuserInfo){
-const birthday=new Date(time.birthday);
-}
+  formatDate(date: string): string {
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+  }
 
   back() {
     this.router.navigate(['/pages/userinfo']);

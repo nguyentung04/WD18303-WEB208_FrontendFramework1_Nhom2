@@ -1,0 +1,36 @@
+<!-- <div class="container d-flex justify-content-center">
+    <div class="custom-paginator pt-4 d-flex">
+        <button class="btn btn-primary mr-2" [disabled]="hasPreviousPage" (click)="goFirstPage()">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-primary mr-2">
+            <i class="fa fa-caret-left" aria-hidden="true"></i>
+        </button>
+        <p class="paginator-page">{{current_page}}/{{last_page}}</p>
+        <button class="btn btn-primary mr-2">
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-primary mr-2" [disabled]="hasNextPage" (click)="goLastPage()">
+            <i class="fa fa-forward" aria-hidden="true"></i>
+        </button>
+    </div>
+</div> -->
+<div class="pagination-container d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <button class="page-link " [disabled]="hasPreviousPage" (click)="goFirstPage()">
+          <span aria-hidden="true">&laquo;</span>
+        </button>
+      </li>
+      <li class="page-item">
+        <button class="page-link custom">{{current_page}}</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link " [disabled]="hasNextPage" (click)="goLastPage()">
+          <span aria-hidden="true">&raquo;</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

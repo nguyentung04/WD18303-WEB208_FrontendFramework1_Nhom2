@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Ilanguage } from 'app/@core/interfaces/pages/language';
-import { PostService } from 'app/@core/services/apis/post.service';
 import { LevelStateService } from './load';
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+import { LaexService } from 'app/@core/services/apis/laex.service';
 
 
 @Component({
@@ -14,14 +15,17 @@ export class languageComponent implements OnInit {
   showRouterOutlet: boolean = false;
 
   languageList: Ilanguage[] = [];
+  listUser: IuserInfo[]=[];
 
   table: string = 'language';
+  table1: string = 'userinfo';
 
-  constructor(private router: Router, private inlanguage: PostService, private levelState: LevelStateService) {
+  constructor(private router: Router, private inlanguage: LaexService, private levelState: LevelStateService) {
   }
   ngOnInit(): void {
   
     this.getAll();
+    this.getName();
 
     this.levelState.users.subscribe(({ action, data }) => {
       if (action === 'add') {
@@ -37,6 +41,12 @@ export class languageComponent implements OnInit {
       console.log(data);
       this.languageList = data;
     })
+  }
+  getName() {
+    this.inlanguage.getAllUser(this.table1).subscribe((data) => {
+      this.listUser = data;
+      console.log(data);
+    });
   }
   deleteUser(id: string) {
     const Id = parseInt(id);
