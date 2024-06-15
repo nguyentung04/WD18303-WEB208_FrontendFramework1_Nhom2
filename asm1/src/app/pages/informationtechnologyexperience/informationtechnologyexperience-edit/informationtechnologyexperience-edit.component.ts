@@ -40,7 +40,8 @@ export class InformationtechnologyexperienceEditComponent {
   }
 
   onSubmit() {
-    const UpdateInformationtechnologyexperience: Informationtechnologyexperience =
+    if (this.validForm.dirty) {
+      const UpdateInformationtechnologyexperience: Informationtechnologyexperience =
       {
         id: '',
         user_id: this.validForm.value.user_id,
@@ -61,6 +62,10 @@ export class InformationtechnologyexperienceEditComponent {
             this.router.navigate(['/pages/informationtechnologyexperience']);
           });
         });
+    } else {
+      console.log('No changes in the form data.');
+    }
+    
   }
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { PostService } from './../../@core/services/apis/post.service';
 import { Activity } from 'app/@core/interfaces/pages/activity';
+import { PostService2 } from 'app/@core/services/apis/activity.post.service';
 
 @Component({
   selector: 'ngx-activity',
@@ -13,7 +13,7 @@ export class ActivityComponent implements OnInit {
   listActivity: Activity[] = [];
   table: string = 'activity';
 
-  constructor(private router: Router, private activityService: PostService) { }
+  constructor(private router: Router, private activityService: PostService2) { }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -25,7 +25,7 @@ export class ActivityComponent implements OnInit {
   }
 
   getAll() {
-    this.activityService.getAllUser(this.table).subscribe(data => {
+    this.activityService.getAllActivity(this.table).subscribe(data => {
       console.log(data);
       this.listActivity = data;
     });
@@ -34,7 +34,7 @@ export class ActivityComponent implements OnInit {
   deleteActivity(id: string) {
     const Id = parseInt(id, 10);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.activityService.deleteUser(this.table, Id).subscribe(() => {
+      this.activityService.deleteActivity(this.table, Id).subscribe(() => {
         console.log('Xóa thành công');
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/pages/activity']);

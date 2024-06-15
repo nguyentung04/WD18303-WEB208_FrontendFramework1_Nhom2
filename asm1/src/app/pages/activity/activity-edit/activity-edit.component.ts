@@ -72,30 +72,37 @@ export class ActivityEditComponent implements OnInit {
       }
     );
   }
-
   onSubmit() {
-    const UpdateActivity: Activity = {
-      id: '',
-      user_id: this.validForm.value.user_id,
-      role: this.validForm.value.role,
-      start_time: this.validForm.value.start_time,
-      end_time: this.validForm.value.end_time,
-      content_description: this.validForm.value.content_description,
-    };
-    console.log('Submitting form:', UpdateActivity);
-    const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành một số
-    this.activityService
-      .putActivity(UpdateActivity, numericId, this.table)
-      .subscribe((res) => {
-        UpdateActivity.id = res.id;
-        console.log('Update response:', res);
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate(['/pages/activity']);
-          });
-      });
-  }
+    if (this.validForm.dirty) {
+        // Nếu có sự thay đổi trong form
+        const UpdateActivity: Activity = {
+            id: '',
+            user_id: this.validForm.value.user_id,
+            role: this.validForm.value.role,
+            start_time: this.validForm.value.start_time,
+            end_time: this.validForm.value.end_time,
+            content_description: this.validForm.value.content_description,
+        };
+
+        console.log('Submitting form:', UpdateActivity);
+
+        const numericId = parseInt(this.id, 10);
+
+        this.activityService.putActivity(UpdateActivity, numericId, this.table)
+            .subscribe((res) => {
+                UpdateActivity.id = res.id;
+                console.log('Update response:', res);
+
+                this.router.navigateByUrl('/', { skipLocationChange: true })
+                    .then(() => {
+                        this.router.navigate(['/pages/activity']);
+                    });
+            });
+    } else {
+        // Nếu không có sự thay đổi trong form
+        console.log('No changes in the form data.');
+    }
+}
 
   back() {
     this.router.navigate(['/pages/activity']);
