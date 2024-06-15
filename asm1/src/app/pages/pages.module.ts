@@ -20,6 +20,8 @@ import { experienceModule } from './experience/experience.module';
 import { languageModule } from './inlanguage/language.module';
 import { CvModule } from './cv/cv.module';
 import { certificateModule } from './certificate/certificate.module';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -40,7 +42,9 @@ import { certificateModule } from './certificate/certificate.module';
     activityModule,
     languageModule,
     experienceModule,
-    CvModule
+    CvModule,
+    RouterModule,
+    CommonModule
   ],
   declarations: [
     PagesComponent,

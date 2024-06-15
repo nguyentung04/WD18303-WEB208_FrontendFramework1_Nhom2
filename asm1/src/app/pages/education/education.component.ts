@@ -36,11 +36,7 @@ export class educationComponent implements OnInit {
     this.getEducation();
     
     // Check for activated child routes
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/education/');
-      }
-    });
+
   }
   
   getEducation() {
