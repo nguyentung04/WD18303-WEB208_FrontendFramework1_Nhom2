@@ -5,7 +5,7 @@ import { api } from "@environments/environmant.api";
 export const APP_CONFIG: IAppConfig = {
   module: 'NHA-XE-TRUONG-DUNG',
   apiBaseUrl: environment.apiBaseUrl,
-  apiUrl: api.apiUrl,
+
 
   httpStatus: {
     CONTINUE: 100,

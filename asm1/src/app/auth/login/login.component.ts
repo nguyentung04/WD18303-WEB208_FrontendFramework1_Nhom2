@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
   protected handleLoginSuccess(user: Iusers) {
     
     this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, user.email);
+    this.storageService.setItem(LOCALSTORAGE_KEY.userInfo2, user.password);
     this.storageService.setItem(LOCALSTORAGE_KEY.token, 'dummy-token');
     this.router.navigate([ROUTER_CONFIG.pages]).then();
     this.spinner.hide();

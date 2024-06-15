@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-import { AuthService } from 'app/@core/services/apis'; // Import AuthService
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { LayoutService } from 'app/@core/services/common/layout.service';
+import { LayoutService } from "../../../@core/services/common/layout.service";
+import { LocalStorageService } from "../../../@core/services/common"; // Thêm import LocalStorageService
+import { Router } from '@angular/router';
+import { LOCALSTORAGE_KEY } from 'app/@core/config';
 
 @Component({
   selector: 'ngx-header',
@@ -29,21 +31,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Thông tin' }, { title: 'Đăng xuất' } ];
-  router: any;
+  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  
 
   constructor(
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
+    private router: Router,
+
     private breakpointService: NbMediaBreakpointsService,
-    private authService: AuthService // Inject AuthService
+    private storageService: LocalStorageService // Thêm private storageService
   ) { }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    this.user = { name: 'ABC Company', picture: 'assets/images/logo.jpg' };
+    this.user = { name: 'Alibaba', picture: 'assets/images/account.png' }
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
@@ -58,6 +62,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+    // Đăng ký sự kiện khi click vào menu
+    this.menuService.onItemClick()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((event) => {
+        if (event.item.title === 'Log out') {
+          this.logout(); // Gọi hàm logout khi click vào "Log out"
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -80,18 +95,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  onLogoutClick() {
-    this.authService.logout().subscribe(
-      () => {
-        // Đăng xuất thành công, chuyển hướng đến trang đăng nhập
-        this.router.navigate(['/auth/login']);
-      },
-      (error) => {
-        // Xử lý lỗi nếu có
-        console.error('Đã xảy ra lỗi khi đăng xuất:', error);
-        // Hiển thị thông báo lỗi cho người dùng
-        // Ví dụ: this.toastr.error('Đăng xuất thất bại', 'Lỗi');
-      }
-    );
+  logout() {
+    // Xoá token và thông tin người dùng trong localStorage
+    this.storageService.removeItem(LOCALSTORAGE_KEY.token);
+    this.storageService.removeItem(LOCALSTORAGE_KEY.userInfo);
+    this.storageService.removeItem(LOCALSTORAGE_KEY.userInfo2);
+    // Chuyển hướng về trang đăng nhập (hoặc trang chủ)
+    // Ví dụ chuyển hướng về trang đăng nhập
+    this.router.navigate(['/auth/login']);
   }
 }
