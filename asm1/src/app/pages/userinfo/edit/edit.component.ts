@@ -67,6 +67,7 @@ export class EditComponent1 {
       return;
     }
 
+
     const UpdateUser: IuserInfo = {
       id: '',
       img: this.filename,
@@ -78,9 +79,8 @@ export class EditComponent1 {
     };
 
     this.user.putUser(UpdateUser, this.id, this.table).subscribe(res => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    
         this.router.navigate(['/pages/userinfo']);
-      });
     });
   }
 
@@ -88,10 +88,12 @@ export class EditComponent1 {
     const ID = parseInt(id, 10);
     this.user.getById(ID, this.table).subscribe(data => {
       this.list = data[0];
-
+    
     })
   }
-
+date(time:IuserInfo){
+const birthday=new Date(time.birthday);
+}
 
   back() {
     this.router.navigate(['/pages/userinfo']);

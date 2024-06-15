@@ -14,7 +14,7 @@
                                         formControlName="nameCertificate" placeholder="Nhập tên chứng chỉ">
                                     <div *ngIf="validForm.get('nameCertificate')?.invalid && validForm.get('nameCertificate')?.touched"
                                         class="text-danger">
-                                        Tên chứng chỉ là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                                         placeholder="Nhập tổ chức cấp">
                                     <div *ngIf="validForm.get('issued')?.invalid && validForm.get('issued')?.touched"
                                         class="text-danger">
-                                        Tổ chức cấp là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                         <option *ngFor="let user of userinfoList" value="{{user.id}}">{{ user.id }} {{ user.fullname }}</option>
                                     </select>
                                     <div *ngIf="validForm.get(' user.id ')?.invalid && validForm.get(' user.id ')?.touched" class="text-danger">
-                                        Trạng thái là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     <input type="text" class="form-control" id="expiry" formControlName="expiry">
                                     <div *ngIf="validForm.get('expiry')?.invalid && validForm.get('expiry')?.touched"
                                         class="text-danger">
-                                        Hạn sử dụng là bắt buộc
+                                        Vui lòng nhập dữ liệu!
                                     </div>
                                 </div>
                             </div>
