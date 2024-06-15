@@ -50,10 +50,8 @@ export class CreateLanguageComponent {
     };
 
     this.language.postLanguage(newLanguage, this.table).subscribe((res) => {
-      this.languageList.push(newLanguage);
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.languageList.push(newLanguage);  
         this.router.navigate(['/pages/inlanguage']);
-      }); 
     });
   }
 

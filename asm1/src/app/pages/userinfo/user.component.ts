@@ -21,11 +21,11 @@ export class userComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/userinfo/');
-      }
-    });
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.showRouterOutlet = this.router.url.includes('/userinfo/');
+    //   }
+    // });
     this.getAll();
 
   }

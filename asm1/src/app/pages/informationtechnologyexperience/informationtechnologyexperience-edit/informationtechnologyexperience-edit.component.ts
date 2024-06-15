@@ -56,10 +56,8 @@ export class InformationtechnologyexperienceEditComponent {
       .putInformationtechnologyexperience(UpdateInformationtechnologyexperience, numericId, this.table)
       .subscribe((res) => {
         UpdateInformationtechnologyexperience.id = res.id;
-        console.log('Update response:', res);
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        console.log('Update response:', res); 
           this.router.navigate(['/pages/informationtechnologyexperience']);
-        });
       });
   }
 

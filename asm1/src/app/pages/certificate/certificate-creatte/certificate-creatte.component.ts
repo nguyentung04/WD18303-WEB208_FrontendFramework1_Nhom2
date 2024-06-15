@@ -58,9 +58,9 @@ export class CertificateCreatteComponent implements OnInit {
     this.certificate.postCer(newCertificate, this.table).subscribe(res => {
       newCertificate.id = res.id;
       this.certificateList.push(newCertificate);
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    
         this.router.navigate(['/pages/certificate']);
-      });
+     
     });
    
 }

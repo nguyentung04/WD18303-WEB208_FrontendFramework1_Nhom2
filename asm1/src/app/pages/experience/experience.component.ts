@@ -20,20 +20,10 @@ export class experienceComponent implements OnInit {
   constructor(private router: Router, private experience: PostService, private levelState: LevelStateService) {
   }
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/experience/');
-      }
-    });
+    
     this.getAll();
 
-    this.levelState.users.subscribe(({ action, data }) => {
-      if (action === 'add') {
-        this.experienceList.push(...data as IExperience[]);
-      } else if (action === 'update') {
-        this.getAll();
-      }
-    });
+ 
 
   }
   getAll() {
