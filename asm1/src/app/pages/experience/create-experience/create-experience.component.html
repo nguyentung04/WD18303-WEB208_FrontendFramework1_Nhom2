@@ -37,7 +37,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" formControlName="vacancies">
                                     <div *ngIf="validForm.get('vacancies').invalid && (validForm.get('vacancies').dirty || validForm.get('vacancies').touched)" class="text-danger">
-                                        <span *ngIf="validForm.get('vacancies').errors.required">Vui lòng nhập dữ liệu!</span>
+                                        <span *ngIf="validForm.get('vacancies').errors.required || validForm.get('birthday').errors?.maxYear">Vui lòng nhập dữ liệu!</span>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="col-lg-6 p-2">
                                     <input type="date" class="form-control" formControlName="startdate">
                                     <div *ngIf="validForm.get('startdate').invalid && (validForm.get('startdate').dirty || validForm.get('startdate').touched)" class="text-danger">
-                                        <span *ngIf="validForm.get('startdate').errors.required">Vui lòng nhập dữ liệu!</span>
+                                        <span *ngIf="validForm.get('startdate').errors.required || validForm.get('birthday').errors?.maxYear">Vui lòng nhập dữ liệu!</span>
                                     </div>
                                     
                                 </div>

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { PostService } from 'app/@core/services/apis/post.service';
-import { LevelStateService } from 'app/pages/inlanguage/load';
+
 
 @Component({
   selector: 'app-create-experience',
@@ -12,7 +12,7 @@ import { LevelStateService } from 'app/pages/inlanguage/load';
   styleUrls: ['./create-experience.component.scss']
 })
 export class CreateExperienceComponent {
-  constructor(private router: Router, private experience: PostService, private levelState: LevelStateService) { }
+  constructor(private router: Router, private experience: PostService) { }
 
   table: string = 'experience';
   table1:string='userinfo'
@@ -55,12 +55,20 @@ export class CreateExperienceComponent {
       describe: this.validForm.value.describe,
     };
 
+    const startdate = new Date(this.validForm.value.startdate); 
+    const enddate = new Date(this.validForm.value.enddate); 
+    if (startdate > enddate) {
+      this.validForm.controls['startdate'].setErrors({ maxYear: true });
+      return console.log('Ngày bắt đầu phải nhỏ hơn ngày kết thúc');
+      ;
+    } 
+
     this.experience.postExperience(newExperience, this.table).subscribe(res => {
       newExperience.id = res.id;
-      this.levelState.Users('add',[newExperience], this.table);
       this.router.navigate(['/pages/experience']);
     });
   }
+
 
   back() {
     this.router.navigate(['/pages/experience']);

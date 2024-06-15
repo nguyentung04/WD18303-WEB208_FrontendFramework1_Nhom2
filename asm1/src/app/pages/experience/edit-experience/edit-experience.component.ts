@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
@@ -19,11 +20,13 @@ export class EditExperienceComponent implements OnInit {
   validForm: FormGroup;
 
   id = this.experienceRoute.snapshot.params.id;
+ 
 
   constructor(
     private router: Router,
     private experienceService: PostService,
     private experienceRoute: ActivatedRoute,
+    private datePipe:DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -59,17 +62,19 @@ export class EditExperienceComponent implements OnInit {
     this.experienceService
       .putExperience(updateEx, this.id, this.table).subscribe(
         (res) => {
-          console.log('Update response:', res); // Log the response from the API
-          this.router
-            .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => {
+          console.log('Update response:', res); 
+         
               this.router.navigate(['/pages/experience']);
-            });
+           
         },
         (error) => {
-          console.error('Error updating experience', error); // Log any error
+          console.error('Error updating experience', error); 
         }
       );
+
+  }
+  formatDate(date: string): string {
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }
 
   getByID(id: string) {
@@ -78,13 +83,6 @@ export class EditExperienceComponent implements OnInit {
       (data) => {
         this.experienceList = data[0];
         console.log('API response:', data);
-        this.validForm.patchValue({
-          company: data.company,
-          vacancies: data.vacancies,
-          startdate: data.startdate,
-          enddate: data.enddate,
-          describe: data.describe
-        }); 
       },
       (error) => {
         console.error('Error fetching data', error);

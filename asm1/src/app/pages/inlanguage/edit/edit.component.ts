@@ -49,10 +49,9 @@ export class EditLanguageComponent implements OnInit {
     };
 
     this.languageService.putLanguage(updateLa,this.id, this.table).subscribe((res) => { 
-        this.router.navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
+       
             this.router.navigate(['/pages/inlanguage']);
-          });
+       
       },
       (error) => {
         console.error('Error updating language', error);
@@ -65,10 +64,6 @@ export class EditLanguageComponent implements OnInit {
     this.languageService.getById(ID, this.table).subscribe(data => {
       console.log(data); 
       this.list = data[0];
-      this.validForm.patchValue({
-        language: data.language,
-        level: data.level 
-      });
     });
   }
 

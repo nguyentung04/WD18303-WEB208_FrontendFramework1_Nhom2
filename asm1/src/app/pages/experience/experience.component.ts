@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
 import { Router } from '@angular/router';
-import { PostService } from 'app/@core/services/apis/post.service';
 import { LevelStateService } from '../inlanguage/load';
-import { NavigationEnd } from '@angular/router';
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+import { LaexService } from 'app/@core/services/apis/laex.service';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -14,26 +14,18 @@ export class experienceComponent implements OnInit {
   showRouterOutlet: boolean = false;
 
   experienceList: IExperience[] = [];
+  listUser: IuserInfo[]=[];
 
   table: string = '	experience';
+  table1: string = 'userinfo';
 
-  constructor(private router: Router, private experience: PostService, private levelState: LevelStateService) {
+  constructor(private router: Router, private experience: LaexService, private levelState: LevelStateService) {
   }
   ngOnInit(): void {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/experience/');
-      }
-    });
+    
     this.getAll();
+    this.getName();
 
-    this.levelState.users.subscribe(({ action, data }) => {
-      if (action === 'add') {
-        this.experienceList.push(...data as IExperience[]);
-      } else if (action === 'update') {
-        this.getAll();
-      }
-    });
 
   }
   getAll() {
@@ -41,6 +33,12 @@ export class experienceComponent implements OnInit {
       console.log(data);
       this.experienceList = data;
     })
+  }
+  getName() {
+    this.experience.getAllUser(this.table1).subscribe((data) => {
+      this.listUser = data;
+      console.log(data);
+    });
   }
   deleteUser(id: string) {
     const Id = parseInt(id);
@@ -53,8 +51,6 @@ export class experienceComponent implements OnInit {
       });
     }
   }
-  
-
   add() {
     this.router.navigate(['/pages/experience/create'])
   }

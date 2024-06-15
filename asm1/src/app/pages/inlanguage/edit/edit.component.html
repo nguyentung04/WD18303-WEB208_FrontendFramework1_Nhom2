@@ -5,11 +5,11 @@
           <div class="card-body">
             <div class="form-validation">
               <h3>Cập nhật ngoại ngữ</h3>
-              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm">           
+              <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" *ngIf="list">           
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="language">Ngôn ngữ <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" formControlName="language" name="language">
+                    <input type="text" class="form-control" formControlName="language" name="language" [(ngModel)]="list.language">
                     <div *ngIf="validForm.get('language').invalid && (validForm.get('language').dirty || validForm.get('language').touched)" class="text-danger">
                       <span *ngIf="validForm.get('language').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="level">Trình độ <span class="text-danger">*</span></label>
                   <div class="col-lg-6 p-2">
-                    <input type="text" class="form-control" formControlName="level" name="level" >
+                    <input type="text" class="form-control" formControlName="level" name="level" [(ngModel)]="list.level" >
                     <div *ngIf="validForm.get('level').invalid && (validForm.get('level').dirty || validForm.get('level').touched)" class="text-danger">
                       <span *ngIf="validForm.get('level').errors.required">Vui lòng nhập dữ liệu!</span>
                     </div>
