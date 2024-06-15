@@ -55,11 +55,20 @@ export class CreateExperienceComponent {
       describe: this.validForm.value.describe,
     };
 
+    const startdate = new Date(this.validForm.value.startdate); 
+    const enddate = new Date(this.validForm.value.enddate); 
+    if (startdate > enddate) {
+      this.validForm.controls['startdate'].setErrors({ maxYear: true });
+      return console.log('Ngày bắt đầu phải nhỏ hơn ngày kết thúc');
+      ;
+    } 
+
     this.experience.postExperience(newExperience, this.table).subscribe(res => {
       newExperience.id = res.id;
       this.router.navigate(['/pages/experience']);
     });
   }
+
 
   back() {
     this.router.navigate(['/pages/experience']);

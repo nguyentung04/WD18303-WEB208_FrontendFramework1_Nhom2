@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
-const { getAll, insert, update, Delete, getByID,getAllSkill, getAllSkillsByUserId,updateSkill, getAllCV, getAllCVByID, DeleteSkill} = require('./database');
+const { getAll, insert, update, Delete, getByID, getAllSkill, getAllSkillsByUserId, updateSkill, getAllCV, getAllCVByID, DeleteSkill } = require('./database');
 
 const app = express();
 const port = 3000;
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../../../assets/images");
+    cb(null, '../../../assets/images');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);

@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-
-import { PostService } from 'app/@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 import { Iskill } from 'app/@core/interfaces/pages/skill';
 
 
@@ -14,7 +13,7 @@ import { Iskill } from 'app/@core/interfaces/pages/skill';
   styleUrls: ['./create-skill.component.scss']
 })
 export class CreateSkillComponent {
-  constructor(private router: Router, private user: PostService) { }
+  constructor(private router: Router, private user: UserInfoService) { }
 
   table: string = 'skill';
   table1: string = 'userinfo';

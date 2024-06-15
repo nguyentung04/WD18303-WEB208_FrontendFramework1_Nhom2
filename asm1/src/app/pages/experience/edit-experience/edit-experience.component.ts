@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IExperience } from 'app/@core/interfaces/pages/experience';
@@ -19,11 +20,13 @@ export class EditExperienceComponent implements OnInit {
   validForm: FormGroup;
 
   id = this.experienceRoute.snapshot.params.id;
+ 
 
   constructor(
     private router: Router,
     private experienceService: PostService,
     private experienceRoute: ActivatedRoute,
+    private datePipe:DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +71,10 @@ export class EditExperienceComponent implements OnInit {
           console.error('Error updating experience', error); 
         }
       );
+
+  }
+  formatDate(date: string): string {
+    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
   }
 
   getByID(id: string) {

@@ -27,7 +27,7 @@
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="startdate">Ngày bắt đầu<span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <input type="date" class="form-control" id="startdate" formControlName="startdate" [(ngModel)]="experienceList.startdate">
+                  <input type="date" class="form-control" id="startdate" formControlName="startdate" [ngModel]="formatDate(experienceList.startdate)">
                   <div *ngIf="validForm.get('startdate').invalid && (validForm.get('startdate').dirty || validForm.get('startdate').touched)" class="text-danger">
                     <span *ngIf="validForm.get('startdate').errors.required">Vui lòng nhập dữ liệu!</span>
                   </div>
@@ -36,7 +36,7 @@
             <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="enddate">Ngày kết thúc<span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <input type="date" class="form-control" id="enddate" formControlName="enddate" [(ngModel)]="experienceList.enddate">
+                  <input type="date" class="form-control" id="enddate" formControlName="enddate" [ngModel]="formatDate(experienceList.enddate)">
                   <div *ngIf="validForm.get('enddate').invalid && (validForm.get('enddate').dirty || validForm.get('enddate').touched)" class="text-danger">
                     <span *ngIf="validForm.get('enddate').errors.required">Vui lòng nhập dữ liệu!</span>
                   </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from './../../../@core/services/apis/post.service';
+
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
+import { RecruitmenttService } from 'app/@core/services/apis/recruitment';
 
 @Component({
   selector: 'app-recruitment-edit',
@@ -18,7 +19,7 @@ export class RecruitmentEditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private recruitmentService: PostService,
+    private recruitmentService: RecruitmenttService,
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {

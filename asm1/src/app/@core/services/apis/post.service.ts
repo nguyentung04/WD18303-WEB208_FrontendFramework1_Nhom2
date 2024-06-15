@@ -206,7 +206,6 @@ putActivity(data: Activity, id: number, table: string): Observable<any> {
     });
   }
 
-  //kinh nghiệm
   postExperience(data: IExperience, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       user_id: data.user_id,
@@ -228,7 +227,6 @@ putActivity(data: Activity, id: number, table: string): Observable<any> {
       describe: data.describe
     });
   }
- 
 
 
 }
