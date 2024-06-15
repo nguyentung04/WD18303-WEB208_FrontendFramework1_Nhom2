@@ -29,7 +29,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
+<<<<<<< HEAD
   userMenu = [ { title: 'Thông tin' }, { title: 'Đăng xuất' } ];
+=======
+  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
   constructor(
     private sidebarService: NbSidebarService,
@@ -41,7 +45,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
+<<<<<<< HEAD
     this.user = {name: 'ABC Company', picture: 'assets/images/logo.jpg'}
+=======
+    this.user = {name: 'Admin', picture: 'assets/images/account.png'}
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
         .pipe(

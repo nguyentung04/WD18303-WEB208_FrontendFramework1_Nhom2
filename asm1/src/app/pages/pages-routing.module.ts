@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //userinfo
 import { DeleteComponent } from './userinfo/delete/delete.component';
 import { CreateComponent } from './userinfo/create/create.component';
@@ -5,6 +6,11 @@ import { CreateComponent } from './userinfo/create/create.component';
 import { CreateSkillComponent } from './skill/create-skill/create-skill.component';
 import { EditSkillComponent } from './skill/edit-skill/edit-skill.component';
 
+=======
+import { DeleteComponent } from './userinfo/delete/delete.component';
+import { EditComponent } from './userinfo/edit/edit.component';
+import { CreateComponent } from './userinfo/create/create.component';
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -12,6 +18,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { userComponent } from './userinfo/user.component';
 import { usersComponent } from './users/users.component';
+<<<<<<< HEAD
 // import { usersComponent } from './userinfo/user.component';
 import {EditComponent} from './users/edit/edit.component';
 
@@ -27,12 +34,24 @@ import { certificateComponent } from './certificate/certificate.component';
 import { recruitmentComponent } from './recruitment/recruitment.component';
 import { InformationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
 import { ActivityComponent } from './activity/activity.component';
+=======
+import { SkillComponent } from './skill/skill.component';
+import { experienceComponent } from './experience/experience.component';
+import { languageComponent } from './inlanguage/language.component';
+
+import { educationComponent } from './education/education.component';
+import { certificateComponent } from './certificate/certificate.component';
+import { recruitmentComponent } from './recruitment/recruitment.component';
+import { informationtechnologyexperienceComponent } from './informationtechnologyexperience/informationtechnologyexperience.component';
+import { activityComponent } from './activity/activity.component';
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 import { RecruitmentCreateComponent } from './recruitment/recruitment-create/recruitment-create.component';
 import { RecruitmentEditComponent } from './recruitment/recruitment-edit/recruitment-edit.component';
 import { RecruitmentDeleteComponent } from './recruitment/recruitment-delete/recruitment-delete.component';
 import { CertificateCreatteComponent } from './certificate/certificate-creatte/certificate-creatte.component';
 import { CertificateEditComponent } from './certificate/certificate-edit/certificate-edit.component';
 import { CertificateDeleteComponent } from './certificate/certificate-delete/certificate-delete.component';
+<<<<<<< HEAD
 import { ActivityCreateComponent } from './activity/activity-create/activity-create.component';
 import { ActivityEditComponent } from './activity/activity-edit/activity-edit.component';
 import { ActivityDeleteComponent } from './activity/activity-delete/activity-delete.component';
@@ -47,6 +66,8 @@ import { CvComponent } from './cv/cv.component';
 import { CvdetailComponent } from './cv/cvdetail/cvdetail.component';
 import { EditComponent1 } from './userinfo/edit/edit.component';
 
+=======
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 
 
@@ -62,6 +83,7 @@ const routes: Routes = [{
     {
       path: 'users',
       component: usersComponent,
+<<<<<<< HEAD
       data: { breadcrumb: 'Thông tin người dùng' },
       children: [
         {
@@ -81,11 +103,18 @@ const routes: Routes = [{
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]
+=======
+      data: { breadcrumb: 'Thông tin đăng nhập' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     },
     {
       path: 'userinfo',
       component: userComponent,
+<<<<<<< HEAD
       data: { breadcrumb: 'Thông tin ứng viên' },
+=======
+      data: { breadcrumb: 'Thông tin nhân viên' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
       children: [
         {
           path: 'create',
@@ -94,7 +123,11 @@ const routes: Routes = [{
         },
         {
           path: 'edit/:id',
+<<<<<<< HEAD
           component: EditComponent1,
+=======
+          component: EditComponent,
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
           data: { breadcrumb: 'Cập nhật thông tin' },
         },
         {
@@ -106,6 +139,7 @@ const routes: Routes = [{
     },
     {
       path: 'education',
+<<<<<<< HEAD
       component:  educationComponent,
       data: { breadcrumb: 'Thông tin học vấn' },
       children: [
@@ -126,11 +160,16 @@ const routes: Routes = [{
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]
+=======
+      component: educationComponent,
+      data: { breadcrumb: 'Thông tin học vấn' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     },
     {
       path: 'skill',
       component: SkillComponent,
       data: { breadcrumb: 'Kỹ năng làm việc' },
+<<<<<<< HEAD
       children: [
         {
           path: 'create',
@@ -144,6 +183,8 @@ const routes: Routes = [{
         },
 
       ]
+=======
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     },
     {
       path: 'recruitment',
@@ -156,14 +197,24 @@ const routes: Routes = [{
           data: { breadcrumb: 'Thêm tuyển dụng' },
         },
         {
+<<<<<<< HEAD
           path: 'edit/:id',
           component: RecruitmentEditComponent,
           data: { breadcrumb: 'Cập nhật tuyển dụng' },
+=======
+          path: 'edit',
+          component: RecruitmentEditComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
         },
         {
           path: 'delete',
           component: RecruitmentDeleteComponent,
+<<<<<<< HEAD
           data: { breadcrumb: 'Xóa tuyển dụng' },
+=======
+          data: { breadcrumb: 'Xóa nhân viên' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
         },
       ]
     },
@@ -178,9 +229,15 @@ const routes: Routes = [{
           data: { breadcrumb: 'Thêm chứng chỉ' },
         },
         {
+<<<<<<< HEAD
           path: 'edit/:id',
           component: CertificateEditComponent,
           data: { breadcrumb: 'Cập nhật chứng chỉ' },
+=======
+          path: 'edit',
+          component: CertificateEditComponent,
+          data: { breadcrumb: 'Cập nhật thông tin' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
         },
         {
           path: 'delete',
@@ -192,6 +249,7 @@ const routes: Routes = [{
 
     {
       path: 'informationtechnologyexperience',
+<<<<<<< HEAD
       component: InformationtechnologyexperienceComponent,
       data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
       children: [
@@ -233,10 +291,20 @@ const routes: Routes = [{
           data: { breadcrumb: 'Xóa nhân viên' },
         },
       ]
+=======
+      component: informationtechnologyexperienceComponent,
+      data: {breadcrumb: 'Quản lý kinh nghiệm tin học'},
+    },
+    {
+      path: 'activity',
+      component: activityComponent,
+      data: {breadcrumb: 'Quản lý hoạt động'},
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     },
     {
       path: 'inlanguage',
       component: languageComponent,
+<<<<<<< HEAD
       data: { breadcrumb: 'Quản lý bảng ngoại ngữ' },
       children: [
         {
@@ -251,10 +319,14 @@ const routes: Routes = [{
         },
        
       ]
+=======
+      data: { breadcrumb: 'Quản lý ngôn ngữ' },
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     },
     {
       path: 'experience',
       component: experienceComponent,
+<<<<<<< HEAD
       data: { breadcrumb: 'Quản lý kinh nghiệm' },
       children: [
 
@@ -285,6 +357,12 @@ const routes: Routes = [{
         }
       ]
     }
+=======
+      data: {breadcrumb: 'Quản lý kinh nghiệm'},
+    },
+   
+ 
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   ],
 }];
 

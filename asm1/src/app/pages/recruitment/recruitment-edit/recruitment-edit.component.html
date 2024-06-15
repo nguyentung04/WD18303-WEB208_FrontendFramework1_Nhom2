@@ -4,6 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
+<<<<<<< HEAD
                         <h3>Cập nhật tuyển dụng</h3>
                         <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" *ngIf="recruitmentList ">
                             <div class="form-group row">
@@ -15,6 +16,19 @@
                                     <div *ngIf="validForm.get('user_id')?.invalid && validForm.get('user_id')?.touched"
                                         class="text-danger">
                                         Vui lòng nhập dữ liệu!
+=======
+                        <h3>Thêm chứng chỉ</h3>
+                        <form class="form-valide" (ngSubmit)="onSubmit()" [formGroup]="validForm" enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="nameRecruitment">Tên ứng tuyển <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="nameRecruitment"
+                                        formControlName="nameRecruitment" placeholder="Nhập tên chứng chỉ">
+                                    <div *ngIf="validForm.get('nameRecruitment')?.invalid && validForm.get('nameRecruitment')?.touched"
+                                        class="text-danger">
+                                        Tên ứng tuyển là bắt buộc
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -24,10 +38,17 @@
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
                                     <input type="text" class="form-control" id="role" formControlName="role"
+<<<<<<< HEAD
                                         placeholder="Nhập tổ chức cấp" [(ngModel)]="recruitmentList.role">
                                     <div *ngIf="validForm.get('role')?.invalid && validForm.get('role')?.touched"
                                         class="text-danger">
                                         Vui lòng nhập dữ liệu!
+=======
+                                        placeholder="Nhập tổ chức cấp">
+                                    <div *ngIf="validForm.get('role')?.invalid && validForm.get('role')?.touched"
+                                        class="text-danger">
+                                        Tổ chức cấp là bắt buộc
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -38,10 +59,17 @@
                                 <label class="col-lg-4 col-form-label" for="status">Trạng thái <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
+<<<<<<< HEAD
                                     <input type="text" class="form-control" id="status" formControlName="status" [(ngModel)]="recruitmentList.status">
                                     <div *ngIf="validForm.get('status')?.invalid && validForm.get('status')?.touched"
                                         class="text-danger">
                                         Vui lòng nhập dữ liệu!
+=======
+                                    <input type="text" class="form-control" id="status" formControlName="status">
+                                    <div *ngIf="validForm.get('status')?.invalid && validForm.get('status')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -50,10 +78,30 @@
                                 <label class="col-lg-4 col-form-label" for="rate">Đánh giá <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
+<<<<<<< HEAD
                                     <input type="text" class="form-control" id="rate" formControlName="rate" [(ngModel)]="recruitmentList.rate">
                                     <div *ngIf="validForm.get('rate')?.invalid && validForm.get('rate')?.touched"
                                         class="text-danger">
                                         Vui lòng nhập dữ liệu!
+=======
+                                    <input type="text" class="form-control" id="rate" formControlName="rate">
+                                    <div *ngIf="validForm.get('rate')?.invalid && validForm.get('rate')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="nameExaminer">Phụ trách ứng tuyển <span
+                                        class="text-danger">*</span></label>
+                                <div class="col-lg-6 p-2">
+                                    <input type="text" class="form-control" id="nameExaminer"
+                                        formControlName="nameExaminer">
+                                    <div *ngIf="validForm.get('nameExaminer')?.invalid && validForm.get('nameExaminer')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -63,10 +111,17 @@
                                 <label class="col-lg-4 col-form-label" for="result">Kết quả <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
+<<<<<<< HEAD
                                     <input type="text" class="form-control" id="result" formControlName="result" [(ngModel)]="recruitmentList.result">
                                     <div *ngIf="validForm.get('result')?.invalid && validForm.get('result')?.touched"
                                         class="text-danger">
                                         Vui lòng nhập dữ liệu!
+=======
+                                    <input type="text" class="form-control" id="result" formControlName="result">
+                                    <div *ngIf="validForm.get('result')?.invalid && validForm.get('result')?.touched"
+                                        class="text-danger">
+                                        Hạn sử dụng là bắt buộc
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +129,12 @@
 
                             <div class="form-group row">
                                 <div class="col-lg-6 p-2 offset-lg-4">
+<<<<<<< HEAD
                                     <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid || isUnchanged()">Xác Nhận</button>
+=======
+                                    <button type="submit" class="btn btn-primary" [disabled]="validForm.invalid">Xác
+                                        Nhận</button>
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     <button type="button" class="btn btn-outline-success m-2" (click)="back()">Quay
                                         lại</button>
                                 </div>

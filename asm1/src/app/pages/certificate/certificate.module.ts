@@ -21,8 +21,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
+<<<<<<< HEAD
     ReactiveFormsModule,
     HttpClientModule
+=======
+    ReactiveFormsModule
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   ],
   declarations: [
     certificateComponent,

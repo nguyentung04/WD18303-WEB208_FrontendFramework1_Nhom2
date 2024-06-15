@@ -13,12 +13,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/users',
   },
   {
+<<<<<<< HEAD
     title: 'Quản lý CV',
     icon: 'briefcase-outline',
     link: '/pages/cv',
   },
   {
     title: 'Thông tin ứng viên',
+=======
+    title: 'Thông tin nhân viên',
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     icon: 'person-outline',
     link: '/pages/userinfo',
   },
@@ -61,6 +65,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Quản lý kinh nghiệm',
     icon: 'briefcase-outline',
     link: '/pages/experience',
+<<<<<<< HEAD
   },
 
+=======
+  }
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 ];

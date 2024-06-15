@@ -3,7 +3,11 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { IuserInfo } from './../../@core/interfaces/pages/userinfo';
 import { PostService } from './../../@core/services/apis/post.service';
+<<<<<<< HEAD
 
+=======
+import { UserStateService } from './load';
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 @Component({
   selector: 'ngx-dashboard',
@@ -17,7 +21,11 @@ export class userComponent implements OnInit {
 
   table: string = 'userinfo';
 
+<<<<<<< HEAD
   constructor(private router: Router, private UserInfo: PostService) {
+=======
+  constructor(private router: Router, private UserInfo: PostService, private UserState: UserStateService) {
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   }
 
   ngOnInit() {
@@ -28,6 +36,17 @@ export class userComponent implements OnInit {
     });
     this.getAll();
 
+<<<<<<< HEAD
+=======
+    this.UserState.users.subscribe(({ action, data }) => {
+      if (action === 'add') {
+        this.userinfoList.push(...data as IuserInfo[]);
+      } else if (action === 'update') {
+        this.getAll();
+      }
+    });
+
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   }
 
   getAll() {

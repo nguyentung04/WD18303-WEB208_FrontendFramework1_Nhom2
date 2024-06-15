@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Iskill } from "./skill";
 export interface IuserInfo {
     id: string,
@@ -32,3 +33,14 @@ export interface Icv {
     describe:string;
 }
 
+=======
+export interface IuserInfo {
+    id: string,
+    img:string,
+    fullname: string,
+    birthday: string,
+    address: string,
+    email: string,
+    phone: string
+}
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528

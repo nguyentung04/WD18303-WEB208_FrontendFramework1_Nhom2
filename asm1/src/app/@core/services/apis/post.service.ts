@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 import { Iskill } from 'app/@core/interfaces/pages/skill';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+=======
+import { Observable } from 'rxjs';
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
+<<<<<<< HEAD
 import { Activity } from 'app/@core/interfaces/pages/activity';
 import { Informationtechnologyexperience } from 'app/@core/interfaces/pages/informationtechnologyexperience';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
@@ -34,11 +39,26 @@ export class PostService {
     return this.http.get(`${this.apiUrl}/${table}/${id}`);
   }
  
+=======
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PostService {
+
+  private apiUrl = 'http://localhost:3000/api';
+
+  constructor(private http: HttpClient) { }
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
   getAllUser(table: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${table}`);
   }
+<<<<<<< HEAD
   
+=======
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
   uploadImg(formData: FormData, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}/upload`, formData);
@@ -50,6 +70,7 @@ export class PostService {
       birthday: data.birthday,
       address: data.address,
       email: data.email,
+<<<<<<< HEAD
       phone: data.phone,
     });
   }
@@ -58,6 +79,15 @@ export class PostService {
   }
   deleteUser(table: string, id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${table}/${id}`);
+=======
+      phone: data.phone
+    });
+  }
+ 
+
+  getById(id: number, table: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${table}/${id}`);
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   }
 
   putUser(data: IuserInfo, id: number, table: string): Observable<any> {
@@ -67,21 +97,29 @@ export class PostService {
       birthday: data.birthday,
       address: data.address,
       email: data.email,
+<<<<<<< HEAD
       phone: data.phone,
+=======
+      phone: data.phone
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
     });
   }
 
 
+<<<<<<< HEAD
 
   getByIdCV(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/cv/${id}`);
   }
 
 //chungchi
+=======
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
   postCer(data: certificate, table: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/${table}`, {
       nameCertificate: data.nameCertificate,
       issued: data.issued,
+<<<<<<< HEAD
       user_id: data.user_id,
       expiry: data.expiry,
      
@@ -234,4 +272,56 @@ putActivity(data: Activity, id: number, table: string): Observable<any> {
  
 
 
+=======
+      nameReceiver: data.nameReceiver,
+      dateRange: data.dateRange,
+      expiry: data.expiry,
+      image: data.image
+    });
+  }
+
+  putCer(data: certificate, id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`,{
+      nameCertificate: data.nameCertificate,
+      issued: data.issued,
+      nameReceiver: data.nameReceiver,
+      dateRange: data.dateRange,
+      expiry: data.expiry,
+      image: data.image
+    });
+  }
+
+
+  postRe(data: recruitment, table: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${table}`, {
+      nameRecruitment: data.nameRecruitment,
+      role: data.role,
+
+      status: data.status,
+      rate: data.rate,
+      nameExaminer: data.nameExaminer,
+      result: data.result
+    });
+  }
+
+
+  
+  putRe(data: recruitment, id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`,{
+      nameRecruitment: data.nameRecruitment,
+      role: data.role,
+      // submissionTime: data.submissionTime,
+      status: data.status,
+      rate: data.rate,
+      nameExaminer: data.nameExaminer,
+      result: data.result
+    });
+  }
+
+  
+
+ deleteUser(table: string,id:number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${table}/${id}`);
+  }
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 }

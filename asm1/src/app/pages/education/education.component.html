@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div *ngIf="!showRouterOutlet">
   <nb-card>
     <nb-card-header>
@@ -63,3 +64,17 @@
   </nb-card>
 </div>
 <router-outlet *ngIf="showRouterOutlet"></router-outlet>
+=======
+<nb-card>
+    <nb-card-header>
+     Bảng thông tin học vấn
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="education" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+
+
+
+>>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
