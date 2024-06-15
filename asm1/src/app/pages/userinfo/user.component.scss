@@ -17,19 +17,16 @@
   }
 }
 
+
 nb-card-header {
   display: flex;
   justify-content: space-between;
 }
 
-<<<<<<< HEAD
-nb-card-header {
-  display: flex;
-  justify-content: space-between;
+.custom-btn button:first-child {
+  margin-right: 20px;
 }
 
-=======
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 .imgCustom {
   width: 70px;
   height: 70px;

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
 import { ActivityComponent } from './activity.component';
 import {BreadcrumbModule} from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -10,19 +9,12 @@ import { ActivityDeleteComponent } from './activity-delete/activity-delete.compo
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { activityComponent } from './activity.component';
-import {BreadcrumbModule} from "xng-breadcrumb";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { NbCardModule } from '@nebular/theme';
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 
 @NgModule({
   imports: [
     BreadcrumbModule,
     Ng2SmartTableModule,
-<<<<<<< HEAD
     NbCardModule,
     CommonModule,
     RouterModule,
@@ -37,12 +29,3 @@ import { NbCardModule } from '@nebular/theme';
   ],
 })
 export class activityModule { }
-=======
-    NbCardModule
-  ],
-  declarations: [
-    activityComponent
-  ],
-})
-export class activityModule { }
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528

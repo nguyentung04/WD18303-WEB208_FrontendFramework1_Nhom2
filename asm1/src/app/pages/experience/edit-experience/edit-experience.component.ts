@@ -59,15 +59,13 @@ export class EditExperienceComponent implements OnInit {
     this.experienceService
       .putExperience(updateEx, this.id, this.table).subscribe(
         (res) => {
-          console.log('Update response:', res); // Log the response from the API
-          this.router
-            .navigateByUrl('/', { skipLocationChange: true })
-            .then(() => {
+          console.log('Update response:', res); 
+         
               this.router.navigate(['/pages/experience']);
-            });
+           
         },
         (error) => {
-          console.error('Error updating experience', error); // Log any error
+          console.error('Error updating experience', error); 
         }
       );
   }
@@ -78,13 +76,6 @@ export class EditExperienceComponent implements OnInit {
       (data) => {
         this.experienceList = data[0];
         console.log('API response:', data);
-        // this.validForm.patchValue({
-        //   company: data.company,
-        //   vacancies: data.vacancies,
-        //   startdate: data.startdate,
-        //   enddate: data.enddate,
-        //   describe: data.describe
-        // }); 
       },
       (error) => {
         console.error('Error fetching data', error);

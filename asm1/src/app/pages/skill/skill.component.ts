@@ -1,16 +1,13 @@
+import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { NavigationEnd } from '@angular/router';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import * as XLSX from 'xlsx';
 
-import { PostService } from 'app/@core/services/apis/post.service';
+import { UserInfoService } from 'app/@core/services/apis/userinfo.service';
 import { Iskill } from 'app/@core/interfaces/pages/skill';
+import { environment } from '@environments/environment';
 
-=======
-import { LocalDataSource } from 'ng2-smart-table';
-import { SmartTableData } from 'app/@core/data/skill';
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 @Component({
   selector: 'ngx-dashboard',
@@ -19,27 +16,34 @@ import { SmartTableData } from 'app/@core/data/skill';
 })
 
 export class SkillComponent implements OnInit {
-<<<<<<< HEAD
   showRouterOutlet: boolean = false;
 
   lists: Iskill[] = [];
-  list: Iskill[] = [];
+  listuser: IuserInfo ;
 
   table: string = 'skill';
+  table1: string = 'userinfo';
 
   id = this.formedit.snapshot.params.id;
+  //phân trang
 
-  constructor(private router: Router, private skills: PostService,  private formedit: ActivatedRoute) {
+  last_page: number = 0;
+  current_page: number = 1;
+  apiUrl = `${environment.apiBaseUrl}/${this.table}`;
+
+
+  constructor(private router: Router, private skills: UserInfoService, private formedit: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/skill/');
-      }
-    });
     this.getAll();
-
+    this.getName();
+  }
+  getName() {
+    this.skills.getAllUser(this.table1).subscribe(data => {
+      this.listuser = data;
+      console.log(data);
+    })
   }
 
   getAll() {
@@ -48,12 +52,15 @@ export class SkillComponent implements OnInit {
       this.lists = data;
     })
   }
+  getPage(res: any) {
+    console.log(res);
 
+  }
 
   delete(id: string) {
     const Id = parseInt(id);
     if (confirm('Bạn chắc chắn muốn xóa?')) {
-      this.skills.deleteUser(this.table,Id).subscribe(() => {
+      this.skills.deleteUser(this.table, Id).subscribe(() => {
         console.log('Xóa thành công');
         this.getAll();
       }, error => {
@@ -68,52 +75,28 @@ export class SkillComponent implements OnInit {
   edit(id: string) {
     this.router.navigate([`/pages/skill/edit/${id}`])
   }
-=======
-  ngOnInit(): void { }
+  //export ra file excel
 
-  skill = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      skills: {
-        title: 'Kỹ năng ',
-        type: 'string',
-      }
-  
-
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  exportToExcel(skills: any[]) {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(skills);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveExcelFile(excelBuffer, 'skills');
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Bạn chắc chắn muốn xóa?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+  private saveExcelFile(buffer: any, fileName: string) {
+    const data: Blob = new Blob([buffer], { type: 'application/octet-stream' });
+    const url = window.URL.createObjectURL(data);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    a.href = url;
+    a.download = `${fileName}.xlsx`;
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
-
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
+  //
+  exportSkill() {
+    this.exportToExcel(this.lists);
+  }
 }

@@ -14,24 +14,19 @@ export class EditEducationComponent implements OnInit {
   list: IuserInfo[] = [];
   table: string = 'education';
   validForm: FormGroup;
-  educationData: Ieducation; // Biến để lưu trữ dữ liệu học vấn hiện tại
+  educationData: Ieducation; 
   id: number;
-  
+
   constructor(private router: Router, private route: ActivatedRoute, private postService: PostService2) { }
 
   ngOnInit(): void {
-    // Lấy danh sách người dùng
     this.postService.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {
       this.list = users;
     });
-
-    // Lấy ID từ route
     this.id = this.route.snapshot.params['id'];
-    
-    // Lấy dữ liệu giáo dục hiện tại
-    this.getByID(this.id);
 
-    // Khởi tạo form
+
+    this.getByID(this.id);
     this.validForm = new FormGroup({
       name: new FormControl('', Validators.required),
       specialized: new FormControl('', Validators.required),
@@ -40,6 +35,8 @@ export class EditEducationComponent implements OnInit {
       graduation_Type: new FormControl('', Validators.required),
       user_id: new FormControl('', Validators.required),
     });
+    // Khởi tạo form
+
   }
 
   onSubmit() {
@@ -57,36 +54,24 @@ export class EditEducationComponent implements OnInit {
       user_id: this.validForm.value.user_id,
     };
 
-    // Gọi API để cập nhật dữ liệu
-    this.postService.putEducation(updatedEducation, this.id, 'education').subscribe(res => {
-      this.router.navigate(['/pages/education']);
+    this.postService.putEducation(updatedEducation, this.id,this.table).subscribe(res => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/pages/education']);
+      }); 
     });
   }
 
   getByID(id: number) {
     this.postService.getByID(id, 'education').subscribe(data => {
-      if (data && data.length > 0) {
-        this.educationData = data[0];
-        this.populateForm(this.educationData);
-      } else {
-        // Xử lý khi không có dữ liệu trả về
-        console.error('Không tìm thấy dữ liệu học vấn');
-      }
-    }, error => {
-      console.error('Lỗi khi lấy dữ liệu học vấn', error);
+      this.educationData = data[0]; 
+      this.populateForm(this.educationData); 
     });
   }
 
   populateForm(education: Ieducation) {
-    if (!education) {
-      console.error('Dữ liệu học vấn không hợp lệ');
-      return;
-    }
-
     const startTime = new Date(education.startTime);
     const endTime = new Date(education.endTime);
 
-  
     this.validForm.patchValue({
       name: education.name,
       specialized: education.specialized,

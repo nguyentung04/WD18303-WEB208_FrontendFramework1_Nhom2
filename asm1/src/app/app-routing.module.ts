@@ -1,9 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-<<<<<<< HEAD
-=======
-import {AuthGuard} from "./@core/guards";
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 export const routes: Routes = [
   {

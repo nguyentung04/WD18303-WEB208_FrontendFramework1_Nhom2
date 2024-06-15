@@ -3,7 +3,6 @@
 @import '@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
-<<<<<<< HEAD
   .solar-card nb-card-header {
     border: none;
     padding-bottom: 0;
@@ -24,16 +23,4 @@ nb-card-header{
 .pagination-container {
   display: flex;
   justify-content: center;
-=======
-    .solar-card nb-card-header {
-        border: none;
-        padding-bottom: 0;
-    }
-
-    @include media-breakpoint-down(sm) {
-        ngx-traffic {
-            display: none;
-        }
-    }
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 }

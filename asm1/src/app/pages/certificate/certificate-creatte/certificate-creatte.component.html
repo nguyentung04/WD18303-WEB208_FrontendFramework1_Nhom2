@@ -14,11 +14,7 @@
                                         formControlName="nameCertificate" placeholder="Nhập tên chứng chỉ">
                                     <div *ngIf="validForm.get('nameCertificate')?.invalid && validForm.get('nameCertificate')?.touched"
                                         class="text-danger">
-<<<<<<< HEAD
                                         Vui lòng nhập dữ liệu!
-=======
-                                        Tên chứng chỉ là bắt buộc
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
@@ -31,17 +27,12 @@
                                         placeholder="Nhập tổ chức cấp">
                                     <div *ngIf="validForm.get('issued')?.invalid && validForm.get('issued')?.touched"
                                         class="text-danger">
-<<<<<<< HEAD
                                         Vui lòng nhập dữ liệu!
-=======
-                                        Tổ chức cấp là bắt buộc
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-<<<<<<< HEAD
                                 <label class="col-lg-4 col-form-label" for="user_id">Tên người nhận <span
                                         class="text-danger">*</span></label>
                                 <div class="col-lg-6 p-2">
@@ -50,37 +41,11 @@
                                     </select>
                                     <div *ngIf="validForm.get(' user.id ')?.invalid && validForm.get(' user.id ')?.touched" class="text-danger">
                                         Vui lòng nhập dữ liệu!
-=======
-                                <label class="col-lg-4 col-form-label" for="nameReceiver">Tên người nhận <span
-                                        class="text-danger">*</span></label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="text" class="form-control" id="nameReceiver"
-                                        formControlName="nameReceiver" placeholder="Nhập tên người nhận">
-                                    <div *ngIf="validForm.get('nameReceiver')?.invalid && validForm.get('nameReceiver')?.touched"
-                                        class="text-danger">
-                                        Tên người nhận là bắt buộc
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                            
-=======
-                            <!-- <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="dateIssued">Ngày cấp <span
-                                        class="text-danger">*</span></label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="date" class="form-control" id="dateIssued"
-                                        formControlName="dateIssued">
-                                    <div *ngIf="validForm.get('dateIssued')?.invalid && validForm.get('dateIssued')?.touched"
-                                        class="text-danger">
-                                        Ngày cấp là bắt buộc
-                                    </div>
-                                </div>
-                            </div> -->
-
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="expiry">Hạn sử dụng <span
                                         class="text-danger">*</span></label>
@@ -88,32 +53,12 @@
                                     <input type="text" class="form-control" id="expiry" formControlName="expiry">
                                     <div *ngIf="validForm.get('expiry')?.invalid && validForm.get('expiry')?.touched"
                                         class="text-danger">
-<<<<<<< HEAD
                                         Vui lòng nhập dữ liệu!
-=======
-                                        Hạn sử dụng là bắt buộc
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
                                     </div>
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                           
-=======
-                            <div class="form-group row ">
-                                <label class="col-lg-4 col-form-label" for="img">Hình ảnh <span
-                                        class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6 p-2">
-                                    <input type="file" class="form-control" formControlName="image"
-                                        (change)="onFileSelected($event)" name="image">
-                                    <div *ngIf="validForm.get('image').invalid && (validForm.get('image').dirty || validForm.get('image').touched)"
-                                        class="text-danger">
-                                        <span *ngIf="validForm.get('image').errors.required">Vui lòng nhập dữ liệu!</span>
-                                    </div>
-                                </div>
-                            </div>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
                             <div class="form-group row">
                                 <div class="col-lg-6 p-2 offset-lg-4">

@@ -1,40 +1,25 @@
-<div *ngIf="!showRouterOutlet">
+
   <nb-card>
     <nb-card-header>
-<<<<<<< HEAD
       Bảng thông tuyển dụng
-=======
-      Bảng thông tin nhân viên
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <!-- Hiển thị dữ liệu cố định của userComponent -->
       <table class="table">
         <thead>
           <tr>
-<<<<<<< HEAD
             <th scope="col">STT</th>      
-=======
-            <th scope="col">ID</th>
-            <th scope="col">Tên ứng tuyển</th>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             <th scope="col">Vị trí</th>
             <th scope="col">Thời gian nộp</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Đánh giá</th>
-<<<<<<< HEAD
             <th scope="col">Ứng tuyển</th>
-=======
-            <th scope="col">Phụ trách ứng tuyển</th>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             <th scope="col">Kết quả</th>
             <th scope="col">Hành động</th>
 
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           <tr *ngFor="let re of recruitmentList ; index as i">
             <td>{{ i + 1}}</td>
             <td>{{ re.role }}</td>
@@ -42,7 +27,6 @@
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
             <ng-container *ngIf="list && list.length > 0">
-              <!-- Tìm kiếm người dùng với user_id tương ứng -->
               <ng-container *ngFor="let user of list">
                 <ng-container *ngIf="user.id === re .user_id">
                   <td>{{ user.fullname }}</td>
@@ -53,25 +37,10 @@
             <td>
               <button type="submit" class="btn btn-outline-success" (click)="editRe(re.id)">Sửa</button>
               <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
-=======
-          <tr *ngFor="let re of recruitmentList">
-            <td>{{ re.id }}</td>
-            <td>{{ re.nameRecruitment }}</td>
-            <td>{{ re.role }}</td>
-            <td>{{ re.submissionTime }}</td>
-            <td>{{ re.status }}</td>
-            <td>{{ re.rate }}</td>
-            <td>{{ re.nameExaminer }}</td>
-            <td>{{ re.result }}</td>
-            <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit(re.id)">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteRe(re.id)">Xóa</button>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             </td>
           </tr>
         </tbody>
       </table>
     </nb-card-body>
   </nb-card>
-</div>
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>
+

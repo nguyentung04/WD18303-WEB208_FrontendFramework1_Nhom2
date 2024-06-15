@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { recruitmentComponent } from './recruitment.component';
-import {BreadcrumbModule} from "xng-breadcrumb";
+
+import { BreadcrumbModule } from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NbCardModule } from '@nebular/theme';
 
@@ -10,6 +10,7 @@ import { RecruitmentEditComponent } from './recruitment-edit/recruitment-edit.co
 import { RecruitmentDeleteComponent } from './recruitment-delete/recruitment-delete.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { recruitmentComponent } from './recruitment.component';
 
 
 @NgModule({
@@ -26,8 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     recruitmentComponent,
     RecruitmentCreateComponent,
     RecruitmentEditComponent,
-    RecruitmentDeleteComponent,
- 
+    RecruitmentDeleteComponent
+
   ],
 })
 export class recruitmentModule { }

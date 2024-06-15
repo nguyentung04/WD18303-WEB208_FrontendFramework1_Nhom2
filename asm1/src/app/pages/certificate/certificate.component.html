@@ -9,26 +9,15 @@
       <table class="table">
         <thead>
           <tr>
-<<<<<<< HEAD
             <th scope="col">STT</th>
             <th scope="col">Tên chứng chỉ</th>
             <th scope="col">Tổ chức cấp</th>
             <th scope="col">Hạn sử dụng</th>
 
-=======
-            <th scope="col">ID</th>
-            <th scope="col">Tên chứng chỉ</th>
-            <th scope="col">Tổ chức cấp</th>
-            <th scope="col">Tên người nhận</th>
-            <th scope="col">Ngày cấp</th>
-            <th scope="col">Hạn sử dụng</th>
-            <th scope="col">Hình ảnh</th>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             <th scope="col">Hành động</th>
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
           <tr *ngFor="let cer of certificateList ; index as i">
             <td>{{ i+1 }}</td>
             <td>{{ cer.nameCertificate }}</td>
@@ -37,19 +26,6 @@
             <td>
               <button type="button" class="btn btn-outline-success" (click)="edit(cer.id)">Sửa</button>
               <button type="submit" class="btn btn-outline-danger m-2" (click)="deleteCer(cer.id)">Xóa</button>
-=======
-          <tr *ngFor="let cer of certificateList">
-            <td>{{ cer.id }}</td>
-            <td>{{ cer.nameCertificate }}</td>
-            <td>{{ cer.issued }}</td>
-            <td>{{ cer.nameReceiver }}</td>
-            <td>{{ cer.dateRange }}</td>
-            <td>{{ cer.expiry }}</td>
-            <!-- <td><img [src]="certificate.imageUrl" alt="Certificate Image" width="50"></td> -->
-            <td>
-              <button type="button" class="btn btn-outline-success" (click)="edit(cer.id)">Sửa</button>
-              <button type="button" class="btn btn-outline-danger m-2" (click)="deleteCer(cer.id)">Xóa</button>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             </td>
           </tr>
         </tbody>
@@ -57,8 +33,4 @@
     </nb-card-body>
   </nb-card>
 </div>
-<<<<<<< HEAD
 <router-outlet *ngIf="showRouterOutlet"></router-outlet>
-=======
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528

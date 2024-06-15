@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
 import { InformationtechnologyexperienceComponent } from './informationtechnologyexperience.component';
 import {BreadcrumbModule} from "xng-breadcrumb";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -10,19 +9,12 @@ import { InformationtechnologyexperienceEditComponent } from './informationtechn
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-=======
-import { informationtechnologyexperienceComponent } from './informationtechnologyexperience.component';
-import {BreadcrumbModule} from "xng-breadcrumb";
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { NbCardModule } from '@nebular/theme';
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
 
 
 @NgModule({
   imports: [
     BreadcrumbModule,
     Ng2SmartTableModule,
-<<<<<<< HEAD
     NbCardModule,
     
     CommonModule,
@@ -39,12 +31,3 @@ import { NbCardModule } from '@nebular/theme';
   ],
 })
 export class informationtechnologyexperienceModule { }
-=======
-    NbCardModule
-  ],
-  declarations: [
-    informationtechnologyexperienceComponent
-  ],
-})
-export class informationtechnologyexperienceModule { }
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528

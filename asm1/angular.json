@@ -38,11 +38,9 @@
               "node_modules/@nebular/theme/styles/prebuilt/default.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/leaflet/dist/leaflet.css",
-              "src/app/@theme/styles/styles.scss"
-<<<<<<< HEAD
+              "src/app/@theme/styles/styles.scss",
+              "node_modules/font-awesome/css/font-awesome.css"
               
-=======
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
             ],
             "scripts": []
           },

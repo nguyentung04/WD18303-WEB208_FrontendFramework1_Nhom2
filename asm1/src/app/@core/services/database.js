@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 const mysql = require('mysql');
+const bcrypt = require('bcryptjs');
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -91,11 +91,18 @@ const getByID = (table, id, callback) => {
 };
 
 const insert = (table, data, callback) => {
+  // Mã hóa mật khẩu nếu trường hợp nó chưa được mã hóa
+  if (data.password) {
+    const salt = bcrypt.genSaltSync(10);
+    data.password = bcrypt.hashSync(data.password, salt);
+  }
+  
   const sql = `INSERT INTO ?? SET ?`;
   db.query(sql, [table, data], (err, results) => {
     callback(err, results);
   });
 };
+
 
 const update = (table, data, id, callback) => {
   const sql = `UPDATE ?? SET ? WHERE id = ?`;
@@ -139,72 +146,3 @@ module.exports = {
   DeleteSkill,
   db
 };
-=======
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'mysql',
-  database: 'cv'
-});
-
-db.connect(err => {
-  if (err) {
-    console.error('Kết nối MySQL thất bại: ', err);
-  } else {
-    console.log('Kết nối MySQL thành công');
-  }
-});
-
-const getAll = (table, callback) => {
-  const sql = `SELECT * FROM ??`;
-  db.query(sql, [table], (err, results) => {
-    callback(err, results);
-  });
-};
-const getByID = (table, id, callback) => {
-  const sql = `SELECT * FROM ?? WHERE ?`;
-  db.query(sql, [table, id], (err, results) => {
-    callback(err, results);
-  });
-};
-
-
-
-
-
-const insert = (table, data, callback) => {
-  const sql = `INSERT INTO ?? SET ?`;
-  db.query(sql, [table, data], (err, results) => {
-    callback(err, results);
-  });
-};
-
-const update = (table, data, id, callback) => {
-  const sql = `UPDATE ?? SET ? WHERE ?`;
-  db.query(sql, [table, data, id], (err, results) => {
-    callback(err, results);
-  });
-};
-
-const Delete = (table, id, callback) => {
-  const sql = `DELETE FROM ?? WHERE ?`;
-  db.query(sql, [table, id], (err, results) => {
-    callback(err, results);
-  });
-};
-
-
-
-
-module.exports = {
-  getAll,
-  insert,
-  update,
-  Delete,
-
-  getByID,
-  db
-};
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528

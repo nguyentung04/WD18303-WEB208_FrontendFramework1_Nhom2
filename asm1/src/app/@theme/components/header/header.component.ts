@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
-
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {LayoutService} from "../../../@core/services/common/layout.service";
+import { LayoutService } from "../../../@core/services/common/layout.service";
+import { LocalStorageService } from "../../../@core/services/common"; // Thêm import LocalStorageService
+import { Router } from '@angular/router';
+import { LOCALSTORAGE_KEY } from 'app/@core/config';
 
 @Component({
   selector: 'ngx-header',
@@ -29,41 +31,48 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-<<<<<<< HEAD
-  userMenu = [ { title: 'Thông tin' }, { title: 'Đăng xuất' } ];
-=======
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
+  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  
 
   constructor(
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService
+    private router: Router,
+
+    private breakpointService: NbMediaBreakpointsService,
+    private storageService: LocalStorageService // Thêm private storageService
   ) { }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-<<<<<<< HEAD
-    this.user = {name: 'ABC Company', picture: 'assets/images/logo.jpg'}
-=======
-    this.user = {name: 'Admin', picture: 'assets/images/account.png'}
->>>>>>> 05374b85aa4d45f56e4e3a43da72272edf7bb528
+    this.user = { name: 'Alibaba', picture: 'assets/images/account.png' }
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
-        .pipe(
-            map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-            takeUntil(this.destroy$),
-        )
-        .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+      .pipe(
+        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
 
     this.themeService.onThemeChange()
-        .pipe(
-            map(({ name }) => name),
-            takeUntil(this.destroy$),
-        )
-        .subscribe(themeName => this.currentTheme = themeName);
+      .pipe(
+        map(({ name }) => name),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(themeName => this.currentTheme = themeName);
+
+    // Đăng ký sự kiện khi click vào menu
+    this.menuService.onItemClick()
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe((event) => {
+        if (event.item.title === 'Log out') {
+          this.logout(); // Gọi hàm logout khi click vào "Log out"
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -84,5 +93,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logout() {
+    // Xoá token và thông tin người dùng trong localStorage
+    this.storageService.removeItem(LOCALSTORAGE_KEY.token);
+    this.storageService.removeItem(LOCALSTORAGE_KEY.userInfo);
+    this.storageService.removeItem(LOCALSTORAGE_KEY.userInfo2);
+    // Chuyển hướng về trang đăng nhập (hoặc trang chủ)
+    // Ví dụ chuyển hướng về trang đăng nhập
+    this.router.navigate(['/auth/login']);
   }
 }
