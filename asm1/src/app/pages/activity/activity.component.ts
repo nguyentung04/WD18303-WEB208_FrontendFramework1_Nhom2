@@ -16,11 +16,7 @@ export class ActivityComponent implements OnInit {
   constructor(private router: Router, private activityService: PostService2) { }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/activity/');
-      }
-    });
+   
     this.getAll();
   }
 

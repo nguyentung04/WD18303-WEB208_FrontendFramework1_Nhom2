@@ -19,6 +19,8 @@ import { activityModule } from './activity/activity.module';
 import { experienceModule } from './experience/experience.module';
 import { languageModule } from './inlanguage/language.module';
 import { CvModule } from './cv/cv.module';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -41,7 +43,9 @@ import { CvModule } from './cv/cv.module';
     activityModule,
     languageModule,
     experienceModule,
-    CvModule
+    CvModule,
+    RouterModule,
+    CommonModule
   ],
   declarations: [
     PagesComponent,

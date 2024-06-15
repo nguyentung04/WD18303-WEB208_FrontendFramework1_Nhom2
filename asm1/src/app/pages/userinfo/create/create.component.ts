@@ -28,7 +28,7 @@ export class CreateComponent {
       birthday: new FormControl('', [Validators.required]),
       address: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [ Validators.required,Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
+      phone: new FormControl('', [Validators.required, Validators.pattern(/(84|0[3|5|7|8|9])+([0-9]{8})\b/)
       ]),
     });
   }
@@ -72,9 +72,7 @@ export class CreateComponent {
     };
 
     this.user.postUser(newUser, this.table).subscribe(res => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/pages/userinfo']);
-      });
+      this.router.navigate(['/pages/userinfo']);
     });
   }
 

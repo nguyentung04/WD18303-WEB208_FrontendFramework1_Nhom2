@@ -56,9 +56,7 @@ export class CreateSkillComponent {
 
     this.user.postSkill(newUser, this.table).subscribe(res => {
       this.lists.push(newUser);
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['/pages/skill']);
-      });   
+        this.router.navigate(['/pages/skill']);  
     });
   }
 

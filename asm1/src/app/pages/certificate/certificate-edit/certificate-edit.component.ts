@@ -13,9 +13,10 @@ import { PostService } from 'app/@core/services/apis/post.service';
 })
 export class CertificateEditComponent implements OnInit {
   table: string = 'certificate';
-  certificateList: certificate[] = [];
+  certificateList: certificate;
   validForm: FormGroup;
   id: string;
+  originalData: any;
 
   constructor(
     private router: Router,
@@ -37,8 +38,36 @@ export class CertificateEditComponent implements OnInit {
     this.getByID(this.id);
   }
 
+  getByID(id: string): void {
+    const ID = parseInt(id, 10); // Đảm bảo ID là số nguyên
+    console.log(`Đang lấy chứng chỉ với ID: ${ID}`); // Ghi nhật ký ID đang lấy
+
+    this.certificateService.getById(ID, this.table).subscribe(
+      data => {
+        console.log('Phản hồi từ API:', data); // Ghi nhật ký phản hồi từ API
+
+        this.certificateList = data[0];
+        this.originalData = { ...data[0] }; // Lưu trữ dữ liệu gốc
+
+  
+      },
+    
+    );
+  }
+
+  isUnchanged(): boolean {
+    const formValues = this.validForm.getRawValue();
+    return (
+      formValues.user_id === this.originalData.user_id &&
+      formValues.nameCertificate === this.originalData.nameCertificate &&
+      formValues.issued === this.originalData.issued &&
+      formValues.expiry === this.originalData.expiry
+    );
+  }
+
   onSubmit(): void {
-    if (this.validForm.invalid) {
+    if (this.validForm.invalid || this.isUnchanged()) {
+      alert('Dữ liệu không thay đổi hoặc form không hợp lệ.');
       return;
     }
 
@@ -50,14 +79,14 @@ export class CertificateEditComponent implements OnInit {
       expiry: this.validForm.value.expiry,
     };
 
-    console.log('Submitting form:', updateCertificate);
+    console.log('Đang gửi form:', updateCertificate);
 
-    const numericId = parseInt(this.id, 10); // Convert this.id to a number
+    const numericId = parseInt(this.id, 10); // Chuyển đổi this.id thành số
 
     this.certificateService.putCer(updateCertificate, numericId, this.table).subscribe(
       res => {
         updateCertificate.id = res.id;
-        console.log('Update response:', res); // Log the response from the API
+        console.log('Phản hồi khi cập nhật:', res); // Ghi nhật ký phản hồi từ API
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/pages/certificate']);
         });
@@ -68,21 +97,7 @@ export class CertificateEditComponent implements OnInit {
     );
   }
 
-  getByID(id: string): void {
-    const ID = parseInt(id, 10); // Ensure the base is specified for parseInt
-    console.log(`Fetching certificate with ID: ${ID}`); // Log the ID being fetched
 
-    this.certificateService.getById(ID, this.table).subscribe(
-      (data) => {
-        console.log('API response:', data); // Log the full API response
-
-      this.certificateList=data[0];
-      },
-      (error) => {
-        console.error('Error fetching data', error);
-      }
-    );
-  }
 
   back(): void {
     this.router.navigate(['/pages/certificate']);
