@@ -1,7 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
-import { PostService }  from '../../@core/services/apis/post.service'
 import { recruitment } from 'app/@core/interfaces/pages/recruitment';
 import { RecruitmenttService } from 'app/@core/services/apis/recruitment';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
@@ -11,7 +9,7 @@ import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
   templateUrl: './recruitment.component.html',
 })
 export class recruitmentComponent implements OnInit {
-  showRouterOutlet: boolean = false;
+
   recruitmentList: recruitment[] = [] ;
   table: string = 'recruitment';
   table1: string = 'userinfo';
@@ -25,12 +23,7 @@ export class recruitmentComponent implements OnInit {
     this.recruitment.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {
       this.list = users;
     });
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/recruitment/');
-        
-      }
-    });
+
     this.getAll();
     // this.getUserById();
     // this.getAllUser();

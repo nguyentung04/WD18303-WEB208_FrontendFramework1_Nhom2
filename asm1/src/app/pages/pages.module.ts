@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
     userModule,
     skillModule,
     certificateModule,
-    recruitmentModule,
+   recruitmentModule,
     informationtechnologyexperienceModule,
     activityModule,
     languageModule,

@@ -1,11 +1,10 @@
-<div *ngIf="!showRouterOutlet">
+
   <nb-card>
     <nb-card-header>
       Bảng thông tuyển dụng
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
-      <!-- Hiển thị dữ liệu cố định của userComponent -->
       <table class="table">
         <thead>
           <tr>
@@ -28,7 +27,6 @@
             <td>{{ re.status }}</td>
             <td>{{ re.rate }}</td>
             <ng-container *ngIf="list && list.length > 0">
-              <!-- Tìm kiếm người dùng với user_id tương ứng -->
               <ng-container *ngFor="let user of list">
                 <ng-container *ngIf="user.id === re .user_id">
                   <td>{{ user.fullname }}</td>
@@ -45,5 +43,4 @@
       </table>
     </nb-card-body>
   </nb-card>
-</div>
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>
+
