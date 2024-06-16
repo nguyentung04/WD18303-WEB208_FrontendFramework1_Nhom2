@@ -39,13 +39,20 @@
                   <input type="date" class="form-control" id="endTime" formControlName="endTime" required>
                   <div *ngIf="validForm.get('endTime').invalid && (validForm.get('endTime').dirty || validForm.get('endTime').touched)" class="text-danger">
                     <div *ngIf="validForm.get('endTime').errors.required">Vui lòng chọn ngày kết thúc</div>
+                    <div *ngIf="validForm.get('endTime').hasError('endDateBeforeOrEqualStart')">Ngày kết thúc không được sớm hơn hoặc bằng ngày bắt đầu</div>
                   </div>
-</div>
+                </div>
               </div>
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="graduation_Type">Xếp loại <span class="text-danger">*</span></label>
                 <div class="col-lg-6 p-2">
-                  <input type="text" class="form-control" id="graduation_Type" formControlName="graduation_Type" required>
+                  <select class="form-control" id="graduation_Type" formControlName="graduation_Type" required>
+                    <option value="Xuất sắc">Xuất sắc</option>
+                    <option value="Giỏi">Giỏi</option>
+                    <option value="Khá">Khá</option>
+                    <option value="Trung bình">Trung bình</option>
+                    <option value="Yếu">Yếu</option>
+                  </select>
                   <div *ngIf="validForm.get('graduation_Type').invalid && (validForm.get('graduation_Type').dirty || validForm.get('graduation_Type').touched)" class="text-danger">
                     <div *ngIf="validForm.get('graduation_Type').errors.required">Xếp loại không được để trống</div>
                   </div>

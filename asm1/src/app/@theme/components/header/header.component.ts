@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Thông tin' }, { title: 'Đăng xuất' }];
   
 
   constructor(
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-    this.user = { name: 'Alibaba', picture: 'assets/images/account.png' }
+    this.user = { name: 'ABC Company', picture: 'assets/images/logo.jpg' }
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe((event) => {
-        if (event.item.title === 'Log out') {
+        if (event.item.title === 'Đăng xuất') {
           this.logout(); // Gọi hàm logout khi click vào "Log out"
         }
       });
