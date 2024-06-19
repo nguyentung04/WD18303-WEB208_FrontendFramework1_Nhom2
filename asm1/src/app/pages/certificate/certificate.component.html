@@ -1,8 +1,7 @@
-<!-- certificate.component.html -->
-<div *ngIf="!showRouterOutlet">
+
   <nb-card>
     <nb-card-header>
-      Bảng thông tin nhân viên
+      Bảng thông tin chứng chỉ
       <button type="button" class="btn btn-outline-primary" (click)="add()">Thêm</button>
     </nb-card-header>
     <nb-card-body>
@@ -13,7 +12,6 @@
             <th scope="col">Tên chứng chỉ</th>
             <th scope="col">Tổ chức cấp</th>
             <th scope="col">Hạn sử dụng</th>
-
             <th scope="col">Hành động</th>
           </tr>
         </thead>
@@ -32,5 +30,3 @@
       </table>
     </nb-card-body>
   </nb-card>
-</div>
-<router-outlet *ngIf="showRouterOutlet"></router-outlet>

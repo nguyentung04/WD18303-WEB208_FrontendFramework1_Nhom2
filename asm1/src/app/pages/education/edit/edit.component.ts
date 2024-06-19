@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
 import { PostService2 } from 'app/@core/services/apis/post.services';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
@@ -14,7 +14,7 @@ export class EditEducationComponent implements OnInit {
   list: IuserInfo[] = [];
   table: string = 'education';
   validForm: FormGroup;
-  educationData: Ieducation; 
+  educationData: Ieducation;
   id: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private postService: PostService2) { }
@@ -25,7 +25,6 @@ export class EditEducationComponent implements OnInit {
     });
     this.id = this.route.snapshot.params['id'];
 
-
     this.getByID(this.id);
     this.validForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -34,9 +33,23 @@ export class EditEducationComponent implements OnInit {
       endTime: new FormControl('', Validators.required),
       graduation_Type: new FormControl('', Validators.required),
       user_id: new FormControl('', Validators.required),
-    });
-    // Khởi tạo form
+    }, { validators: this.endDateAfterStartDate });
+  }
 
+  endDateAfterStartDate(group: AbstractControl): ValidationErrors | null {
+    const start = group.get('startTime')?.value;
+    const end = group.get('endTime')?.value;
+    if (start && end) {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      if (endDate <= startDate) {
+        group.get('endTime')?.setErrors({ endDateBeforeOrEqualStart: true });
+        return { endDateBeforeOrEqualStart: true };
+      } else {
+        group.get('endTime')?.setErrors(null);
+      }
+    }
+    return null;
   }
 
   onSubmit() {
@@ -54,17 +67,17 @@ export class EditEducationComponent implements OnInit {
       user_id: this.validForm.value.user_id,
     };
 
-    this.postService.putEducation(updatedEducation, this.id,this.table).subscribe(res => {
+    this.postService.putEducation(updatedEducation, this.id, this.table).subscribe(res => {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/pages/education']);
-      }); 
+      });
     });
   }
 
   getByID(id: number) {
     this.postService.getByID(id, 'education').subscribe(data => {
-      this.educationData = data[0]; 
-      this.populateForm(this.educationData); 
+      this.educationData = data[0];
+      this.populateForm(this.educationData);
     });
   }
 
@@ -75,10 +88,10 @@ export class EditEducationComponent implements OnInit {
     this.validForm.patchValue({
       name: education.name,
       specialized: education.specialized,
-      startTime: startTime.toISOString().substring(0, 10), 
-      endTime: endTime.toISOString().substring(0, 10), 
+      startTime: startTime.toISOString().substring(0, 10),
+      endTime: endTime.toISOString().substring(0, 10),
       graduation_Type: education.graduation_Type,
-      user_id: education.user_id 
+      user_id: education.user_id
     });
   }
 

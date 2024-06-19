@@ -1,7 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd } from '@angular/router';
-import { PostService }  from '../../@core/services/apis/post.service'
 import { certificate } from 'app/@core/interfaces/pages/certificate';
 import { CertificateService } from 'app/@core/services/apis/certificate';
 
@@ -11,7 +9,6 @@ import { CertificateService } from 'app/@core/services/apis/certificate';
   templateUrl: './certificate.component.html',
 })
 export class certificateComponent implements OnInit {
-  showRouterOutlet: boolean = false;
   certificateList: certificate[] = [] ;
   table: string = 'certificate'
 

@@ -24,12 +24,6 @@ export class educationComponent implements OnInit {
     });
     this.getEducation();
     
-    // Kiểm tra khi có route con được kích hoạt
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showRouterOutlet = this.router.url.includes('/education/');
-      }
-    });
     // Check for activated child routes
 
   }

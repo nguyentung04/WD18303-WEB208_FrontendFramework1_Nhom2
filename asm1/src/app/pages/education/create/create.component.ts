@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Ieducation } from 'app/@core/interfaces/pages/education';
 import { PostService2 } from 'app/@core/services/apis/post.services';
 import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
@@ -10,7 +10,7 @@ import { IuserInfo } from 'app/@core/interfaces/pages/userinfo';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateEducationComponent {
+export class CreateEducationComponent implements OnInit {
   list: IuserInfo[] = [];
   table: string = 'education';
   users: any[] = []; 
@@ -18,7 +18,7 @@ export class CreateEducationComponent {
 
   validForm: FormGroup;
 
-  constructor(private router: Router, private postService: PostService2) { }
+  constructor(private router: Router, private postService: PostService2) {}
 
   ngOnInit(): void {
     this.postService.getAllUser('userinfo').subscribe((users: IuserInfo[]) => {
@@ -30,8 +30,24 @@ export class CreateEducationComponent {
       startTime: new FormControl('', Validators.required),
       endTime: new FormControl('', Validators.required),
       graduation_Type: new FormControl('', Validators.required),
-      user_id: new FormControl('', Validators.required) // Thêm trường user_id vào FormGroup
-    });
+      user_id: new FormControl('', Validators.required)
+    }, { validators: this.endDateAfterStartDate });
+  }
+
+  endDateAfterStartDate(group: AbstractControl): ValidationErrors | null {
+    const start = group.get('startTime')?.value;
+    const end = group.get('endTime')?.value;
+    if (start && end) {
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      if (endDate <= startDate) {
+        group.get('endTime')?.setErrors({ endDateBeforeOrEqualStart: true });
+        return { endDateBeforeOrEqualStart: true };
+      } else {
+        group.get('endTime')?.setErrors(null);
+      }
+    }
+    return null;
   }
 
   onSubmit() {
